@@ -1,0 +1,2075 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>py.ref — The Complete Python Reference</title>
+<style>
+:root{
+  --bg:#0b0d10;
+  --bg-panel:#111418;
+  --bg-panel-2:#161a20;
+  --bg-inset:#0a0c0e;
+  --border:#232a33;
+  --border-soft:#1a1f26;
+  --text:#d7dde3;
+  --text-dim:#7c8792;
+  --text-faint:#4d5761;
+  --blue:#4b8bbe;
+  --yellow:#ffd43b;
+  --yellow-dim:#8a7328;
+  --green:#3fb950;
+  --red:#f0625a;
+  --purple:#c497f0;
+  --mono: 'JetBrains Mono','Fira Code','SF Mono',Consolas,monospace;
+  --sans: 'Inter','Segoe UI',sans-serif;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--sans);
+  line-height:1.6;
+}
+::selection{background:var(--yellow);color:#0b0d10;}
+::-webkit-scrollbar{width:10px;height:10px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:6px;}
+::-webkit-scrollbar-thumb:hover{background:var(--blue);}
+
+a{color:var(--yellow);text-decoration:none;}
+code, pre, .mono{font-family:var(--mono);}
+
+/* ===== Layout shell ===== */
+.app{
+  display:grid;
+  grid-template-columns:280px 1fr;
+  min-height:100vh;
+}
+@media (max-width:900px){
+  .app{grid-template-columns:1fr;}
+  .sidebar{display:none;}
+  .sidebar.open{display:block;}
+}
+
+/* ===== Sidebar ===== */
+.sidebar{
+  border-right:1px solid var(--border-soft);
+  background:var(--bg-panel);
+  position:sticky;
+  top:0;
+  height:100vh;
+  overflow-y:auto;
+  padding:20px 0 60px;
+  z-index:50;
+}
+.sidebar-brand{
+  padding:0 20px 16px;
+  border-bottom:1px solid var(--border-soft);
+  margin-bottom:12px;
+}
+.sidebar-brand .tag{
+  font-family:var(--mono);
+  font-size:11px;
+  color:var(--green);
+  letter-spacing:.08em;
+}
+.sidebar-brand h1{
+  font-family:var(--mono);
+  font-size:20px;
+  margin:6px 0 2px;
+  color:var(--yellow);
+}
+.sidebar-brand p{
+  font-size:12px;
+  color:var(--text-dim);
+  margin:0;
+}
+.search-box{
+  margin:0 16px 14px;
+  position:relative;
+}
+.search-box input{
+  width:100%;
+  background:var(--bg-inset);
+  border:1px solid var(--border);
+  color:var(--text);
+  font-family:var(--mono);
+  font-size:13px;
+  padding:9px 10px 9px 28px;
+  border-radius:6px;
+  outline:none;
+}
+.search-box input:focus{border-color:var(--blue);}
+.search-box::before{
+  content:"⌕";
+  position:absolute;
+  left:10px;top:8px;
+  color:var(--text-faint);
+  font-size:14px;
+}
+.nav-group{margin-bottom:4px;}
+.nav-group-title{
+  font-family:var(--mono);
+  font-size:10.5px;
+  letter-spacing:.09em;
+  text-transform:uppercase;
+  color:var(--text-faint);
+  padding:10px 20px 4px;
+}
+.nav-link{
+  display:flex;
+  gap:8px;
+  align-items:baseline;
+  padding:6px 20px;
+  font-size:13.5px;
+  color:var(--text-dim);
+  cursor:pointer;
+  border-left:2px solid transparent;
+}
+.nav-link .num{color:var(--text-faint);font-family:var(--mono);font-size:11px;min-width:22px;}
+.nav-link:hover{color:var(--text);background:var(--bg-panel-2);}
+.nav-link.active{
+  color:var(--yellow);
+  border-left-color:var(--yellow);
+  background:var(--bg-panel-2);
+}
+
+/* ===== Main content ===== */
+.main{padding:0;min-width:0;}
+.topbar{
+  position:sticky;top:0;z-index:40;
+  display:none;
+  background:var(--bg-panel);
+  border-bottom:1px solid var(--border-soft);
+  padding:12px 16px;
+  align-items:center;
+  justify-content:space-between;
+}
+@media (max-width:900px){.topbar{display:flex;}}
+.topbar button{
+  background:var(--bg-inset);
+  border:1px solid var(--border);
+  color:var(--yellow);
+  font-family:var(--mono);
+  padding:6px 10px;
+  border-radius:6px;
+}
+
+.hero{
+  padding:64px 56px 40px;
+  border-bottom:1px solid var(--border-soft);
+  background:
+    radial-gradient(circle at 85% -10%, rgba(75,139,190,.15), transparent 45%),
+    radial-gradient(circle at 10% 110%, rgba(255,212,59,.08), transparent 40%);
+}
+@media (max-width:640px){.hero{padding:40px 20px 28px;}}
+.hero .eyebrow{
+  font-family:var(--mono);
+  color:var(--green);
+  font-size:12.5px;
+  letter-spacing:.08em;
+}
+.hero h1{
+  font-family:var(--mono);
+  font-size:clamp(28px,5vw,46px);
+  margin:10px 0 14px;
+  color:#fff;
+}
+.hero h1 span{color:var(--yellow);}
+.hero p.lede{
+  max-width:720px;
+  color:var(--text-dim);
+  font-size:15.5px;
+}
+.hero-stats{
+  display:flex;
+  gap:28px;
+  margin-top:28px;
+  flex-wrap:wrap;
+}
+.hero-stat .n{font-family:var(--mono);font-size:22px;color:var(--yellow);}
+.hero-stat .l{font-size:11.5px;color:var(--text-faint);text-transform:uppercase;letter-spacing:.06em;}
+
+.content{
+  padding:8px 56px 100px;
+  max-width:980px;
+}
+@media (max-width:640px){.content{padding:8px 20px 80px;}}
+
+section.topic{
+  padding-top:44px;
+  scroll-margin-top:20px;
+}
+section.topic h2{
+  font-family:var(--mono);
+  font-size:26px;
+  color:#fff;
+  border-bottom:2px solid var(--border);
+  padding-bottom:12px;
+  margin:0 0 6px;
+  display:flex;
+  align-items:baseline;
+  gap:12px;
+}
+section.topic h2 .idx{color:var(--blue);font-size:16px;}
+section.topic > .desc{color:var(--text-dim);font-size:14px;margin-bottom:22px;}
+
+h3.sub{
+  font-family:var(--mono);
+  font-size:16px;
+  color:var(--yellow);
+  margin:30px 0 10px;
+  padding-left:10px;
+  border-left:3px solid var(--yellow-dim);
+}
+h4.subsub{
+  font-family:var(--mono);
+  font-size:13.5px;
+  color:var(--blue);
+  margin:18px 0 8px;
+}
+
+p{font-size:14.5px;color:var(--text);margin:8px 0;}
+ul.plain, ol.plain{padding-left:20px;font-size:14.5px;}
+ul.plain li, ol.plain li{margin:4px 0;color:var(--text);}
+ul.plain li b, ol.plain li b{color:#fff;}
+
+.card{
+  background:var(--bg-panel);
+  border:1px solid var(--border-soft);
+  border-radius:8px;
+  padding:16px 18px;
+  margin:12px 0;
+}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;}
+@media (max-width:700px){.grid2,.grid3{grid-template-columns:1fr;}}
+
+pre{
+  background:var(--bg-inset);
+  border:1px solid var(--border);
+  border-left:3px solid var(--blue);
+  border-radius:6px;
+  padding:14px 16px;
+  overflow-x:auto;
+  font-size:13px;
+  margin:10px 0 16px;
+  position:relative;
+}
+pre code{color:#d7dde3;white-space:pre;}
+.kw{color:#ff79c6;}
+.fn{color:#8be9fd;}
+.str{color:#f1fa8c;}
+.com{color:#6272a4;}
+.num{color:#bd93f9;}
+.bi{color:#50fa7b;}
+
+code.inline{
+  background:var(--bg-inset);
+  border:1px solid var(--border);
+  border-radius:4px;
+  padding:1px 6px;
+  font-size:13px;
+  color:var(--yellow);
+}
+
+table.ref{
+  width:100%;
+  border-collapse:collapse;
+  font-size:13.5px;
+  margin:10px 0 20px;
+}
+table.ref th{
+  text-align:left;
+  font-family:var(--mono);
+  font-size:11.5px;
+  text-transform:uppercase;
+  letter-spacing:.05em;
+  color:var(--text-faint);
+  border-bottom:1px solid var(--border);
+  padding:8px 10px;
+}
+table.ref td{
+  padding:8px 10px;
+  border-bottom:1px solid var(--border-soft);
+  color:var(--text);
+  vertical-align:top;
+}
+table.ref tr:hover td{background:var(--bg-panel-2);}
+table.ref td code{color:var(--yellow);}
+
+.pill{
+  display:inline-block;
+  font-family:var(--mono);
+  font-size:11px;
+  padding:2px 8px;
+  border-radius:20px;
+  border:1px solid var(--border);
+  color:var(--text-dim);
+  margin:2px 4px 2px 0;
+}
+.pill.g{border-color:#2a5a34;color:var(--green);}
+.pill.b{border-color:#2a4a5a;color:var(--blue);}
+.pill.y{border-color:#5a4d1e;color:var(--yellow);}
+.pill.r{border-color:#5a2a2a;color:var(--red);}
+
+.note{
+  border:1px solid #2a4a5a;
+  background:rgba(75,139,190,.08);
+  border-radius:6px;
+  padding:10px 14px;
+  font-size:13.5px;
+  margin:12px 0;
+  color:var(--text);
+}
+.note b{color:var(--blue);}
+.warn{
+  border:1px solid #5a2a2a;
+  background:rgba(240,98,90,.08);
+  border-radius:6px;
+  padding:10px 14px;
+  font-size:13.5px;
+  margin:12px 0;
+}
+.warn b{color:var(--red);}
+.tip{
+  border:1px solid #2a5a34;
+  background:rgba(63,185,80,.08);
+  border-radius:6px;
+  padding:10px 14px;
+  font-size:13.5px;
+  margin:12px 0;
+}
+.tip b{color:var(--green);}
+
+.toc-mini{
+  display:flex;flex-wrap:wrap;gap:8px;
+  margin:14px 0 24px;
+}
+.toc-mini a{
+  font-family:var(--mono);
+  font-size:12px;
+  color:var(--text-dim);
+  border:1px solid var(--border);
+  padding:4px 9px;
+  border-radius:5px;
+}
+.toc-mini a:hover{color:var(--yellow);border-color:var(--yellow-dim);}
+
+footer{
+  border-top:1px solid var(--border-soft);
+  padding:30px 56px 60px;
+  color:var(--text-faint);
+  font-size:12.5px;
+  font-family:var(--mono);
+}
+.back-top{
+  position:fixed;bottom:22px;right:22px;
+  background:var(--bg-panel);
+  border:1px solid var(--border);
+  color:var(--yellow);
+  font-family:var(--mono);
+  padding:8px 12px;
+  border-radius:6px;
+  cursor:pointer;
+  z-index:60;
+  display:none;
+  font-size:12px;
+}
+.back-top.show{display:block;}
+mark.hl{background:var(--yellow);color:#0b0d10;border-radius:2px;}
+.hidden{display:none !important;}
+.progress-track{
+  height:2px;background:var(--border);position:sticky;top:0;z-index:45;
+}
+.progress-bar{height:2px;background:linear-gradient(90deg,var(--blue),var(--yellow));width:0%;}
+</style>
+</head>
+<body>
+
+<div class="app">
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <div class="main">
+    <div class="topbar">
+      <button onclick="document.getElementById('sidebar').classList.toggle('open')">☰ menu</button>
+      <span class="mono" style="color:var(--yellow);font-size:13px;">py.ref</span>
+    </div>
+    <div class="progress-track"><div class="progress-bar" id="progressBar"></div></div>
+
+    <div class="hero">
+      <div class="eyebrow">$ python3 --version  →  the complete reference</div>
+      <h1>Python, <span>lahat-lahat.</span></h1>
+      <p class="lede">Isang buong reference site ng Python — mula sa syntax basics hanggang sa mga advanced na topic na kailangan ng isang propesyonal na Python developer. Organized by difficulty, searchable, at may working code examples sa bawat section.</p>
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="n">25</div><div class="l">Major Sections</div></div>
+        <div class="hero-stat"><div class="n">150+</div><div class="l">Topics Covered</div></div>
+        <div class="hero-stat"><div class="n">220+</div><div class="l">Code Examples</div></div>
+        <div class="hero-stat"><div class="n">0</div><div class="l">Ads / Clutter</div></div>
+      </div>
+    </div>
+
+    <div class="content" id="content"></div>
+
+    <footer>
+      py.ref — built for self-studying BSCS devs. Walang tracking, walang ads, puro Python lang. 🐍
+    </footer>
+  </div>
+</div>
+
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ TOP</button>
+
+<script>
+// PART 1 — FUNDAMENTALS → DATA STRUCTURES
+window.PYREF_SECTIONS = window.PYREF_SECTIONS || [];
+
+window.PYREF_SECTIONS.push(
+
+{
+  id:"basics",
+  group:"I. Foundations",
+  title:"Syntax & Basics",
+  html:`
+  <h2><span class="idx">01</span> Syntax &amp; Basics</h2>
+  <p class="desc">Ang pundasyon — kung paano binabasa ng Python interpreter ang code mo.</p>
+
+  <h3 class="sub">Indentation &amp; Comments</h3>
+  <p>Walang curly braces sa Python — <b>indentation ang bumubuo ng blocks</b>. Karaniwang 4 spaces.</p>
+  <pre><code><span class="kw">if</span> <span class="num">5</span> &gt; <span class="num">2</span>:
+    <span class="fn">print</span>(<span class="str">"5 is greater than 2"</span>)  <span class="com"># inline comment</span>
+<span class="com"># buong-linyang comment</span>
+<span class="str">"""
+Multi-line string,
+madalas gamit bilang docstring
+"""</span></code></pre>
+
+  <h3 class="sub">Variables &amp; Dynamic Typing</h3>
+  <p>Walang kailangang i-declare ang type. Ang type ay attached sa <i>value</i>, hindi sa variable name.</p>
+  <pre><code>x = <span class="num">5</span>          <span class="com"># int</span>
+x = <span class="str">"hello"</span>    <span class="com"># pwedeng i-reassign sa ibang type</span>
+a, b, c = <span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>   <span class="com"># multiple assignment</span>
+a = b = c = <span class="num">0</span>          <span class="com"># chained assignment</span>
+x, y = y, x              <span class="com"># swap nang walang temp variable</span></code></pre>
+
+  <h3 class="sub">Data Types</h3>
+  <table class="ref">
+    <tr><th>Type</th><th>Example</th><th>Mutable?</th></tr>
+    <tr><td><code>int</code></td><td><code>42</code></td><td>No</td></tr>
+    <tr><td><code>float</code></td><td><code>3.14</code></td><td>No</td></tr>
+    <tr><td><code>complex</code></td><td><code>2+3j</code></td><td>No</td></tr>
+    <tr><td><code>str</code></td><td><code>"text"</code></td><td>No</td></tr>
+    <tr><td><code>bool</code></td><td><code>True / False</code></td><td>No</td></tr>
+    <tr><td><code>list</code></td><td><code>[1,2,3]</code></td><td><b style="color:var(--green)">Yes</b></td></tr>
+    <tr><td><code>tuple</code></td><td><code>(1,2,3)</code></td><td>No</td></tr>
+    <tr><td><code>dict</code></td><td><code>{"a":1}</code></td><td><b style="color:var(--green)">Yes</b></td></tr>
+    <tr><td><code>set</code></td><td><code>{1,2,3}</code></td><td><b style="color:var(--green)">Yes</b></td></tr>
+    <tr><td><code>frozenset</code></td><td><code>frozenset({1,2})</code></td><td>No</td></tr>
+    <tr><td><code>NoneType</code></td><td><code>None</code></td><td>No</td></tr>
+    <tr><td><code>bytes</code></td><td><code>b"data"</code></td><td>No</td></tr>
+    <tr><td><code>bytearray</code></td><td><code>bytearray(5)</code></td><td><b style="color:var(--green)">Yes</b></td></tr>
+  </table>
+
+  <h3 class="sub">Operators</h3>
+  <div class="grid3">
+    <div class="card"><b style="color:var(--blue)">Arithmetic</b><br><code class="inline">+ - * / // % **</code></div>
+    <div class="card"><b style="color:var(--blue)">Comparison</b><br><code class="inline">== != > < >= <=</code></div>
+    <div class="card"><b style="color:var(--blue)">Logical</b><br><code class="inline">and or not</code></div>
+    <div class="card"><b style="color:var(--blue)">Bitwise</b><br><code class="inline">& | ^ ~ << >></code></div>
+    <div class="card"><b style="color:var(--blue)">Assignment</b><br><code class="inline">= += -= *= /= //= **= %=</code></div>
+    <div class="card"><b style="color:var(--blue)">Identity/Membership</b><br><code class="inline">is / is not / in / not in</code></div>
+  </div>
+  <p><code class="inline">//</code> = floor division, <code class="inline">**</code> = exponent, <code class="inline">%</code> = modulo (remainder).</p>
+
+  <h3 class="sub">Type Conversion</h3>
+  <pre><code><span class="fn">int</span>(<span class="str">"42"</span>)     <span class="com"># 42</span>
+<span class="fn">float</span>(<span class="str">"3.14"</span>) <span class="com"># 3.14</span>
+<span class="fn">str</span>(<span class="num">42</span>)       <span class="com"># "42"</span>
+<span class="fn">list</span>(<span class="str">"abc"</span>)   <span class="com"># ['a', 'b', 'c']</span>
+<span class="fn">bool</span>(<span class="num">0</span>)        <span class="com"># False — falsy: 0, "", [], {}, None, set()</span></code></pre>
+
+  <div class="tip"><b>Tip:</b> Gamitin ang <code class="inline">type(x)</code> at <code class="inline">isinstance(x, int)</code> para i-check ang type ng variable.</div>
+  `
+},
+
+{
+  id:"strings",
+  group:"I. Foundations",
+  title:"Strings",
+  html:`
+  <h2><span class="idx">02</span> Strings</h2>
+  <p class="desc">Immutable sequences of characters — napakadalas gamitin, kaya dapat expert ka dito.</p>
+
+  <h3 class="sub">Creation &amp; f-strings</h3>
+  <pre><code>name = <span class="str">"Kiel"</span>
+age = <span class="num">21</span>
+greeting = <span class="fn">f</span><span class="str">"Hi {name}, you are {age} years old"</span>
+greeting2 = <span class="fn">f</span><span class="str">"Next year: {age + 1}"</span>
+formatted = <span class="fn">f</span><span class="str">"Pi = {3.14159:.2f}"</span>   <span class="com"># Pi = 3.14</span>
+padded = <span class="fn">f</span><span class="str">"{name:>10}"</span>          <span class="com"># right-align, width 10</span></code></pre>
+
+  <h3 class="sub">Common String Methods</h3>
+  <table class="ref">
+    <tr><th>Method</th><th>Ginagawa</th></tr>
+    <tr><td><code>.upper() / .lower()</code></td><td>Case conversion</td></tr>
+    <tr><td><code>.strip() / .lstrip() / .rstrip()</code></td><td>Remove whitespace (o custom chars)</td></tr>
+    <tr><td><code>.split(sep)</code></td><td>String → list</td></tr>
+    <tr><td><code>.join(iterable)</code></td><td>List → string, e.g. <code>", ".join(list)</code></td></tr>
+    <tr><td><code>.replace(old,new)</code></td><td>Replace substring</td></tr>
+    <tr><td><code>.find(sub) / .index(sub)</code></td><td>Position (find:-1 if wala, index: error)</td></tr>
+    <tr><td><code>.startswith() / .endswith()</code></td><td>Boolean check</td></tr>
+    <tr><td><code>.format()</code></td><td>Legacy formatting bago f-strings</td></tr>
+    <tr><td><code>.isdigit() / .isalpha() / .isalnum()</code></td><td>Character-type checks</td></tr>
+    <tr><td><code>.count(sub)</code></td><td>Bilang ng occurrences</td></tr>
+    <tr><td><code>.title() / .capitalize()</code></td><td>Word/sentence case</td></tr>
+    <tr><td><code>.zfill(n)</code></td><td>Zero-pad</td></tr>
+  </table>
+
+  <h3 class="sub">Slicing (gumagana rin sa lists/tuples)</h3>
+  <pre><code>s = <span class="str">"Python"</span>
+s[<span class="num">0</span>]      <span class="com"># 'P'</span>
+s[-<span class="num">1</span>]     <span class="com"># 'n' (huling char)</span>
+s[<span class="num">1</span>:<span class="num">4</span>]    <span class="com"># 'yth' — [start:stop)</span>
+s[:<span class="num">3</span>]     <span class="com"># 'Pyt'</span>
+s[::-<span class="num">1</span>]   <span class="com"># 'nohtyP' — reverse</span>
+s[::<span class="num">2</span>]    <span class="com"># 'Pto' — every 2nd char</span></code></pre>
+
+  <div class="note"><b>Note:</b> Ang strings sa Python ay <b>immutable</b> — bawat "modification" ay gumagawa ng bagong string object.</div>
+  `
+},
+
+{
+  id:"numbers",
+  group:"I. Foundations",
+  title:"Numbers & Math",
+  html:`
+  <h2><span class="idx">03</span> Numbers &amp; Math</h2>
+  <p class="desc">int, float, complex, at ang <code class="inline">math</code>/<code class="inline">random</code> modules.</p>
+
+  <h3 class="sub">Built-in Numeric Functions</h3>
+  <pre><code><span class="fn">round</span>(<span class="num">3.567</span>, <span class="num">2</span>)   <span class="com"># 3.57</span>
+<span class="fn">abs</span>(-<span class="num">5</span>)          <span class="com"># 5</span>
+<span class="fn">pow</span>(<span class="num">2</span>, <span class="num">10</span>)       <span class="com"># 1024 (same as 2**10)</span>
+<span class="fn">divmod</span>(<span class="num">17</span>, <span class="num">5</span>)     <span class="com"># (3, 2) — quotient at remainder</span>
+<span class="fn">max</span>(<span class="num">1</span>,<span class="num">5</span>,<span class="num">3</span>) / <span class="fn">min</span>(<span class="num">1</span>,<span class="num">5</span>,<span class="num">3</span>)
+<span class="fn">sum</span>([<span class="num">1</span>,<span class="num">2</span>,<span class="num">3</span>])   <span class="com"># 6</span></code></pre>
+
+  <h3 class="sub">math module</h3>
+  <pre><code><span class="kw">import</span> math
+math.sqrt(<span class="num">16</span>)     <span class="com"># 4.0</span>
+math.floor(<span class="num">4.7</span>)   <span class="com"># 4</span>
+math.ceil(<span class="num">4.2</span>)    <span class="com"># 5</span>
+math.pi           <span class="com"># 3.14159...</span>
+math.factorial(<span class="num">5</span>) <span class="com"># 120</span>
+math.log(<span class="num">100</span>, <span class="num">10</span>) <span class="com"># 2.0</span>
+math.gcd(<span class="num">12</span>, <span class="num">18</span>)  <span class="com"># 6</span>
+math.inf, math.nan</code></pre>
+
+  <h3 class="sub">random module</h3>
+  <pre><code><span class="kw">import</span> random
+random.random()             <span class="com"># float sa [0.0, 1.0)</span>
+random.randint(<span class="num">1</span>, <span class="num">10</span>)      <span class="com"># int, inclusive both ends</span>
+random.choice([<span class="str">"a"</span>,<span class="str">"b"</span>,<span class="str">"c"</span>]) <span class="com"># random element</span>
+random.shuffle(my_list)     <span class="com"># in-place shuffle</span>
+random.sample(my_list, <span class="num">3</span>)  <span class="com"># 3 unique random elements</span></code></pre>
+
+  <div class="warn"><b>Ingat:</b> Ang <code class="inline">/</code> ay palaging float division. Gamitin ang <code class="inline">//</code> kung int result ang gusto.</div>
+  `
+},
+
+{
+  id:"control-flow",
+  group:"I. Foundations",
+  title:"Control Flow",
+  html:`
+  <h2><span class="idx">04</span> Control Flow</h2>
+  <p class="desc">if/elif/else, loops, at flow control statements.</p>
+
+  <h3 class="sub">Conditionals</h3>
+  <pre><code><span class="kw">if</span> age &lt; <span class="num">13</span>:
+    category = <span class="str">"child"</span>
+<span class="kw">elif</span> age &lt; <span class="num">20</span>:
+    category = <span class="str">"teen"</span>
+<span class="kw">else</span>:
+    category = <span class="str">"adult"</span>
+
+<span class="com"># ternary / conditional expression</span>
+status = <span class="str">"pasado"</span> <span class="kw">if</span> score &gt;= <span class="num">75</span> <span class="kw">else</span> <span class="str">"bagsak"</span></code></pre>
+
+  <h3 class="sub">for &amp; while loops</h3>
+  <pre><code><span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="num">5</span>):        <span class="com"># 0,1,2,3,4</span>
+    <span class="fn">print</span>(i)
+
+<span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="num">2</span>, <span class="num">10</span>, <span class="num">2</span>):  <span class="com"># start, stop, step</span>
+    <span class="fn">print</span>(i)
+
+i = <span class="num">0</span>
+<span class="kw">while</span> i &lt; <span class="num">5</span>:
+    <span class="fn">print</span>(i)
+    i += <span class="num">1</span>
+<span class="kw">else</span>:
+    <span class="fn">print</span>(<span class="str">"tapos na ang loop nang walang break"</span>)</code></pre>
+
+  <h3 class="sub">break, continue, pass</h3>
+  <pre><code><span class="kw">for</span> n <span class="kw">in</span> <span class="fn">range</span>(<span class="num">10</span>):
+    <span class="kw">if</span> n == <span class="num">3</span>: <span class="kw">continue</span>   <span class="com"># skip this iteration</span>
+    <span class="kw">if</span> n == <span class="num">7</span>: <span class="kw">break</span>      <span class="com"># stop loop entirely</span>
+    <span class="fn">print</span>(n)
+
+<span class="kw">def</span> <span class="fn">todo</span>():
+    <span class="kw">pass</span>  <span class="com"># placeholder, walang ginagawa</span></code></pre>
+
+  <h3 class="sub">match statement (Python 3.10+)</h3>
+  <pre><code><span class="kw">match</span> command:
+    <span class="kw">case</span> <span class="str">"start"</span>:
+        <span class="fn">print</span>(<span class="str">"Starting..."</span>)
+    <span class="kw">case</span> <span class="str">"stop"</span> | <span class="str">"halt"</span>:
+        <span class="fn">print</span>(<span class="str">"Stopping..."</span>)
+    <span class="kw">case</span> [x, y]:
+        <span class="fn">print</span>(<span class="fn">f</span><span class="str">"pair: {x}, {y}"</span>)
+    <span class="kw">case</span> _:
+        <span class="fn">print</span>(<span class="str">"unknown"</span>)  <span class="com"># default case</span></code></pre>
+  `
+},
+
+{
+  id:"lists-tuples",
+  group:"II. Data Structures",
+  title:"Lists & Tuples",
+  html:`
+  <h2><span class="idx">05</span> Lists &amp; Tuples</h2>
+  <p class="desc">Ordered collections — list ay mutable, tuple ay immutable.</p>
+
+  <h3 class="sub">List Operations</h3>
+  <pre><code>nums = [<span class="num">3</span>, <span class="num">1</span>, <span class="num">4</span>, <span class="num">1</span>, <span class="num">5</span>]
+nums.append(<span class="num">9</span>)        <span class="com"># add sa dulo</span>
+nums.insert(<span class="num">0</span>, <span class="num">0</span>)     <span class="com"># insert sa specific index</span>
+nums.remove(<span class="num">1</span>)        <span class="com"># tanggalin ang unang '1'</span>
+nums.pop()             <span class="com"># tanggalin at ibalik ang huli</span>
+nums.pop(<span class="num">0</span>)          <span class="com"># tanggalin sa specific index</span>
+nums.sort()            <span class="com"># in-place sort</span>
+nums.sort(reverse=<span class="kw">True</span>)
+nums.reverse()         <span class="com"># in-place reverse</span>
+nums.count(<span class="num">1</span>)        <span class="com"># bilang ng occurrences</span>
+nums.index(<span class="num">4</span>)        <span class="com"># position ng unang match</span>
+nums.extend([<span class="num">7</span>,<span class="num">8</span>])   <span class="com"># concat ng ibang list</span>
+<span class="fn">sorted</span>(nums)          <span class="com"># bagong sorted list (di in-place)</span>
+<span class="fn">len</span>(nums), <span class="fn">max</span>(nums), <span class="fn">min</span>(nums)</code></pre>
+
+  <h3 class="sub">List Comprehensions</h3>
+  <pre><code>squares = [x**<span class="num">2</span> <span class="kw">for</span> x <span class="kw">in</span> <span class="fn">range</span>(<span class="num">10</span>)]
+evens = [x <span class="kw">for</span> x <span class="kw">in</span> <span class="fn">range</span>(<span class="num">20</span>) <span class="kw">if</span> x % <span class="num">2</span> == <span class="num">0</span>]
+pairs = [(x,y) <span class="kw">for</span> x <span class="kw">in</span> <span class="fn">range</span>(<span class="num">3</span>) <span class="kw">for</span> y <span class="kw">in</span> <span class="fn">range</span>(<span class="num">3</span>)]
+matrix_flat = [n <span class="kw">for</span> row <span class="kw">in</span> matrix <span class="kw">for</span> n <span class="kw">in</span> row]</code></pre>
+
+  <h3 class="sub">Tuples</h3>
+  <pre><code>point = (<span class="num">3</span>, <span class="num">4</span>)
+x, y = point           <span class="com"># unpacking</span>
+single = (<span class="num">5</span>,)          <span class="com"># comma required para single-element tuple</span>
+<span class="com"># tuples: immutable, mabilis, ginagamit as dict keys</span></code></pre>
+
+  <h3 class="sub">Copying (shallow vs deep)</h3>
+  <pre><code><span class="kw">import</span> copy
+a = [<span class="num">1</span>, [<span class="num">2</span>,<span class="num">3</span>]]
+b = a.copy()              <span class="com"># shallow — nested list shared pa rin!</span>
+c = copy.deepcopy(a)      <span class="com"># deep — fully independent</span></code></pre>
+
+  <div class="warn"><b>Common gotcha:</b> Iwasan ang mutable default arguments (<code class="inline">def f(x=[])</code>) — shared ito sa lahat ng calls!</div>
+  `
+},
+
+{
+  id:"dicts-sets",
+  group:"II. Data Structures",
+  title:"Dictionaries & Sets",
+  html:`
+  <h2><span class="idx">06</span> Dictionaries &amp; Sets</h2>
+  <p class="desc">Key-value mappings at unique unordered collections.</p>
+
+  <h3 class="sub">Dictionary Basics</h3>
+  <pre><code>student = {<span class="str">"name"</span>: <span class="str">"Kiel"</span>, <span class="str">"age"</span>: <span class="num">21</span>, <span class="str">"course"</span>: <span class="str">"BSCS"</span>}
+student[<span class="str">"year"</span>] = <span class="num">3</span>          <span class="com"># add/update</span>
+student.get(<span class="str">"age"</span>, <span class="num">0</span>)       <span class="com"># safe access, default kung wala</span>
+student.pop(<span class="str">"year"</span>)          <span class="com"># tanggalin, ibalik ang value</span>
+<span class="str">"name"</span> <span class="kw">in</span> student            <span class="com"># check key existence</span>
+student.keys(), student.values(), student.items()
+student.update({<span class="str">"gpa"</span>: <span class="num">1.25</span>}) <span class="com"># merge dict</span>
+{**student, <span class="str">"active"</span>: <span class="kw">True</span>}  <span class="com"># merge via unpacking (3.5+)</span>
+student | {<span class="str">"active"</span>: <span class="kw">True</span>}   <span class="com"># merge operator (3.9+)</span></code></pre>
+
+  <h3 class="sub">Dictionary/Set Comprehensions</h3>
+  <pre><code>squares = {x: x**<span class="num">2</span> <span class="kw">for</span> x <span class="kw">in</span> <span class="fn">range</span>(<span class="num">5</span>)}
+unique_lens = {<span class="fn">len</span>(w) <span class="kw">for</span> w <span class="kw">in</span> words}
+inverted = {v: k <span class="kw">for</span> k, v <span class="kw">in</span> student.items()}</code></pre>
+
+  <h3 class="sub">Sets</h3>
+  <pre><code>a = {<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>}
+b = {<span class="num">2</span>, <span class="num">3</span>, <span class="num">4</span>}
+a | b   <span class="com"># union {1,2,3,4}</span>
+a & b   <span class="com"># intersection {2,3}</span>
+a - b   <span class="com"># difference {1}</span>
+a ^ b   <span class="com"># symmetric difference {1,4}</span>
+a.add(<span class="num">5</span>); a.discard(<span class="num">1</span>); a.remove(<span class="num">2</span>)  <span class="com"># discard: safe, remove: error kung wala</span>
+a.issubset(b), a.issuperset(b)</code></pre>
+
+  <h3 class="sub">collections module</h3>
+  <table class="ref">
+    <tr><th>Class</th><th>Ginagamit para sa</th></tr>
+    <tr><td><code>Counter</code></td><td>Bilangin ang occurrences (<code>Counter(words)</code>)</td></tr>
+    <tr><td><code>defaultdict</code></td><td>Dict na may auto default value</td></tr>
+    <tr><td><code>OrderedDict</code></td><td>Dict na may guaranteed order (di na kailangan sa 3.7+)</td></tr>
+    <tr><td><code>namedtuple</code></td><td>Tuple na may named fields</td></tr>
+    <tr><td><code>deque</code></td><td>Double-ended queue — mabilis ang appendleft/popleft</td></tr>
+    <tr><td><code>ChainMap</code></td><td>I-combine ang multiple dicts</td></tr>
+  </table>
+  <pre><code><span class="kw">from</span> collections <span class="kw">import</span> Counter, defaultdict, namedtuple, deque
+
+Counter(<span class="str">"mississippi"</span>)  <span class="com"># Counter({'i':4,'s':4,'p':2,'m':1})</span>
+
+dd = defaultdict(<span class="fn">list</span>)
+dd[<span class="str">"fruits"</span>].append(<span class="str">"mango"</span>)  <span class="com"># auto-creates empty list</span>
+
+Point = namedtuple(<span class="str">"Point"</span>, [<span class="str">"x"</span>, <span class="str">"y"</span>])
+p = Point(<span class="num">1</span>, <span class="num">2</span>); p.x, p.y
+
+dq = deque([<span class="num">1</span>,<span class="num">2</span>,<span class="num">3</span>])
+dq.appendleft(<span class="num">0</span>); dq.popleft()</code></pre>
+  `
+},
+
+{
+  id:"functions",
+  group:"II. Data Structures",
+  title:"Functions",
+  html:`
+  <h2><span class="idx">07</span> Functions</h2>
+  <p class="desc">Reusable blocks of logic — core building block ng clean code.</p>
+
+  <h3 class="sub">Definition &amp; Arguments</h3>
+  <pre><code><span class="kw">def</span> <span class="fn">greet</span>(name, greeting=<span class="str">"Hello"</span>):    <span class="com"># default argument</span>
+    <span class="kw">return</span> <span class="fn">f</span><span class="str">"{greeting}, {name}!"</span>
+
+<span class="kw">def</span> <span class="fn">total</span>(*args):                     <span class="com"># variable positional args</span>
+    <span class="kw">return</span> <span class="fn">sum</span>(args)
+
+<span class="kw">def</span> <span class="fn">config</span>(**kwargs):                  <span class="com"># variable keyword args</span>
+    <span class="kw">for</span> k, v <span class="kw">in</span> kwargs.items():
+        <span class="fn">print</span>(k, v)
+
+<span class="kw">def</span> <span class="fn">full</span>(a, b, *args, c=<span class="num">10</span>, **kwargs):
+    <span class="kw">pass</span>  <span class="com"># pwede pagsamahin lahat</span>
+
+greet(name=<span class="str">"Kiel"</span>)          <span class="com"># keyword argument</span>
+total(*[<span class="num">1</span>,<span class="num">2</span>,<span class="num">3</span>])           <span class="com"># unpacking sa call</span></code></pre>
+
+  <h3 class="sub">Lambda (anonymous functions)</h3>
+  <pre><code>square = <span class="kw">lambda</span> x: x**<span class="num">2</span>
+add = <span class="kw">lambda</span> a, b: a + b
+<span class="fn">sorted</span>(people, key=<span class="kw">lambda</span> p: p[<span class="str">"age"</span>])</code></pre>
+
+  <h3 class="sub">Higher-order functions: map, filter, reduce</h3>
+  <pre><code><span class="fn">list</span>(<span class="fn">map</span>(<span class="kw">lambda</span> x: x*<span class="num">2</span>, [<span class="num">1</span>,<span class="num">2</span>,<span class="num">3</span>]))       <span class="com"># [2,4,6]</span>
+<span class="fn">list</span>(<span class="fn">filter</span>(<span class="kw">lambda</span> x: x % <span class="num">2</span> == <span class="num">0</span>, [<span class="num">1</span>,<span class="num">2</span>,<span class="num">3</span>,<span class="num">4</span>]))
+
+<span class="kw">from</span> functools <span class="kw">import</span> reduce
+reduce(<span class="kw">lambda</span> a,b: a+b, [<span class="num">1</span>,<span class="num">2</span>,<span class="num">3</span>,<span class="num">4</span>])  <span class="com"># 10</span></code></pre>
+
+  <h3 class="sub">Scope: local, enclosing, global</h3>
+  <pre><code>x = <span class="str">"global"</span>
+<span class="kw">def</span> <span class="fn">outer</span>():
+    x = <span class="str">"enclosing"</span>
+    <span class="kw">def</span> <span class="fn">inner</span>():
+        <span class="kw">nonlocal</span> x       <span class="com"># modify enclosing scope</span>
+        x = <span class="str">"modified"</span>
+    inner()
+    <span class="kw">return</span> x
+
+<span class="kw">def</span> <span class="fn">change_global</span>():
+    <span class="kw">global</span> x
+    x = <span class="str">"changed"</span></code></pre>
+
+  <h3 class="sub">Docstrings &amp; Type Hints</h3>
+  <pre><code><span class="kw">def</span> <span class="fn">divide</span>(a: <span class="bi">int</span>, b: <span class="bi">int</span>) -&gt; <span class="bi">float</span>:
+    <span class="str">"""Hinahati ang a sa b. Raises kung b == 0."""</span>
+    <span class="kw">return</span> a / b</code></pre>
+
+  <div class="tip"><b>Best practice:</b> Isang function, isang responsibility. Kung mahaba ang pangalan gamit ng "and", hatiin mo.</div>
+  `
+},
+
+{
+  id:"comprehensions-generators",
+  group:"II. Data Structures",
+  title:"Comprehensions & Generators",
+  html:`
+  <h2><span class="idx">08</span> Comprehensions &amp; Generators</h2>
+  <p class="desc">Pythonic paraan ng pag-transform ng data nang efficient at readable.</p>
+
+  <h3 class="sub">Generator Expressions</h3>
+  <pre><code>gen = (x**<span class="num">2</span> <span class="kw">for</span> x <span class="kw">in</span> <span class="fn">range</span>(<span class="num">1000000</span>))  <span class="com"># lazy — walang agad na compute</span>
+<span class="fn">next</span>(gen)   <span class="com"># kunin ang susunod na value</span>
+<span class="fn">sum</span>(x <span class="kw">for</span> x <span class="kw">in</span> <span class="fn">range</span>(<span class="num">10</span>))  <span class="com"># pwedeng direkta sa function call</span></code></pre>
+
+  <h3 class="sub">Generator Functions (yield)</h3>
+  <pre><code><span class="kw">def</span> <span class="fn">fibonacci</span>(n):
+    a, b = <span class="num">0</span>, <span class="num">1</span>
+    <span class="kw">for</span> _ <span class="kw">in</span> <span class="fn">range</span>(n):
+        <span class="kw">yield</span> a
+        a, b = b, a + b
+
+<span class="kw">for</span> num <span class="kw">in</span> fibonacci(<span class="num">10</span>):
+    <span class="fn">print</span>(num)
+
+<span class="com"># yield from — delegate sa ibang generator</span>
+<span class="kw">def</span> <span class="fn">chain</span>(*iterables):
+    <span class="kw">for</span> it <span class="kw">in</span> iterables:
+        <span class="kw">yield from</span> it</code></pre>
+
+  <div class="note"><b>Bakit generators?</b> Memory-efficient — hindi lahat ng values ni-store sa memory nang sabay. Perpekto para sa malalaking datasets o infinite sequences.</div>
+
+  <h3 class="sub">itertools module</h3>
+  <table class="ref">
+    <tr><th>Function</th><th>Ginagawa</th></tr>
+    <tr><td><code>count(start, step)</code></td><td>Infinite counter</td></tr>
+    <tr><td><code>cycle(iterable)</code></td><td>Infinite repeat ng sequence</td></tr>
+    <tr><td><code>chain(a, b)</code></td><td>I-concat ang multiple iterables</td></tr>
+    <tr><td><code>combinations(iter, r)</code></td><td>Lahat ng r-length combinations</td></tr>
+    <tr><td><code>permutations(iter, r)</code></td><td>Lahat ng r-length orderings</td></tr>
+    <tr><td><code>product(a, b)</code></td><td>Cartesian product</td></tr>
+    <tr><td><code>groupby(iter, key)</code></td><td>I-group ang consecutive elements</td></tr>
+    <tr><td><code>islice(iter, n)</code></td><td>Slice ng iterator</td></tr>
+  </table>
+  <pre><code><span class="kw">from</span> itertools <span class="kw">import</span> combinations, permutations, product
+<span class="fn">list</span>(combinations([<span class="num">1</span>,<span class="num">2</span>,<span class="num">3</span>], <span class="num">2</span>))  <span class="com"># [(1,2),(1,3),(2,3)]</span>
+<span class="fn">list</span>(product([<span class="num">0</span>,<span class="num">1</span>], repeat=<span class="num">3</span>))  <span class="com"># binary combos</span></code></pre>
+  `
+}
+
+);
+
+// PART 2 — OOP → CONCURRENCY
+window.PYREF_SECTIONS = window.PYREF_SECTIONS || [];
+
+window.PYREF_SECTIONS.push(
+
+{
+  id:"oop",
+  group:"III. Object-Oriented Python",
+  title:"Classes & OOP",
+  html:`
+  <h2><span class="idx">09</span> Classes &amp; OOP</h2>
+  <p class="desc">Ang apat na pillars: encapsulation, inheritance, polymorphism, abstraction.</p>
+
+  <h3 class="sub">Basic Class</h3>
+  <pre><code><span class="kw">class</span> <span class="fn">Student</span>:
+    school = <span class="str">"PUP"</span>  <span class="com"># class attribute — shared sa lahat ng instances</span>
+
+    <span class="kw">def</span> <span class="fn">__init__</span>(self, name, course):
+        self.name = name        <span class="com"># instance attribute</span>
+        self.course = course
+
+    <span class="kw">def</span> <span class="fn">introduce</span>(self):
+        <span class="kw">return</span> <span class="fn">f</span><span class="str">"Ako si {self.name}, BS {self.course}"</span>
+
+    <span class="kw">def</span> <span class="fn">__str__</span>(self):
+        <span class="kw">return</span> <span class="fn">f</span><span class="str">"Student({self.name})"</span>  <span class="com"># para sa print()</span>
+
+    <span class="kw">def</span> <span class="fn">__repr__</span>(self):
+        <span class="kw">return</span> <span class="fn">f</span><span class="str">"Student(name={self.name!r})"</span>  <span class="com"># para sa debugging</span>
+
+kiel = Student(<span class="str">"Kiel"</span>, <span class="str">"CS"</span>)
+kiel.introduce()</code></pre>
+
+  <h3 class="sub">Inheritance &amp; Polymorphism</h3>
+  <pre><code><span class="kw">class</span> <span class="fn">Person</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(self, name):
+        self.name = name
+    <span class="kw">def</span> <span class="fn">speak</span>(self):
+        <span class="kw">return</span> <span class="str">"..."</span>
+
+<span class="kw">class</span> <span class="fn">Student</span>(Person):          <span class="com"># inherits Person</span>
+    <span class="kw">def</span> <span class="fn">__init__</span>(self, name, course):
+        <span class="fn">super</span>().__init__(name)   <span class="com"># call parent constructor</span>
+        self.course = course
+    <span class="kw">def</span> <span class="fn">speak</span>(self):             <span class="com"># override — polymorphism</span>
+        <span class="kw">return</span> <span class="fn">f</span><span class="str">"Estudyante ako ng {self.course}"</span>
+
+<span class="kw">class</span> <span class="fn">Teacher</span>(Person, Mentor):  <span class="com"># multiple inheritance</span>
+    <span class="kw">pass</span></code></pre>
+
+  <h3 class="sub">Encapsulation</h3>
+  <pre><code><span class="kw">class</span> <span class="fn">BankAccount</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(self, balance):
+        self._balance = balance     <span class="com"># _ = "protected" (convention lang)</span>
+        self.__pin = <span class="str">"1234"</span>       <span class="com"># __ = name-mangled, mas "private"</span>
+
+    <span class="kw">@property</span>
+    <span class="kw">def</span> <span class="fn">balance</span>(self):
+        <span class="kw">return</span> self._balance
+
+    <span class="kw">@balance.setter</span>
+    <span class="kw">def</span> <span class="fn">balance</span>(self, value):
+        <span class="kw">if</span> value &lt; <span class="num">0</span>:
+            <span class="kw">raise</span> ValueError(<span class="str">"Hindi pwedeng negative"</span>)
+        self._balance = value</code></pre>
+
+  <h3 class="sub">Class Methods, Static Methods, Abstract Classes</h3>
+  <pre><code><span class="kw">from</span> abc <span class="kw">import</span> ABC, abstractmethod
+
+<span class="kw">class</span> <span class="fn">Shape</span>(ABC):
+    <span class="kw">@abstractmethod</span>
+    <span class="kw">def</span> <span class="fn">area</span>(self): <span class="kw">pass</span>   <span class="com"># dapat i-implement ng subclass</span>
+
+<span class="kw">class</span> <span class="fn">Circle</span>(Shape):
+    <span class="kw">def</span> <span class="fn">__init__</span>(self, r): self.r = r
+    <span class="kw">def</span> <span class="fn">area</span>(self): <span class="kw">return</span> <span class="num">3.14159</span> * self.r**<span class="num">2</span>
+
+    <span class="kw">@classmethod</span>
+    <span class="kw">def</span> <span class="fn">unit_circle</span>(cls):        <span class="com"># alternate constructor</span>
+        <span class="kw">return</span> cls(r=<span class="num">1</span>)
+
+    <span class="kw">@staticmethod</span>
+    <span class="kw">def</span> <span class="fn">is_valid_radius</span>(r):    <span class="com"># walang access sa self/cls</span>
+        <span class="kw">return</span> r &gt; <span class="num">0</span></code></pre>
+
+  <h3 class="sub">Dunder (Magic) Methods</h3>
+  <table class="ref">
+    <tr><th>Method</th><th>Trigger</th></tr>
+    <tr><td><code>__init__</code></td><td>Object creation</td></tr>
+    <tr><td><code>__str__ / __repr__</code></td><td>print() / debug representation</td></tr>
+    <tr><td><code>__len__</code></td><td><code>len(obj)</code></td></tr>
+    <tr><td><code>__eq__ / __lt__ / __gt__</code></td><td>Comparison operators</td></tr>
+    <tr><td><code>__add__ / __sub__</code></td><td><code>obj + other</code></td></tr>
+    <tr><td><code>__getitem__ / __setitem__</code></td><td><code>obj[key]</code></td></tr>
+    <tr><td><code>__iter__ / __next__</code></td><td>Ginagawang iterable ang object</td></tr>
+    <tr><td><code>__enter__ / __exit__</code></td><td>Context manager (with statement)</td></tr>
+    <tr><td><code>__call__</code></td><td>Ginagawang callable ang instance</td></tr>
+  </table>
+
+  <h3 class="sub">Dataclasses (3.7+)</h3>
+  <pre><code><span class="kw">from</span> dataclasses <span class="kw">import</span> dataclass
+
+<span class="kw">@dataclass</span>
+<span class="kw">class</span> <span class="fn">Point</span>:
+    x: <span class="bi">int</span>
+    y: <span class="bi">int</span> = <span class="num">0</span>          <span class="com"># default value</span>
+    <span class="com"># auto-generates __init__, __repr__, __eq__</span>
+
+p = Point(<span class="num">3</span>, <span class="num">4</span>)</code></pre>
+  `
+},
+
+{
+  id:"errors",
+  group:"III. Object-Oriented Python",
+  title:"Exceptions & Error Handling",
+  html:`
+  <h2><span class="idx">10</span> Exceptions &amp; Error Handling</h2>
+  <p class="desc">Paano gracefully hawakan ang mga error nang hindi bumabagsak ang program.</p>
+
+  <h3 class="sub">try / except / else / finally</h3>
+  <pre><code><span class="kw">try</span>:
+    result = <span class="num">10</span> / x
+<span class="kw">except</span> ZeroDivisionError:
+    <span class="fn">print</span>(<span class="str">"Hindi pwedeng hatiin sa zero"</span>)
+<span class="kw">except</span> (TypeError, ValueError) <span class="kw">as</span> e:
+    <span class="fn">print</span>(<span class="fn">f</span><span class="str">"Error: {e}"</span>)
+<span class="kw">else</span>:
+    <span class="fn">print</span>(<span class="str">"Walang error, gumana ang code"</span>)  <span class="com"># tumatakbo lang kung walang exception</span>
+<span class="kw">finally</span>:
+    <span class="fn">print</span>(<span class="str">"Tatakbo palagi"</span>)  <span class="com"># cleanup — palaging tumatakbo</span></code></pre>
+
+  <h3 class="sub">Common Built-in Exceptions</h3>
+  <table class="ref">
+    <tr><th>Exception</th><th>Kailan lumalabas</th></tr>
+    <tr><td><code>ValueError</code></td><td>Tamang type, mali ang value</td></tr>
+    <tr><td><code>TypeError</code></td><td>Maling operation para sa type</td></tr>
+    <tr><td><code>KeyError</code></td><td>Wala ang key sa dict</td></tr>
+    <tr><td><code>IndexError</code></td><td>Out of range ang index</td></tr>
+    <tr><td><code>AttributeError</code></td><td>Wala ang attribute/method</td></tr>
+    <tr><td><code>FileNotFoundError</code></td><td>Wala ang file</td></tr>
+    <tr><td><code>ZeroDivisionError</code></td><td>Hinati sa zero</td></tr>
+    <tr><td><code>ImportError / ModuleNotFoundError</code></td><td>Import failure</td></tr>
+    <tr><td><code>StopIteration</code></td><td>Naubusan ng laman ang iterator</td></tr>
+    <tr><td><code>RecursionError</code></td><td>Sobrang lalim ng recursion</td></tr>
+  </table>
+
+  <h3 class="sub">Raising &amp; Custom Exceptions</h3>
+  <pre><code><span class="kw">def</span> <span class="fn">withdraw</span>(balance, amount):
+    <span class="kw">if</span> amount &gt; balance:
+        <span class="kw">raise</span> ValueError(<span class="str">"Insufficient funds"</span>)
+    <span class="kw">return</span> balance - amount
+
+<span class="kw">class</span> <span class="fn">InsufficientFundsError</span>(Exception):
+    <span class="kw">def</span> <span class="fn">__init__</span>(self, message=<span class="str">"Kulang ang balance"</span>):
+        <span class="fn">super</span>().__init__(message)
+
+<span class="kw">raise</span> InsufficientFundsError()
+
+<span class="com"># re-raise habang nag-handle</span>
+<span class="kw">try</span>:
+    risky()
+<span class="kw">except</span> Exception <span class="kw">as</span> e:
+    log_error(e)
+    <span class="kw">raise</span>  <span class="com"># preserve original traceback</span></code></pre>
+
+  <h3 class="sub">Context Managers (with statement)</h3>
+  <pre><code><span class="kw">with</span> <span class="fn">open</span>(<span class="str">"data.txt"</span>) <span class="kw">as</span> f:
+    content = f.read()
+<span class="com"># auto-closes ang file kahit magka-error</span>
+
+<span class="kw">class</span> <span class="fn">Timer</span>:
+    <span class="kw">def</span> <span class="fn">__enter__</span>(self):
+        self.start = time.time()
+        <span class="kw">return</span> self
+    <span class="kw">def</span> <span class="fn">__exit__</span>(self, exc_type, exc_val, exc_tb):
+        <span class="fn">print</span>(<span class="fn">f</span><span class="str">"Elapsed: {time.time() - self.start}"</span>)
+
+<span class="com"># o mas simple gamit ang contextlib</span>
+<span class="kw">from</span> contextlib <span class="kw">import</span> contextmanager
+
+<span class="kw">@contextmanager</span>
+<span class="kw">def</span> <span class="fn">timer</span>():
+    start = time.time()
+    <span class="kw">yield</span>
+    <span class="fn">print</span>(<span class="fn">f</span><span class="str">"Took {time.time()-start}s"</span>)</code></pre>
+  `
+},
+
+{
+  id:"fileio",
+  group:"IV. I/O & Data",
+  title:"File I/O",
+  html:`
+  <h2><span class="idx">11</span> File I/O</h2>
+  <p class="desc">Pagbabasa at pagsulat ng files — text, binary, at structured data.</p>
+
+  <h3 class="sub">Basic File Operations</h3>
+  <pre><code><span class="kw">with</span> <span class="fn">open</span>(<span class="str">"file.txt"</span>, <span class="str">"r"</span>) <span class="kw">as</span> f:
+    content = f.read()          <span class="com"># buong content bilang string</span>
+    lines = f.readlines()       <span class="com"># list ng lines</span>
+    <span class="kw">for</span> line <span class="kw">in</span> f:            <span class="com"># iterate line-by-line (memory-efficient)</span>
+        <span class="fn">print</span>(line.strip())
+
+<span class="kw">with</span> <span class="fn">open</span>(<span class="str">"out.txt"</span>, <span class="str">"w"</span>) <span class="kw">as</span> f:  <span class="com"># "w" = overwrite</span>
+    f.write(<span class="str">"Hello\\n"</span>)
+    f.writelines([<span class="str">"line1\\n"</span>, <span class="str">"line2\\n"</span>])
+
+<span class="kw">with</span> <span class="fn">open</span>(<span class="str">"out.txt"</span>, <span class="str">"a"</span>) <span class="kw">as</span> f:  <span class="com"># "a" = append</span>
+    f.write(<span class="str">"more text"</span>)</code></pre>
+
+  <h3 class="sub">File Modes</h3>
+  <table class="ref">
+    <tr><th>Mode</th><th>Ibig sabihin</th></tr>
+    <tr><td><code>"r"</code></td><td>Read (default)</td></tr>
+    <tr><td><code>"w"</code></td><td>Write (overwrite/create)</td></tr>
+    <tr><td><code>"a"</code></td><td>Append</td></tr>
+    <tr><td><code>"x"</code></td><td>Exclusive create (error kung existing na)</td></tr>
+    <tr><td><code>"b"</code></td><td>Binary mode (e.g. "rb", "wb")</td></tr>
+    <tr><td><code>"+"</code></td><td>Read at write (e.g. "r+")</td></tr>
+  </table>
+
+  <h3 class="sub">JSON</h3>
+  <pre><code><span class="kw">import</span> json
+<span class="kw">with</span> <span class="fn">open</span>(<span class="str">"data.json"</span>) <span class="kw">as</span> f:
+    data = json.load(f)             <span class="com"># JSON file → dict/list</span>
+
+json_string = json.dumps(data, indent=<span class="num">2</span>)  <span class="com"># obj → JSON string</span>
+parsed = json.loads(json_string)     <span class="com"># JSON string → obj</span>
+
+<span class="kw">with</span> <span class="fn">open</span>(<span class="str">"out.json"</span>, <span class="str">"w"</span>) <span class="kw">as</span> f:
+    json.dump(data, f, indent=<span class="num">2</span>)</code></pre>
+
+  <h3 class="sub">CSV</h3>
+  <pre><code><span class="kw">import</span> csv
+<span class="kw">with</span> <span class="fn">open</span>(<span class="str">"data.csv"</span>) <span class="kw">as</span> f:
+    reader = csv.reader(f)
+    <span class="kw">for</span> row <span class="kw">in</span> reader:
+        <span class="fn">print</span>(row)  <span class="com"># list per row</span>
+
+<span class="kw">with</span> <span class="fn">open</span>(<span class="str">"data.csv"</span>) <span class="kw">as</span> f:
+    reader = csv.DictReader(f)   <span class="com"># dict per row gamit ang header</span>
+    <span class="kw">for</span> row <span class="kw">in</span> reader:
+        <span class="fn">print</span>(row[<span class="str">"name"</span>])</code></pre>
+
+  <h3 class="sub">pathlib (modern na paraan)</h3>
+  <pre><code><span class="kw">from</span> pathlib <span class="kw">import</span> Path
+p = Path(<span class="str">"data/file.txt"</span>)
+p.exists(), p.is_file(), p.is_dir()
+p.parent, p.name, p.suffix, p.stem
+p.read_text(), p.write_text(<span class="str">"hello"</span>)
+<span class="fn">list</span>(Path(<span class="str">"."</span>).glob(<span class="str">"*.py"</span>))   <span class="com"># pattern matching</span></code></pre>
+  `
+},
+
+{
+  id:"modules",
+  group:"IV. I/O & Data",
+  title:"Modules & Packages",
+  html:`
+  <h2><span class="idx">12</span> Modules &amp; Packages</h2>
+  <p class="desc">Paano i-organize at i-reuse ang code across files at projects.</p>
+
+  <h3 class="sub">Importing</h3>
+  <pre><code><span class="kw">import</span> math
+<span class="kw">import</span> math <span class="kw">as</span> m
+<span class="kw">from</span> math <span class="kw">import</span> sqrt, pi
+<span class="kw">from</span> math <span class="kw">import</span> *          <span class="com"># iwasan sa production code</span>
+<span class="kw">from</span> . <span class="kw">import</span> mymodule    <span class="com"># relative import (loob ng package)</span></code></pre>
+
+  <h3 class="sub">Creating Your Own Module</h3>
+  <pre><code><span class="com"># file: utils.py</span>
+<span class="kw">def</span> <span class="fn">greet</span>(name):
+    <span class="kw">return</span> <span class="fn">f</span><span class="str">"Hello, {name}"</span>
+
+<span class="kw">if</span> __name__ == <span class="str">"__main__"</span>:
+    <span class="com"># tatakbo lang kung direktang pinatakbo ang file na ito,</span>
+    <span class="com"># hindi kapag ini-import</span>
+    <span class="fn">print</span>(greet(<span class="str">"test"</span>))
+
+<span class="com"># file: main.py</span>
+<span class="kw">import</span> utils
+utils.greet(<span class="str">"Kiel"</span>)</code></pre>
+
+  <h3 class="sub">Package Structure</h3>
+  <pre><code>myproject/
+├── main.py
+├── requirements.txt
+└── mypackage/
+    ├── __init__.py       <span class="com"># ginagawang package ang folder</span>
+    ├── module_a.py
+    └── module_b.py</code></pre>
+
+  <h3 class="sub">Virtual Environments &amp; pip</h3>
+  <pre><code>python -m venv venv                <span class="com"># gumawa ng venv</span>
+<span class="fn">source</span> venv/bin/activate           <span class="com"># Linux/Mac</span>
+venv\\Scripts\\activate               <span class="com"># Windows</span>
+
+pip install requests               <span class="com"># mag-install ng package</span>
+pip install -r requirements.txt    <span class="com"># install from list</span>
+pip freeze &gt; requirements.txt      <span class="com"># i-save ang mga na-install</span>
+pip list</code></pre>
+
+  <h3 class="sub">Kadalasang Standard Library Modules</h3>
+  <div class="grid3">
+    <div class="card"><code>os</code> — filesystem, environment</div>
+    <div class="card"><code>sys</code> — interpreter internals, argv</div>
+    <div class="card"><code>datetime</code> — dates at times</div>
+    <div class="card"><code>re</code> — regular expressions</div>
+    <div class="card"><code>time</code> — timestamps, sleep</div>
+    <div class="card"><code>logging</code> — proper logging system</div>
+    <div class="card"><code>argparse</code> — CLI argument parsing</div>
+    <div class="card"><code>subprocess</code> — external commands</div>
+    <div class="card"><code>shutil</code> — high-level file ops</div>
+    <div class="card"><code>hashlib</code> — hashing (MD5, SHA)</div>
+    <div class="card"><code>uuid</code> — unique identifiers</div>
+    <div class="card"><code>typing</code> — type hint utilities</div>
+  </div>
+  `
+},
+
+{
+  id:"concurrency",
+  group:"V. Advanced Execution",
+  title:"Concurrency: Threading, Multiprocessing, Async",
+  html:`
+  <h2><span class="idx">13</span> Concurrency &amp; Parallelism</h2>
+  <p class="desc">Paano magpatakbo ng maraming tasks nang sabay — kritikal na topic para sa professional developers.</p>
+
+  <h3 class="sub">Ang GIL (Global Interpreter Lock)</h3>
+  <div class="note"><b>Mahalagang malaman:</b> Iisa lang ang Python bytecode na tumatakbo sa isang oras kahit multi-threaded ka (dahil sa GIL). Kaya para sa <b>CPU-bound</b> tasks, gamitin ang <code class="inline">multiprocessing</code>. Para sa <b>I/O-bound</b> tasks (network, file, database), gamitin ang <code class="inline">threading</code> o <code class="inline">asyncio</code>.</div>
+
+  <h3 class="sub">threading</h3>
+  <pre><code><span class="kw">import</span> threading
+
+<span class="kw">def</span> <span class="fn">worker</span>(n):
+    <span class="fn">print</span>(<span class="fn">f</span><span class="str">"Working on {n}"</span>)
+
+threads = []
+<span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="num">5</span>):
+    t = threading.Thread(target=worker, args=(i,))
+    threads.append(t)
+    t.start()
+
+<span class="kw">for</span> t <span class="kw">in</span> threads:
+    t.join()   <span class="com"># hintayin matapos ang lahat</span>
+
+<span class="com"># Lock para maiwasan ang race conditions</span>
+lock = threading.Lock()
+<span class="kw">with</span> lock:
+    shared_resource += <span class="num">1</span></code></pre>
+
+  <h3 class="sub">multiprocessing</h3>
+  <pre><code><span class="kw">from</span> multiprocessing <span class="kw">import</span> Process, Pool
+
+<span class="kw">def</span> <span class="fn">square</span>(n):
+    <span class="kw">return</span> n * n
+
+<span class="kw">if</span> __name__ == <span class="str">"__main__"</span>:
+    <span class="kw">with</span> Pool(processes=<span class="num">4</span>) <span class="kw">as</span> pool:
+        results = pool.map(square, [<span class="num">1</span>,<span class="num">2</span>,<span class="num">3</span>,<span class="num">4</span>])</code></pre>
+
+  <h3 class="sub">asyncio</h3>
+  <pre><code><span class="kw">import</span> asyncio
+
+<span class="kw">async</span> <span class="kw">def</span> <span class="fn">fetch_data</span>(n):
+    <span class="fn">print</span>(<span class="fn">f</span><span class="str">"Fetching {n}..."</span>)
+    <span class="kw">await</span> asyncio.sleep(<span class="num">1</span>)   <span class="com"># non-blocking wait</span>
+    <span class="kw">return</span> <span class="fn">f</span><span class="str">"data-{n}"</span>
+
+<span class="kw">async</span> <span class="kw">def</span> <span class="fn">main</span>():
+    results = <span class="kw">await</span> asyncio.gather(
+        fetch_data(<span class="num">1</span>), fetch_data(<span class="num">2</span>), fetch_data(<span class="num">3</span>)
+    )   <span class="com"># tumatakbo nang sabay-sabay</span>
+    <span class="fn">print</span>(results)
+
+asyncio.run(main())</code></pre>
+
+  <table class="ref">
+    <tr><th>Approach</th><th>Best For</th><th>Concurrency Model</th></tr>
+    <tr><td><code>threading</code></td><td>I/O-bound (network, files)</td><td>Preemptive, may GIL</td></tr>
+    <tr><td><code>multiprocessing</code></td><td>CPU-bound (compute-heavy)</td><td>True parallel, separate processes</td></tr>
+    <tr><td><code>asyncio</code></td><td>Maraming I/O tasks nang efficient</td><td>Single-threaded, cooperative</td></tr>
+  </table>
+  `
+}
+
+);
+
+// PART 3 — DECORATORS → PROFESSIONAL PRACTICES
+window.PYREF_SECTIONS = window.PYREF_SECTIONS || [];
+
+window.PYREF_SECTIONS.push(
+
+{
+  id:"decorators",
+  group:"V. Advanced Execution",
+  title:"Decorators & Closures",
+  html:`
+  <h2><span class="idx">14</span> Decorators &amp; Closures</h2>
+  <p class="desc">Functions na nagmomodify ng ibang functions — core sa maraming Python frameworks.</p>
+
+  <h3 class="sub">Closures</h3>
+  <pre><code><span class="kw">def</span> <span class="fn">make_multiplier</span>(n):
+    <span class="kw">def</span> <span class="fn">multiplier</span>(x):
+        <span class="kw">return</span> x * n     <span class="com"># "remembers" ang n kahit tapos na make_multiplier</span>
+    <span class="kw">return</span> multiplier
+
+times3 = make_multiplier(<span class="num">3</span>)
+times3(<span class="num">10</span>)  <span class="com"># 30</span></code></pre>
+
+  <h3 class="sub">Basic Decorators</h3>
+  <pre><code><span class="kw">def</span> <span class="fn">my_decorator</span>(func):
+    <span class="kw">def</span> <span class="fn">wrapper</span>(*args, **kwargs):
+        <span class="fn">print</span>(<span class="fn">f</span><span class="str">"Bago tumawag ng {func.__name__}"</span>)
+        result = func(*args, **kwargs)
+        <span class="fn">print</span>(<span class="str">"Pagkatapos"</span>)
+        <span class="kw">return</span> result
+    <span class="kw">return</span> wrapper
+
+<span class="kw">@my_decorator</span>
+<span class="kw">def</span> <span class="fn">say_hello</span>():
+    <span class="fn">print</span>(<span class="str">"Hello!"</span>)
+
+say_hello()  <span class="com"># parang tinawag mo: my_decorator(say_hello)()</span></code></pre>
+
+  <h3 class="sub">Decorators with Arguments</h3>
+  <pre><code><span class="kw">def</span> <span class="fn">repeat</span>(times):
+    <span class="kw">def</span> <span class="fn">decorator</span>(func):
+        <span class="kw">def</span> <span class="fn">wrapper</span>(*args, **kwargs):
+            <span class="kw">for</span> _ <span class="kw">in</span> <span class="fn">range</span>(times):
+                func(*args, **kwargs)
+        <span class="kw">return</span> wrapper
+    <span class="kw">return</span> decorator
+
+<span class="kw">@repeat</span>(<span class="num">3</span>)
+<span class="kw">def</span> <span class="fn">greet</span>():
+    <span class="fn">print</span>(<span class="str">"Hi!"</span>)</code></pre>
+
+  <h3 class="sub">functools.wraps (importante!)</h3>
+  <pre><code><span class="kw">from</span> functools <span class="kw">import</span> wraps
+
+<span class="kw">def</span> <span class="fn">my_decorator</span>(func):
+    <span class="kw">@wraps</span>(func)   <span class="com"># pinapanatili ang __name__ at __doc__ ng original</span>
+    <span class="kw">def</span> <span class="fn">wrapper</span>(*args, **kwargs):
+        <span class="kw">return</span> func(*args, **kwargs)
+    <span class="kw">return</span> wrapper</code></pre>
+
+  <h3 class="sub">Built-in Useful Decorators</h3>
+  <table class="ref">
+    <tr><th>Decorator</th><th>Ginagawa</th></tr>
+    <tr><td><code>@property</code></td><td>Method → attribute-like access</td></tr>
+    <tr><td><code>@staticmethod</code></td><td>Method na walang self/cls</td></tr>
+    <tr><td><code>@classmethod</code></td><td>Method na tumatanggap ng cls</td></tr>
+    <tr><td><code>@functools.lru_cache</code></td><td>Memoization — cache ang return values</td></tr>
+    <tr><td><code>@functools.cached_property</code></td><td>Compute once, i-cache ang property</td></tr>
+    <tr><td><code>@dataclass</code></td><td>Auto-generate __init__/__repr__/__eq__</td></tr>
+  </table>
+  <pre><code><span class="kw">from</span> functools <span class="kw">import</span> lru_cache
+
+<span class="kw">@lru_cache</span>(maxsize=<span class="kw">None</span>)
+<span class="kw">def</span> <span class="fn">fib</span>(n):
+    <span class="kw">if</span> n &lt; <span class="num">2</span>: <span class="kw">return</span> n
+    <span class="kw">return</span> fib(n-<span class="num">1</span>) + fib(n-<span class="num">2</span>)  <span class="com"># napakabilis dahil sa caching</span></code></pre>
+  `
+},
+
+{
+  id:"iterators",
+  group:"V. Advanced Execution",
+  title:"Iterators & Protocols",
+  html:`
+  <h2><span class="idx">15</span> Iterators &amp; the Iterator Protocol</h2>
+  <p class="desc">Ang mekanismo sa likod ng <code class="inline">for</code> loops.</p>
+
+  <h3 class="sub">Iterable vs Iterator</h3>
+  <p><b>Iterable</b>: may <code class="inline">__iter__()</code> — pwedeng i-loop (list, dict, string...).<br>
+  <b>Iterator</b>: may <code class="inline">__next__()</code> — ang aktwal na "gumagalaw" sa data.</p>
+  <pre><code>nums = [<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>]
+it = <span class="fn">iter</span>(nums)     <span class="com"># kunin ang iterator mula sa iterable</span>
+<span class="fn">next</span>(it)          <span class="com"># 1</span>
+<span class="fn">next</span>(it)          <span class="com"># 2</span>
+<span class="fn">next</span>(it)          <span class="com"># 3</span>
+<span class="fn">next</span>(it)          <span class="com"># StopIteration error!</span></code></pre>
+
+  <h3 class="sub">Custom Iterator Class</h3>
+  <pre><code><span class="kw">class</span> <span class="fn">Countdown</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(self, start):
+        self.current = start
+
+    <span class="kw">def</span> <span class="fn">__iter__</span>(self):
+        <span class="kw">return</span> self    <span class="com"># object mismo ang iterator</span>
+
+    <span class="kw">def</span> <span class="fn">__next__</span>(self):
+        <span class="kw">if</span> self.current &lt;= <span class="num">0</span>:
+            <span class="kw">raise</span> StopIteration
+        self.current -= <span class="num">1</span>
+        <span class="kw">return</span> self.current + <span class="num">1</span>
+
+<span class="kw">for</span> n <span class="kw">in</span> Countdown(<span class="num">5</span>):
+    <span class="fn">print</span>(n)   <span class="com"># 5,4,3,2,1</span></code></pre>
+
+  <h3 class="sub">enumerate, zip, at iba pa</h3>
+  <pre><code><span class="kw">for</span> i, val <span class="kw">in</span> <span class="fn">enumerate</span>([<span class="str">"a"</span>,<span class="str">"b"</span>,<span class="str">"c"</span>]):
+    <span class="fn">print</span>(i, val)     <span class="com"># 0 a, 1 b, 2 c</span>
+
+names = [<span class="str">"Kiel"</span>, <span class="str">"Ana"</span>]
+ages = [<span class="num">21</span>, <span class="num">22</span>]
+<span class="kw">for</span> name, age <span class="kw">in</span> <span class="fn">zip</span>(names, ages):
+    <span class="fn">print</span>(name, age)  <span class="com"># pairs sila hanggang sa pinakamaikling list</span>
+
+<span class="fn">reversed</span>([<span class="num">1</span>,<span class="num">2</span>,<span class="num">3</span>])       <span class="com"># reverse iterator</span>
+<span class="fn">sorted</span>(data, key=..., reverse=<span class="kw">True</span>)</code></pre>
+  `
+},
+
+{
+  id:"regex",
+  group:"VI. Text & Patterns",
+  title:"Regular Expressions",
+  html:`
+  <h2><span class="idx">16</span> Regular Expressions (re)</h2>
+  <p class="desc">Pattern matching para sa text — mahalaga sa validation, parsing, at cleaning.</p>
+
+  <h3 class="sub">Basic Functions</h3>
+  <pre><code><span class="kw">import</span> re
+
+re.search(<span class="str">r"\\d+"</span>, <span class="str">"May 5 apples"</span>)   <span class="com"># unang match, saan man sa string</span>
+re.match(<span class="str">r"\\d+"</span>, <span class="str">"5 apples"</span>)     <span class="com"># match lang mula simula</span>
+re.findall(<span class="str">r"\\d+"</span>, <span class="str">"5 apples, 3 oranges"</span>)  <span class="com"># ['5', '3']</span>
+re.sub(<span class="str">r"\\d+"</span>, <span class="str">"N"</span>, <span class="str">"5 apples"</span>)    <span class="com"># 'N apples'</span>
+re.split(<span class="str">r"\\s+"</span>, <span class="str">"multiple   spaces"</span>) <span class="com"># split by whitespace</span></code></pre>
+
+  <h3 class="sub">Common Pattern Syntax</h3>
+  <table class="ref">
+    <tr><th>Pattern</th><th>Ibig Sabihin</th></tr>
+    <tr><td><code>\\d</code> / <code>\\D</code></td><td>Digit / hindi digit</td></tr>
+    <tr><td><code>\\w</code> / <code>\\W</code></td><td>Word char / hindi word char</td></tr>
+    <tr><td><code>\\s</code> / <code>\\S</code></td><td>Whitespace / hindi whitespace</td></tr>
+    <tr><td><code>.</code></td><td>Anumang character (maliban newline)</td></tr>
+    <tr><td><code>^</code> / <code>$</code></td><td>Simula / dulo ng string</td></tr>
+    <tr><td><code>*</code> / <code>+</code> / <code>?</code></td><td>0+, 1+, 0-o-1 occurrence</td></tr>
+    <tr><td><code>{n,m}</code></td><td>n hanggang m occurrences</td></tr>
+    <tr><td><code>[abc]</code></td><td>Any character sa loob ng set</td></tr>
+    <tr><td><code>(...)</code></td><td>Grouping (capturing)</td></tr>
+    <tr><td><code>|</code></td><td>OR / alternation</td></tr>
+  </table>
+
+  <h3 class="sub">Compiled Patterns &amp; Groups</h3>
+  <pre><code>pattern = re.<span class="fn">compile</span>(<span class="str">r"(\\w+)@(\\w+)\\.com"</span>)
+match = pattern.search(<span class="str">"contact: khiel@gmail.com"</span>)
+<span class="kw">if</span> match:
+    match.group(<span class="num">0</span>)   <span class="com"># buong match: 'khiel@gmail.com'</span>
+    match.group(<span class="num">1</span>)   <span class="com"># unang group: 'khiel'</span>
+    match.group(<span class="num">2</span>)   <span class="com"># pangalawang group: 'gmail'</span>
+
+<span class="com"># named groups</span>
+pattern = re.<span class="fn">compile</span>(<span class="str">r"(?P&lt;user&gt;\\w+)@(?P&lt;domain&gt;\\w+)"</span>)
+m = pattern.search(<span class="str">"khiel@gmail"</span>)
+m.group(<span class="str">"user"</span>)   <span class="com"># 'khiel'</span></code></pre>
+  `
+},
+
+{
+  id:"typing-testing",
+  group:"VI. Text & Patterns",
+  title:"Type Hints & Testing",
+  html:`
+  <h2><span class="idx">17</span> Type Hints &amp; Testing</h2>
+  <p class="desc">Modern professional Python — static typing at automated testing.</p>
+
+  <h3 class="sub">typing module</h3>
+  <pre><code><span class="kw">from</span> typing <span class="kw">import</span> List, Dict, Tuple, Optional, Union, Callable, Any
+
+<span class="kw">def</span> <span class="fn">process</span>(items: List[<span class="bi">int</span>]) -&gt; Dict[<span class="bi">str</span>, <span class="bi">int</span>]:
+    <span class="kw">pass</span>
+
+<span class="kw">def</span> <span class="fn">find_user</span>(uid: <span class="bi">int</span>) -&gt; Optional[<span class="bi">str</span>]:   <span class="com"># pwedeng str o None</span>
+    <span class="kw">pass</span>
+
+<span class="kw">def</span> <span class="fn">handle</span>(value: Union[<span class="bi">int</span>, <span class="bi">str</span>]) -&gt; <span class="bi">None</span>:  <span class="com"># int OR str</span>
+    <span class="kw">pass</span>
+
+Callback = Callable[[<span class="bi">int</span>, <span class="bi">int</span>], <span class="bi">int</span>]    <span class="com"># type alias para sa function signature</span>
+
+<span class="com"># Modern syntax (3.10+): int | str sa halip na Union[int, str]</span>
+<span class="kw">def</span> <span class="fn">modern</span>(x: <span class="bi">int</span> | <span class="bi">str</span>) -&gt; <span class="bi">int</span> | <span class="bi">None</span>:
+    <span class="kw">pass</span></code></pre>
+  <p>Gamitin ang <code class="inline">mypy</code> para i-check ang types nang static (bago patakbuhin) — hindi ito enforced runtime ng Python mismo.</p>
+
+  <h3 class="sub">unittest (built-in)</h3>
+  <pre><code><span class="kw">import</span> unittest
+
+<span class="kw">def</span> <span class="fn">add</span>(a, b):
+    <span class="kw">return</span> a + b
+
+<span class="kw">class</span> <span class="fn">TestMath</span>(unittest.TestCase):
+    <span class="kw">def</span> <span class="fn">test_add</span>(self):
+        self.assertEqual(add(<span class="num">2</span>, <span class="num">3</span>), <span class="num">5</span>)
+
+    <span class="kw">def</span> <span class="fn">test_add_negative</span>(self):
+        self.assertEqual(add(-<span class="num">1</span>, <span class="num">1</span>), <span class="num">0</span>)
+
+    <span class="kw">def</span> <span class="fn">setUp</span>(self):
+        <span class="kw">pass</span>  <span class="com"># tumatakbo bago bawat test</span>
+
+<span class="kw">if</span> __name__ == <span class="str">"__main__"</span>:
+    unittest.main()</code></pre>
+
+  <h3 class="sub">pytest (industry standard)</h3>
+  <pre><code><span class="com"># file: test_math.py</span>
+<span class="kw">def</span> <span class="fn">test_add</span>():
+    <span class="kw">assert</span> add(<span class="num">2</span>, <span class="num">3</span>) == <span class="num">5</span>
+
+<span class="kw">import</span> pytest
+
+<span class="kw">@pytest.fixture</span>
+<span class="kw">def</span> <span class="fn">sample_data</span>():
+    <span class="kw">return</span> {<span class="str">"name"</span>: <span class="str">"test"</span>}   <span class="com"># reusable setup para sa tests</span>
+
+<span class="kw">def</span> <span class="fn">test_with_fixture</span>(sample_data):
+    <span class="kw">assert</span> sample_data[<span class="str">"name"</span>] == <span class="str">"test"</span>
+
+<span class="kw">@pytest.mark.parametrize</span>(<span class="str">"a,b,expected"</span>, [(<span class="num">1</span>,<span class="num">2</span>,<span class="num">3</span>), (<span class="num">2</span>,<span class="num">3</span>,<span class="num">5</span>)])
+<span class="kw">def</span> <span class="fn">test_add_many</span>(a, b, expected):
+    <span class="kw">assert</span> add(a, b) == expected
+
+<span class="com"># terminal: pytest test_math.py -v</span></code></pre>
+
+  <div class="tip"><b>Tip:</b> Gamitin ang <code class="inline">pytest</code> sa totoong projects — mas simple at flexible kaysa <code class="inline">unittest</code>.</div>
+  `
+},
+
+{
+  id:"databases",
+  group:"VII. Applied Python",
+  title:"Databases & SQL",
+  html:`
+  <h2><span class="idx">18</span> Databases (sqlite3 &amp; ORMs)</h2>
+  <p class="desc">Pag-connect sa databases mula sa Python.</p>
+
+  <h3 class="sub">sqlite3 (built-in)</h3>
+  <pre><code><span class="kw">import</span> sqlite3
+
+conn = sqlite3.connect(<span class="str">"school.db"</span>)
+cursor = conn.cursor()
+
+cursor.execute(<span class="str">"""
+    CREATE TABLE IF NOT EXISTS students (
+        id INTEGER PRIMARY KEY,
+        name TEXT,
+        course TEXT
+    )
+"""</span>)
+
+cursor.execute(<span class="str">"INSERT INTO students (name, course) VALUES (?, ?)"</span>,
+               (<span class="str">"Kiel"</span>, <span class="str">"CS"</span>))   <span class="com"># laging gamitin ang ? placeholder (iwas SQL injection)</span>
+conn.commit()
+
+cursor.execute(<span class="str">"SELECT * FROM students WHERE course = ?"</span>, (<span class="str">"CS"</span>,))
+rows = cursor.fetchall()   <span class="com"># o fetchone() para sa isa lang</span>
+
+conn.close()</code></pre>
+
+  <h3 class="sub">SQLAlchemy (popular ORM)</h3>
+  <pre><code><span class="kw">from</span> sqlalchemy <span class="kw">import</span> create_engine, Column, Integer, String
+<span class="kw">from</span> sqlalchemy.orm <span class="kw">import</span> declarative_base, Session
+
+Base = declarative_base()
+
+<span class="kw">class</span> <span class="fn">Student</span>(Base):
+    __tablename__ = <span class="str">"students"</span>
+    id = Column(Integer, primary_key=<span class="kw">True</span>)
+    name = Column(String)
+    course = Column(String)
+
+engine = create_engine(<span class="str">"sqlite:///school.db"</span>)
+Base.metadata.create_all(engine)
+
+<span class="kw">with</span> Session(engine) <span class="kw">as</span> session:
+    new_student = Student(name=<span class="str">"Kiel"</span>, course=<span class="str">"CS"</span>)
+    session.add(new_student)
+    session.commit()
+    students = session.query(Student).filter_by(course=<span class="str">"CS"</span>).all()</code></pre>
+
+  <div class="note"><b>Kailan gagamit ng ORM:</b> Mas mabilis mag-develop, type-safe, at portable sa ibang DB engines. Pero para sa raw performance o kumplikadong queries, minsan mas maganda ang raw SQL.</div>
+  `
+},
+
+{
+  id:"web-apis",
+  group:"VII. Applied Python",
+  title:"Web Development & APIs",
+  html:`
+  <h2><span class="idx">19</span> Web Development &amp; APIs</h2>
+  <p class="desc">Pag-consume at paggawa ng web services.</p>
+
+  <h3 class="sub">Consuming APIs: requests</h3>
+  <pre><code><span class="kw">import</span> requests
+
+response = requests.get(<span class="str">"https://api.github.com/users/octocat"</span>)
+response.status_code    <span class="com"># 200 = success</span>
+data = response.json()  <span class="com"># parse JSON response</span>
+
+response = requests.post(
+    <span class="str">"https://api.example.com/data"</span>,
+    json={<span class="str">"key"</span>: <span class="str">"value"</span>},
+    headers={<span class="str">"Authorization"</span>: <span class="fn">f</span><span class="str">"Bearer {token}"</span>}
+)</code></pre>
+
+  <h3 class="sub">Flask (micro web framework)</h3>
+  <pre><code><span class="kw">from</span> flask <span class="kw">import</span> Flask, jsonify, request
+
+app = Flask(__name__)
+
+<span class="kw">@app.route</span>(<span class="str">"/"</span>)
+<span class="kw">def</span> <span class="fn">home</span>():
+    <span class="kw">return</span> <span class="str">"Hello, World!"</span>
+
+<span class="kw">@app.route</span>(<span class="str">"/api/students/&lt;int:id&gt;"</span>, methods=[<span class="str">"GET"</span>])
+<span class="kw">def</span> <span class="fn">get_student</span>(id):
+    <span class="kw">return</span> jsonify({<span class="str">"id"</span>: id, <span class="str">"name"</span>: <span class="str">"Kiel"</span>})
+
+<span class="kw">@app.route</span>(<span class="str">"/api/students"</span>, methods=[<span class="str">"POST"</span>])
+<span class="kw">def</span> <span class="fn">create_student</span>():
+    data = request.get_json()
+    <span class="kw">return</span> jsonify(data), <span class="num">201</span>
+
+<span class="kw">if</span> __name__ == <span class="str">"__main__"</span>:
+    app.run(debug=<span class="kw">True</span>)</code></pre>
+
+  <h3 class="sub">FastAPI (modern, async-first)</h3>
+  <pre><code><span class="kw">from</span> fastapi <span class="kw">import</span> FastAPI
+<span class="kw">from</span> pydantic <span class="kw">import</span> BaseModel
+
+app = FastAPI()
+
+<span class="kw">class</span> <span class="fn">Student</span>(BaseModel):    <span class="com"># auto-validation ng request body</span>
+    name: <span class="bi">str</span>
+    course: <span class="bi">str</span>
+
+<span class="kw">@app.get</span>(<span class="str">"/students/{id}"</span>)
+<span class="kw">async</span> <span class="kw">def</span> <span class="fn">get_student</span>(id: <span class="bi">int</span>):
+    <span class="kw">return</span> {<span class="str">"id"</span>: id}
+
+<span class="kw">@app.post</span>(<span class="str">"/students"</span>)
+<span class="kw">async</span> <span class="kw">def</span> <span class="fn">create_student</span>(student: Student):
+    <span class="kw">return</span> student
+
+<span class="com"># run: uvicorn main:app --reload</span>
+<span class="com"># auto-generates interactive docs sa /docs</span></code></pre>
+
+  <table class="ref">
+    <tr><th>Framework</th><th>Best For</th></tr>
+    <tr><td>Flask</td><td>Simple APIs, microservices, learning</td></tr>
+    <tr><td>Django</td><td>Full-featured apps na may admin panel, ORM, auth built-in</td></tr>
+    <tr><td>FastAPI</td><td>Modern async APIs na may auto-validation at docs</td></tr>
+  </table>
+  `
+},
+
+{
+  id:"data-science",
+  group:"VII. Applied Python",
+  title:"Data Science Stack",
+  html:`
+  <h2><span class="idx">20</span> Data Science Stack</h2>
+  <p class="desc">Ang mga library na gamit sa data analysis, ML, at scientific computing.</p>
+
+  <h3 class="sub">NumPy — numerical arrays</h3>
+  <pre><code><span class="kw">import</span> numpy <span class="kw">as</span> np
+
+arr = np.array([<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>, <span class="num">4</span>])
+matrix = np.array([[<span class="num">1</span>,<span class="num">2</span>],[<span class="num">3</span>,<span class="num">4</span>]])
+arr * <span class="num">2</span>              <span class="com"># vectorized operation — mabilis kaysa loop</span>
+np.zeros((<span class="num">3</span>,<span class="num">3</span>)), np.ones((<span class="num">2</span>,<span class="num">2</span>)), np.arange(<span class="num">0</span>,<span class="num">10</span>,<span class="num">2</span>)
+matrix.shape, matrix.T          <span class="com"># dimensions, transpose</span>
+np.dot(matrix, matrix)          <span class="com"># matrix multiplication</span>
+arr.mean(), arr.std(), arr.sum()</code></pre>
+
+  <h3 class="sub">pandas — dataframes</h3>
+  <pre><code><span class="kw">import</span> pandas <span class="kw">as</span> pd
+
+df = pd.read_csv(<span class="str">"students.csv"</span>)
+df.head()                    <span class="com"># unang 5 rows</span>
+df[<span class="str">"gpa"</span>].mean()
+df[df[<span class="str">"course"</span>] == <span class="str">"CS"</span>]     <span class="com"># filtering</span>
+df.groupby(<span class="str">"course"</span>)[<span class="str">"gpa"</span>].mean()
+df.sort_values(<span class="str">"gpa"</span>, ascending=<span class="kw">False</span>)
+df.dropna(), df.fillna(<span class="num">0</span>)  <span class="com"># handle missing data</span>
+df.to_csv(<span class="str">"output.csv"</span>, index=<span class="kw">False</span>)</code></pre>
+
+  <h3 class="sub">matplotlib — visualization</h3>
+  <pre><code><span class="kw">import</span> matplotlib.pyplot <span class="kw">as</span> plt
+
+plt.plot(x, y)
+plt.bar(categories, values)
+plt.scatter(x, y)
+plt.xlabel(<span class="str">"X"</span>); plt.ylabel(<span class="str">"Y"</span>); plt.title(<span class="str">"Chart"</span>)
+plt.show()</code></pre>
+
+  <h3 class="sub">scikit-learn — machine learning</h3>
+  <pre><code><span class="kw">from</span> sklearn.model_selection <span class="kw">import</span> train_test_split
+<span class="kw">from</span> sklearn.linear_model <span class="kw">import</span> LinearRegression
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=<span class="num">0.2</span>)
+
+model = LinearRegression()
+model.fit(X_train, y_train)
+predictions = model.predict(X_test)
+model.score(X_test, y_test)   <span class="com"># R² score</span></code></pre>
+
+  <div class="note"><b>Karaniwang stack:</b> <code class="inline">numpy</code> (arrays) → <code class="inline">pandas</code> (tabular data) → <code class="inline">matplotlib/seaborn</code> (viz) → <code class="inline">scikit-learn</code> (classic ML) → <code class="inline">pytorch/tensorflow</code> (deep learning).</div>
+  `
+},
+
+{
+  id:"best-practices",
+  group:"VIII. Professional Craft",
+  title:"Best Practices & Tooling",
+  html:`
+  <h2><span class="idx">21</span> Best Practices &amp; Tooling</h2>
+  <p class="desc">Ang mga bagay na naghihiwalay sa hobbyist code sa professional-grade code.</p>
+
+  <h3 class="sub">PEP 8 — Style Guide</h3>
+  <ul class="plain">
+    <li><b>snake_case</b> para sa variables/functions, <b>PascalCase</b> para sa classes, <b>UPPER_CASE</b> para sa constants</li>
+    <li>4 spaces per indentation level (hindi tabs)</li>
+    <li>Max 79-99 characters kada line</li>
+    <li>Dalawang blank lines bago top-level function/class definitions</li>
+    <li>Explicit imports sa taas ng file, hindi sa gitna ng code</li>
+  </ul>
+  <pre><code><span class="com"># masamang halimbawa</span>
+<span class="kw">def</span> <span class="fn">CalculateTotal</span>(x,y):<span class="kw">return</span> x+y
+
+<span class="com"># magandang halimbawa</span>
+<span class="kw">def</span> <span class="fn">calculate_total</span>(x, y):
+    <span class="kw">return</span> x + y</code></pre>
+
+  <h3 class="sub">Tooling na Dapat Malaman</h3>
+  <table class="ref">
+    <tr><th>Tool</th><th>Ginagamit para sa</th></tr>
+    <tr><td><code>black</code></td><td>Auto-formatter, walang debate sa style</td></tr>
+    <tr><td><code>ruff / flake8</code></td><td>Linting — hinahanap ang errors/code smells</td></tr>
+    <tr><td><code>mypy</code></td><td>Static type checking</td></tr>
+    <tr><td><code>pytest</code></td><td>Testing framework</td></tr>
+    <tr><td><code>poetry / uv</code></td><td>Modern dependency &amp; package management</td></tr>
+    <tr><td><code>pre-commit</code></td><td>Auto-run checks bago mag-commit</td></tr>
+    <tr><td><code>git</code></td><td>Version control (hindi Python-specific pero essential)</td></tr>
+  </table>
+
+  <h3 class="sub">Project Structure (production-ready)</h3>
+  <pre><code>myproject/
+├── src/
+│   └── myproject/
+│       ├── __init__.py
+│       ├── main.py
+│       └── utils.py
+├── tests/
+│   └── test_main.py
+├── pyproject.toml       <span class="com"># modern config (dependencies, build)</span>
+├── README.md
+├── .gitignore
+└── .github/workflows/    <span class="com"># CI/CD (GitHub Actions)</span></code></pre>
+
+  <h3 class="sub">Clean Code Principles</h3>
+  <ul class="plain">
+    <li><b>DRY</b> (Don't Repeat Yourself) — i-extract ang paulit-ulit na logic sa functions</li>
+    <li><b>Single Responsibility</b> — isang function/class, isang trabaho</li>
+    <li><b>Meaningful names</b> — <code class="inline">calculate_gpa()</code> hindi <code class="inline">calc()</code></li>
+    <li><b>Avoid magic numbers</b> — gumamit ng named constants</li>
+    <li><b>Fail fast</b> — i-validate ang inputs agad, huwag hintaying sumabog sa dulo</li>
+    <li><b>Write tests</b> — kahit basic unit tests, malaking tulong sa maintenance</li>
+  </ul>
+
+  <h3 class="sub">Performance Tips</h3>
+  <ul class="plain">
+    <li>Gamitin ang <b>list comprehensions</b> sa halip na manual loops kung applicable</li>
+    <li>Gamitin ang <code class="inline">set</code>/<code class="inline">dict</code> para sa membership checks (<code class="inline">O(1)</code>) sa halip na list (<code class="inline">O(n)</code>)</li>
+    <li>Gamitin ang generators para sa malalaking datasets — memory efficient</li>
+    <li>I-profile muna gamit ang <code class="inline">cProfile</code> bago mag-optimize — huwag manghula</li>
+    <li>Gamitin ang <code class="inline">@lru_cache</code> para sa expensive, repeated computations</li>
+  </ul>
+
+  <div class="tip"><b>Career tip:</b> Bilang aspiring Full-Stack Dev / AI Engineer / Startup CTO, mas importante ang malinis na code, tests, at documentation kaysa "clever" one-liners. Readable &gt; clever, palagi.</div>
+  `
+}
+
+);
+
+// PART 4 — inspired by Python Crash Course structure (setup, debugging, git, projects)
+// Written originally for py.ref — no verbatim text from any source.
+window.PYREF_SECTIONS = window.PYREF_SECTIONS || [];
+
+window.PYREF_SECTIONS.push(
+
+{
+  id:"setup",
+  group:"I. Foundations",
+  title:"Setup & Running Python",
+  html:`
+  <h2><span class="idx">00</span> Setup &amp; Running Python</h2>
+  <p class="desc">Bago ka pa mag-code — paano mo aktwal na patatakbuhin ang Python sa sarili mong makina.</p>
+
+  <h3 class="sub">Pag-install</h3>
+  <ul class="plain">
+    <li><b>Windows:</b> i-download sa <a href="https://python.org" target="_blank">python.org</a>, at sa installer, i-check ang <code class="inline">"Add Python to PATH"</code> — ito ang pinaka-madalas na dahilan ng "python is not recognized" error.</li>
+    <li><b>macOS:</b> madalas may paunang Python na, pero mas mainam mag-install ng fresh version via <code class="inline">python.org</code> o <code class="inline">brew install python</code>.</li>
+    <li><b>Linux:</b> karaniwang paunang-nakalagay na. I-verify gamit ang <code class="inline">python3 --version</code>. Kung kailangan: <code class="inline">sudo apt install python3 python3-pip</code>.</li>
+  </ul>
+
+  <h3 class="sub">Pagpapatakbo ng Program</h3>
+  <pre><code><span class="com"># sa terminal/command prompt, papunta sa folder ng file mo:</span>
+python3 filename.py      <span class="com"># Linux/Mac</span>
+python filename.py        <span class="com"># Windows (minsan python3 rin)</span>
+
+<span class="com"># interactive mode — magandang paraan mag-test ng maiikling snippets</span>
+python3
+&gt;&gt;&gt; print("test")</code></pre>
+
+  <h3 class="sub">Editor / IDE Options</h3>
+  <table class="ref">
+    <tr><th>Tool</th><th>Para kanino</th></tr>
+    <tr><td>VS Code</td><td>Lightweight, extensible — pinaka-common choice ngayon</td></tr>
+    <tr><td>PyCharm</td><td>Full-featured IDE, malakas ang debugging tools</td></tr>
+    <tr><td>Jupyter Notebook</td><td>Data science, experimentation, cell-by-cell execution</td></tr>
+    <tr><td>Sublime / Vim / Neovim</td><td>Minimalist, mabilis, para sa mas advanced users</td></tr>
+  </table>
+
+  <div class="tip"><b>Tip:</b> Gumawa ng hiwalay na folder per project at gamitin ang virtual environment (<code class="inline">python -m venv venv</code>) para hindi maghalo ang dependencies ng bawat proyekto.</div>
+  `
+},
+
+{
+  id:"debugging",
+  group:"III. Object-Oriented Python",
+  title:"Reading Errors & Debugging",
+  html:`
+  <h2><span class="idx">10.5</span> Reading Errors &amp; Debugging</h2>
+  <p class="desc">Ang kakayahang maintindihan ang traceback ay isa sa pinaka-praktikal na skill na matututunan mo.</p>
+
+  <h3 class="sub">Anatomy ng isang Traceback</h3>
+  <pre><code>Traceback (most recent call last):
+  File <span class="str">"main.py"</span>, line <span class="num">7</span>, <span class="kw">in</span> &lt;module&gt;
+    result = divide(<span class="num">10</span>, <span class="num">0</span>)
+  File <span class="str">"main.py"</span>, line <span class="num">3</span>, <span class="kw">in</span> divide
+    <span class="kw">return</span> a / b
+ZeroDivisionError: division by zero</code></pre>
+  <ul class="plain">
+    <li>Basahin mula <b>baba pataas</b>: ang huling linya ang <b>actual na error type at message</b>.</li>
+    <li>Ang mga "File... line..." entries ay ang <b>call stack</b> — saan-saan dumaan ang execution bago sumabog.</li>
+    <li>Ang pinaka-mababang "File" entry ang eksaktong linya kung saan nangyari ang error.</li>
+  </ul>
+
+  <h3 class="sub">Karaniwang Sanhi ng Bawat Error</h3>
+  <table class="ref">
+    <tr><th>Error</th><th>Karaniwang Dahilan</th></tr>
+    <tr><td><code>NameError</code></td><td>Typo sa variable name, o ginamit bago na-define</td></tr>
+    <tr><td><code>IndentationError</code></td><td>Halong tabs at spaces, o mismatched indentation level</td></tr>
+    <tr><td><code>TypeError</code></td><td>Pag-operate sa maling types (e.g. <code>"5" + 5</code>)</td></tr>
+    <tr><td><code>KeyError</code></td><td>Access sa dict key na wala talaga — gamitin ang <code>.get()</code></td></tr>
+    <tr><td><code>IndexError</code></td><td>Out-of-range index sa list — i-check ang <code>len()</code> muna</td></tr>
+    <tr><td><code>ModuleNotFoundError</code></td><td>Hindi pa naka-install ang package (<code>pip install ...</code>)</td></tr>
+  </table>
+
+  <h3 class="sub">Debugging Techniques</h3>
+  <pre><code><span class="com"># 1. Print debugging — mabilis pero madumi kung marami</span>
+<span class="fn">print</span>(<span class="fn">f</span><span class="str">"DEBUG: x={x}, type={type(x)}"</span>)
+
+<span class="com"># 2. assert statements — huminto agad kung mali ang assumption</span>
+<span class="kw">assert</span> len(data) &gt; <span class="num">0</span>, <span class="str">"Walang laman ang data!"</span>
+
+<span class="com"># 3. Python debugger (pdb) — interactive step-through</span>
+<span class="kw">import</span> pdb; pdb.set_trace()   <span class="com"># titigil dito, pwede mag-inspect ng variables</span>
+<span class="com"># commands sa pdb: n (next line), s (step in), c (continue), p x (print x), q (quit)</span></code></pre>
+
+  <div class="note"><b>Paano humingi ng tulong nang epektibo:</b> Isama ang <b>buong traceback</b> (hindi lang "hindi gumagana"), ang eksaktong code na pinagmulan, at kung ano ang inaasahan mo vs ang aktwal na nangyari. Malaking tulong ito sa online forums (Stack Overflow, r/learnpython) o kahit sa AI assistants.</div>
+  `
+},
+
+{
+  id:"git",
+  group:"VIII. Professional Craft",
+  title:"Git & Version Control",
+  html:`
+  <h2><span class="idx">22</span> Git &amp; Version Control</h2>
+  <p class="desc">Hindi Python-specific, pero mandatory skill para sa sinumang developer — kasama ito sa GitHub repo mo, Kiel.</p>
+
+  <h3 class="sub">Bakit Git?</h3>
+  <ul class="plain">
+    <li>Nagse-save ng <b>history</b> ng bawat pagbabago sa code mo — pwede kang bumalik sa dating version anumang oras.</li>
+    <li>Nagbibigay-daan sa <b>collaboration</b> nang hindi nagsasapawan ang trabaho ng magkaibang tao.</li>
+    <li>Standard sa halos lahat ng professional software teams.</li>
+  </ul>
+
+  <h3 class="sub">Basic Workflow</h3>
+  <pre><code>git init                        <span class="com"># simulan ang repo sa kasalukuyang folder</span>
+git status                      <span class="com"># tignan kung anong nagbago</span>
+git add file.py                 <span class="com"># i-stage ang specific file</span>
+git add .                       <span class="com"># i-stage lahat ng changes</span>
+git commit -m <span class="str">"Add login feature"</span>   <span class="com"># i-save ang snapshot</span>
+git log                         <span class="com"># tignan ang commit history</span>
+git log --oneline               <span class="com"># compact na view</span></code></pre>
+
+  <h3 class="sub">Working with GitHub (Remote Repos)</h3>
+  <pre><code>git clone https://github.com/user/repo.git   <span class="com"># kunin ang existing repo</span>
+git remote add origin https://github.com/user/repo.git
+git push origin main            <span class="com"># i-upload ang commits</span>
+git pull origin main            <span class="com"># kunin ang latest changes</span></code></pre>
+
+  <h3 class="sub">Branching (importante para sa teams)</h3>
+  <pre><code>git branch feature-x            <span class="com"># gumawa ng bagong branch</span>
+git checkout feature-x          <span class="com"># lumipat sa branch na iyon</span>
+git checkout -b feature-y       <span class="com"># gumawa AT lumipat agad</span>
+git merge feature-x             <span class="com"># i-merge pabalik sa main</span>
+git branch -d feature-x         <span class="com"># tanggalin kung tapos na gamitin</span></code></pre>
+
+  <h3 class="sub">.gitignore</h3>
+  <p>File na nagsasabi kay Git kung anong hindi dapat i-track (secrets, cache files, virtual environments):</p>
+  <pre><code><span class="com"># .gitignore para sa Python projects</span>
+__pycache__/
+*.pyc
+venv/
+.env
+.DS_Store
+*.egg-info/</code></pre>
+
+  <div class="tip"><b>Practical tip:</b> Gumawa ng malinaw na commit messages (<code class="inline">"Fix login bug"</code> hindi <code class="inline">"update"</code>) — magiging madali itong i-trace balikan kapag may problema sa future.</div>
+  `
+},
+
+{
+  id:"mini-projects",
+  group:"VIII. Professional Craft",
+  title:"Practice Project Ideas",
+  html:`
+  <h2><span class="idx">23</span> Practice Project Ideas</h2>
+  <p class="desc">Pinaka-mabilis na paraan matuto ng Python: gumawa ng totoong proyekto. Narito ang tatlong guided directions na kumbinasyon ng maraming topics na natutunan mo dito.</p>
+
+  <h3 class="sub">Project 1 — Simple Arcade Game</h3>
+  <p>Layunin: pagsamahin ang OOP, loops, at state management. Idea: isang simpleng "dodge the obstacle" o "shooter" game gamit ang <code class="inline">pygame</code> library.</p>
+  <ul class="plain">
+    <li>Gumawa ng <code class="inline">Player</code> class na may position, health, at movement methods</li>
+    <li>Gumawa ng game loop (<code class="inline">while running:</code>) na nagha-handle ng input, update, at rendering</li>
+    <li>Idagdag ang <code class="inline">Enemy</code> class na may sariling behavior (random movement, o pattern-based)</li>
+    <li>I-track ang score gamit ang simpleng variable o dataclass</li>
+    <li><b>Stretch goal:</b> mag-save ng high scores sa isang JSON file</li>
+  </ul>
+
+  <h3 class="sub">Project 2 — Data Visualization Tool</h3>
+  <p>Layunin: pagsamahin ang file I/O, APIs, at ang data science stack.</p>
+  <ul class="plain">
+    <li>Kumuha ng public API na walang kailangang authentication (e.g. weather, exchange rates, o open datasets)</li>
+    <li>Gamitin ang <code class="inline">requests</code> para kunin ang data, at i-save bilang JSON o CSV</li>
+    <li>Gamitin ang <code class="inline">pandas</code> para i-clean at i-analyze ang data</li>
+    <li>I-visualize gamit ang <code class="inline">matplotlib</code> — line chart, bar chart, o heatmap</li>
+    <li><b>Stretch goal:</b> gawing automated script na naka-schedule (cron job) para araw-araw mag-update ang chart</li>
+  </ul>
+
+  <h3 class="sub">Project 3 — Personal Web App</h3>
+  <p>Layunin: pagsamahin ang classes, databases, at web development.</p>
+  <ul class="plain">
+    <li>Gamitin ang Flask o Django para gumawa ng simpleng CRUD app (halimbawa: task tracker, journal, o library catalog)</li>
+    <li>Gumawa ng model/schema para sa iyong data (Student, Task, Book, atbp.)</li>
+    <li>Idagdag ang basic user authentication (register/login)</li>
+    <li>I-deploy gamit ang libreng hosting (Render, Railway, o PythonAnywhere)</li>
+    <li><b>Stretch goal:</b> idagdag ang REST API endpoints para magamit din ng ibang frontend (React, mobile app)</li>
+  </ul>
+
+  <div class="note"><b>Para kay Kiel:</b> Ang mga project na ito ay maganda ring i-log sa <code class="inline">ELITE_BSCS_SELF_STUDY</code> repo mo — bawat proyekto, isang folder na may README, code, at "lessons learned" notes. Malaking portfolio material ito para sa Full-Stack Developer / AI Engineer path mo.</div>
+  `
+}
+
+);
+
+(function(){
+  const sections = window.PYREF_SECTIONS || [];
+  const sidebar = document.getElementById('sidebar');
+  const content = document.getElementById('content');
+
+  // ---- Build sidebar brand + search ----
+  let sidebarHTML = `
+    <div class="sidebar-brand">
+      <div class="tag">$ import antigravity</div>
+      <h1>py.ref</h1>
+      <p>The Complete Python Reference</p>
+    </div>
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Maghanap... (e.g. decorator, regex)" autocomplete="off">
+    </div>
+    <nav id="navList">
+  `;
+
+  // ---- Group sections by their .group label, preserving order ----
+  const groups = [];
+  const groupMap = {};
+  sections.forEach(sec => {
+    if(!groupMap[sec.group]){
+      groupMap[sec.group] = [];
+      groups.push(sec.group);
+    }
+    groupMap[sec.group].push(sec);
+  });
+
+  groups.forEach(g => {
+    sidebarHTML += `<div class="nav-group"><div class="nav-group-title">${g}</div>`;
+    groupMap[g].forEach((sec, i) => {
+      sidebarHTML += `<div class="nav-link" data-target="${sec.id}" onclick="pyrefScrollTo('${sec.id}')">
+        <span class="num">${String(sections.indexOf(sec)+1).padStart(2,'0')}</span><span class="label">${sec.title}</span>
+      </div>`;
+    });
+    sidebarHTML += `</div>`;
+  });
+
+  sidebarHTML += `</nav>`;
+  sidebar.innerHTML = sidebarHTML;
+
+  // ---- Build main content ----
+  let contentHTML = '';
+  // quick-jump chips at top
+  contentHTML += `<div class="toc-mini">` + sections.map(s => `<a href="#${s.id}" onclick="pyrefScrollTo('${s.id}');return false;">${s.title}</a>`).join('') + `</div>`;
+  sections.forEach(sec => {
+    contentHTML += `<section class="topic" id="${sec.id}">${sec.html}</section>`;
+  });
+  content.innerHTML = contentHTML;
+
+  // ---- Scroll to section helper (global) ----
+  window.pyrefScrollTo = function(id){
+    const el = document.getElementById(id);
+    if(el){
+      el.scrollIntoView({behavior:'smooth', block:'start'});
+      history.replaceState(null, '', '#'+id);
+    }
+    document.getElementById('sidebar').classList.remove('open');
+  };
+
+  // ---- Active link highlighting via IntersectionObserver ----
+  const navLinks = Array.from(document.querySelectorAll('.nav-link'));
+  const topics = Array.from(document.querySelectorAll('section.topic'));
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        const id = entry.target.id;
+        navLinks.forEach(l => l.classList.toggle('active', l.dataset.target === id));
+      }
+    });
+  }, { rootMargin: '-15% 0px -70% 0px', threshold: 0 });
+
+  topics.forEach(t => observer.observe(t));
+
+  // ---- Search filter ----
+  const searchInput = document.getElementById('searchInput');
+  searchInput.addEventListener('input', (e) => {
+    const q = e.target.value.trim().toLowerCase();
+
+    if(q === ''){
+      navLinks.forEach(l => l.parentElement ? null : null);
+      navLinks.forEach(l => l.classList.remove('hidden'));
+      document.querySelectorAll('.nav-group').forEach(g => g.classList.remove('hidden'));
+      topics.forEach(t => t.classList.remove('hidden'));
+      // remove highlight marks
+      document.querySelectorAll('mark.hl').forEach(m => {
+        m.outerHTML = m.innerHTML;
+      });
+      return;
+    }
+
+    // filter nav links by matching title OR content text of that section
+    navLinks.forEach(link => {
+      const id = link.dataset.target;
+      const sectionEl = document.getElementById(id);
+      const text = (link.textContent + ' ' + (sectionEl ? sectionEl.textContent : '')).toLowerCase();
+      const match = text.includes(q);
+      link.classList.toggle('hidden', !match);
+    });
+
+    // hide empty nav-groups
+    document.querySelectorAll('.nav-group').forEach(group => {
+      const visibleLinks = group.querySelectorAll('.nav-link:not(.hidden)');
+      group.classList.toggle('hidden', visibleLinks.length === 0);
+    });
+
+    // show/hide topic sections in main content to match search
+    topics.forEach(t => {
+      const match = t.textContent.toLowerCase().includes(q);
+      t.classList.toggle('hidden', !match);
+    });
+  });
+
+  // Keyboard shortcut: "/" focuses search
+  document.addEventListener('keydown', (e) => {
+    if(e.key === '/' && document.activeElement !== searchInput){
+      e.preventDefault();
+      searchInput.focus();
+    }
+    if(e.key === 'Escape'){
+      searchInput.value = '';
+      searchInput.dispatchEvent(new Event('input'));
+      searchInput.blur();
+    }
+  });
+
+  // ---- Scroll progress bar + back-to-top button ----
+  const progressBar = document.getElementById('progressBar');
+  const backTop = document.getElementById('backTop');
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    progressBar.style.width = pct + '%';
+    backTop.classList.toggle('show', scrollTop > 600);
+  });
+
+  // ---- Deep-link on load ----
+  if(location.hash){
+    const id = location.hash.slice(1);
+    setTimeout(() => window.pyrefScrollTo(id), 100);
+  }
+})();
+
+</script>
+</body>
+</html>
