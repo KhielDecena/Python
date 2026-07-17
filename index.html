@@ -406,9 +406,9 @@ mark.hl{background:var(--yellow);color:#0b0d10;border-radius:2px;}
       <h1>Python, <span>lahat-lahat.</span></h1>
       <p class="lede">Isang buong reference site ng Python — mula sa syntax basics hanggang sa mga advanced na topic na kailangan ng isang propesyonal na Python developer. Organized by difficulty, searchable, at may working code examples sa bawat section.</p>
       <div class="hero-stats">
-        <div class="hero-stat"><div class="n">25</div><div class="l">Major Sections</div></div>
-        <div class="hero-stat"><div class="n">150+</div><div class="l">Topics Covered</div></div>
-        <div class="hero-stat"><div class="n">220+</div><div class="l">Code Examples</div></div>
+        <div class="hero-stat"><div class="n">32</div><div class="l">Major Sections</div></div>
+        <div class="hero-stat"><div class="n">190+</div><div class="l">Topics Covered</div></div>
+        <div class="hero-stat"><div class="n">290+</div><div class="l">Code Examples</div></div>
         <div class="hero-stat"><div class="n">0</div><div class="l">Ads / Clutter</div></div>
       </div>
     </div>
@@ -434,7 +434,7 @@ window.PYREF_SECTIONS.push(
   group:"I. Foundations",
   title:"Syntax & Basics",
   html:`
-  <h2><span class="idx">01</span> Syntax &amp; Basics</h2>
+  <h2><span class="idx">1</span> Syntax &amp; Basics</h2>
   <p class="desc">Ang pundasyon — kung paano binabasa ng Python interpreter ang code mo.</p>
 
   <h3 class="sub">Indentation &amp; Comments</h3>
@@ -500,7 +500,7 @@ x, y = y, x              <span class="com"># swap nang walang temp variable</spa
   group:"I. Foundations",
   title:"Strings",
   html:`
-  <h2><span class="idx">02</span> Strings</h2>
+  <h2><span class="idx">2</span> Strings</h2>
   <p class="desc">Immutable sequences of characters — napakadalas gamitin, kaya dapat expert ka dito.</p>
 
   <h3 class="sub">Creation &amp; f-strings</h3>
@@ -546,7 +546,7 @@ s[::<span class="num">2</span>]    <span class="com"># 'Pto' — every 2nd char<
   group:"I. Foundations",
   title:"Numbers & Math",
   html:`
-  <h2><span class="idx">03</span> Numbers &amp; Math</h2>
+  <h2><span class="idx">3</span> Numbers &amp; Math</h2>
   <p class="desc">int, float, complex, at ang <code class="inline">math</code>/<code class="inline">random</code> modules.</p>
 
   <h3 class="sub">Built-in Numeric Functions</h3>
@@ -585,7 +585,7 @@ random.sample(my_list, <span class="num">3</span>)  <span class="com"># 3 unique
   group:"I. Foundations",
   title:"Control Flow",
   html:`
-  <h2><span class="idx">04</span> Control Flow</h2>
+  <h2><span class="idx">4</span> Control Flow</h2>
   <p class="desc">if/elif/else, loops, at flow control statements.</p>
 
   <h3 class="sub">Conditionals</h3>
@@ -636,11 +636,48 @@ i = <span class="num">0</span>
 },
 
 {
+  id:"setup",
+  group:"I. Foundations",
+  title:"Setup & Running Python",
+  html:`
+  <h2><span class="idx">5</span> Setup &amp; Running Python</h2>
+  <p class="desc">Bago ka pa mag-code — paano mo aktwal na patatakbuhin ang Python sa sarili mong makina.</p>
+
+  <h3 class="sub">Pag-install</h3>
+  <ul class="plain">
+    <li><b>Windows:</b> i-download sa <a href="https://python.org" target="_blank">python.org</a>, at sa installer, i-check ang <code class="inline">"Add Python to PATH"</code> — ito ang pinaka-madalas na dahilan ng "python is not recognized" error.</li>
+    <li><b>macOS:</b> madalas may paunang Python na, pero mas mainam mag-install ng fresh version via <code class="inline">python.org</code> o <code class="inline">brew install python</code>.</li>
+    <li><b>Linux:</b> karaniwang paunang-nakalagay na. I-verify gamit ang <code class="inline">python3 --version</code>. Kung kailangan: <code class="inline">sudo apt install python3 python3-pip</code>.</li>
+  </ul>
+
+  <h3 class="sub">Pagpapatakbo ng Program</h3>
+  <pre><code><span class="com"># sa terminal/command prompt, papunta sa folder ng file mo:</span>
+python3 filename.py      <span class="com"># Linux/Mac</span>
+python filename.py        <span class="com"># Windows (minsan python3 rin)</span>
+
+<span class="com"># interactive mode — magandang paraan mag-test ng maiikling snippets</span>
+python3
+&gt;&gt;&gt; print("test")</code></pre>
+
+  <h3 class="sub">Editor / IDE Options</h3>
+  <table class="ref">
+    <tr><th>Tool</th><th>Para kanino</th></tr>
+    <tr><td>VS Code</td><td>Lightweight, extensible — pinaka-common choice ngayon</td></tr>
+    <tr><td>PyCharm</td><td>Full-featured IDE, malakas ang debugging tools</td></tr>
+    <tr><td>Jupyter Notebook</td><td>Data science, experimentation, cell-by-cell execution</td></tr>
+    <tr><td>Sublime / Vim / Neovim</td><td>Minimalist, mabilis, para sa mas advanced users</td></tr>
+  </table>
+
+  <div class="tip"><b>Tip:</b> Gumawa ng hiwalay na folder per project at gamitin ang virtual environment (<code class="inline">python -m venv venv</code>) para hindi maghalo ang dependencies ng bawat proyekto.</div>
+  `
+},
+
+{
   id:"lists-tuples",
   group:"II. Data Structures",
   title:"Lists & Tuples",
   html:`
-  <h2><span class="idx">05</span> Lists &amp; Tuples</h2>
+  <h2><span class="idx">6</span> Lists &amp; Tuples</h2>
   <p class="desc">Ordered collections — list ay mutable, tuple ay immutable.</p>
 
   <h3 class="sub">List Operations</h3>
@@ -686,7 +723,7 @@ c = copy.deepcopy(a)      <span class="com"># deep — fully independent</span><
   group:"II. Data Structures",
   title:"Dictionaries & Sets",
   html:`
-  <h2><span class="idx">06</span> Dictionaries &amp; Sets</h2>
+  <h2><span class="idx">7</span> Dictionaries &amp; Sets</h2>
   <p class="desc">Key-value mappings at unique unordered collections.</p>
 
   <h3 class="sub">Dictionary Basics</h3>
@@ -741,11 +778,59 @@ dq.appendleft(<span class="num">0</span>); dq.popleft()</code></pre>
 },
 
 {
-  id:"functions",
+  id:"comprehensions-generators",
   group:"II. Data Structures",
+  title:"Comprehensions & Generators",
+  html:`
+  <h2><span class="idx">8</span> Comprehensions &amp; Generators</h2>
+  <p class="desc">Pythonic paraan ng pag-transform ng data nang efficient at readable.</p>
+
+  <h3 class="sub">Generator Expressions</h3>
+  <pre><code>gen = (x**<span class="num">2</span> <span class="kw">for</span> x <span class="kw">in</span> <span class="fn">range</span>(<span class="num">1000000</span>))  <span class="com"># lazy — walang agad na compute</span>
+<span class="fn">next</span>(gen)   <span class="com"># kunin ang susunod na value</span>
+<span class="fn">sum</span>(x <span class="kw">for</span> x <span class="kw">in</span> <span class="fn">range</span>(<span class="num">10</span>))  <span class="com"># pwedeng direkta sa function call</span></code></pre>
+
+  <h3 class="sub">Generator Functions (yield)</h3>
+  <pre><code><span class="kw">def</span> <span class="fn">fibonacci</span>(n):
+    a, b = <span class="num">0</span>, <span class="num">1</span>
+    <span class="kw">for</span> _ <span class="kw">in</span> <span class="fn">range</span>(n):
+        <span class="kw">yield</span> a
+        a, b = b, a + b
+
+<span class="kw">for</span> num <span class="kw">in</span> fibonacci(<span class="num">10</span>):
+    <span class="fn">print</span>(num)
+
+<span class="com"># yield from — delegate sa ibang generator</span>
+<span class="kw">def</span> <span class="fn">chain</span>(*iterables):
+    <span class="kw">for</span> it <span class="kw">in</span> iterables:
+        <span class="kw">yield from</span> it</code></pre>
+
+  <div class="note"><b>Bakit generators?</b> Memory-efficient — hindi lahat ng values ni-store sa memory nang sabay. Perpekto para sa malalaking datasets o infinite sequences.</div>
+
+  <h3 class="sub">itertools module</h3>
+  <table class="ref">
+    <tr><th>Function</th><th>Ginagawa</th></tr>
+    <tr><td><code>count(start, step)</code></td><td>Infinite counter</td></tr>
+    <tr><td><code>cycle(iterable)</code></td><td>Infinite repeat ng sequence</td></tr>
+    <tr><td><code>chain(a, b)</code></td><td>I-concat ang multiple iterables</td></tr>
+    <tr><td><code>combinations(iter, r)</code></td><td>Lahat ng r-length combinations</td></tr>
+    <tr><td><code>permutations(iter, r)</code></td><td>Lahat ng r-length orderings</td></tr>
+    <tr><td><code>product(a, b)</code></td><td>Cartesian product</td></tr>
+    <tr><td><code>groupby(iter, key)</code></td><td>I-group ang consecutive elements</td></tr>
+    <tr><td><code>islice(iter, n)</code></td><td>Slice ng iterator</td></tr>
+  </table>
+  <pre><code><span class="kw">from</span> itertools <span class="kw">import</span> combinations, permutations, product
+<span class="fn">list</span>(combinations([<span class="num">1</span>,<span class="num">2</span>,<span class="num">3</span>], <span class="num">2</span>))  <span class="com"># [(1,2),(1,3),(2,3)]</span>
+<span class="fn">list</span>(product([<span class="num">0</span>,<span class="num">1</span>], repeat=<span class="num">3</span>))  <span class="com"># binary combos</span></code></pre>
+  `
+},
+
+{
+  id:"functions",
+  group:"III. Functions & OOP",
   title:"Functions",
   html:`
-  <h2><span class="idx">07</span> Functions</h2>
+  <h2><span class="idx">9</span> Functions</h2>
   <p class="desc">Reusable blocks of logic — core building block ng clean code.</p>
 
   <h3 class="sub">Definition &amp; Arguments</h3>
@@ -801,66 +886,11 @@ reduce(<span class="kw">lambda</span> a,b: a+b, [<span class="num">1</span>,<spa
 },
 
 {
-  id:"comprehensions-generators",
-  group:"II. Data Structures",
-  title:"Comprehensions & Generators",
-  html:`
-  <h2><span class="idx">08</span> Comprehensions &amp; Generators</h2>
-  <p class="desc">Pythonic paraan ng pag-transform ng data nang efficient at readable.</p>
-
-  <h3 class="sub">Generator Expressions</h3>
-  <pre><code>gen = (x**<span class="num">2</span> <span class="kw">for</span> x <span class="kw">in</span> <span class="fn">range</span>(<span class="num">1000000</span>))  <span class="com"># lazy — walang agad na compute</span>
-<span class="fn">next</span>(gen)   <span class="com"># kunin ang susunod na value</span>
-<span class="fn">sum</span>(x <span class="kw">for</span> x <span class="kw">in</span> <span class="fn">range</span>(<span class="num">10</span>))  <span class="com"># pwedeng direkta sa function call</span></code></pre>
-
-  <h3 class="sub">Generator Functions (yield)</h3>
-  <pre><code><span class="kw">def</span> <span class="fn">fibonacci</span>(n):
-    a, b = <span class="num">0</span>, <span class="num">1</span>
-    <span class="kw">for</span> _ <span class="kw">in</span> <span class="fn">range</span>(n):
-        <span class="kw">yield</span> a
-        a, b = b, a + b
-
-<span class="kw">for</span> num <span class="kw">in</span> fibonacci(<span class="num">10</span>):
-    <span class="fn">print</span>(num)
-
-<span class="com"># yield from — delegate sa ibang generator</span>
-<span class="kw">def</span> <span class="fn">chain</span>(*iterables):
-    <span class="kw">for</span> it <span class="kw">in</span> iterables:
-        <span class="kw">yield from</span> it</code></pre>
-
-  <div class="note"><b>Bakit generators?</b> Memory-efficient — hindi lahat ng values ni-store sa memory nang sabay. Perpekto para sa malalaking datasets o infinite sequences.</div>
-
-  <h3 class="sub">itertools module</h3>
-  <table class="ref">
-    <tr><th>Function</th><th>Ginagawa</th></tr>
-    <tr><td><code>count(start, step)</code></td><td>Infinite counter</td></tr>
-    <tr><td><code>cycle(iterable)</code></td><td>Infinite repeat ng sequence</td></tr>
-    <tr><td><code>chain(a, b)</code></td><td>I-concat ang multiple iterables</td></tr>
-    <tr><td><code>combinations(iter, r)</code></td><td>Lahat ng r-length combinations</td></tr>
-    <tr><td><code>permutations(iter, r)</code></td><td>Lahat ng r-length orderings</td></tr>
-    <tr><td><code>product(a, b)</code></td><td>Cartesian product</td></tr>
-    <tr><td><code>groupby(iter, key)</code></td><td>I-group ang consecutive elements</td></tr>
-    <tr><td><code>islice(iter, n)</code></td><td>Slice ng iterator</td></tr>
-  </table>
-  <pre><code><span class="kw">from</span> itertools <span class="kw">import</span> combinations, permutations, product
-<span class="fn">list</span>(combinations([<span class="num">1</span>,<span class="num">2</span>,<span class="num">3</span>], <span class="num">2</span>))  <span class="com"># [(1,2),(1,3),(2,3)]</span>
-<span class="fn">list</span>(product([<span class="num">0</span>,<span class="num">1</span>], repeat=<span class="num">3</span>))  <span class="com"># binary combos</span></code></pre>
-  `
-}
-
-);
-
-// PART 2 — OOP → CONCURRENCY
-window.PYREF_SECTIONS = window.PYREF_SECTIONS || [];
-
-window.PYREF_SECTIONS.push(
-
-{
   id:"oop",
-  group:"III. Object-Oriented Python",
+  group:"III. Functions & OOP",
   title:"Classes & OOP",
   html:`
-  <h2><span class="idx">09</span> Classes &amp; OOP</h2>
+  <h2><span class="idx">10</span> Classes &amp; OOP</h2>
   <p class="desc">Ang apat na pillars: encapsulation, inheritance, polymorphism, abstraction.</p>
 
   <h3 class="sub">Basic Class</h3>
@@ -963,11 +993,84 @@ p = Point(<span class="num">3</span>, <span class="num">4</span>)</code></pre>
 },
 
 {
+  id:"decorators",
+  group:"III. Functions & OOP",
+  title:"Decorators & Closures",
+  html:`
+  <h2><span class="idx">11</span> Decorators &amp; Closures</h2>
+  <p class="desc">Functions na nagmomodify ng ibang functions — core sa maraming Python frameworks.</p>
+
+  <h3 class="sub">Closures</h3>
+  <pre><code><span class="kw">def</span> <span class="fn">make_multiplier</span>(n):
+    <span class="kw">def</span> <span class="fn">multiplier</span>(x):
+        <span class="kw">return</span> x * n     <span class="com"># "remembers" ang n kahit tapos na make_multiplier</span>
+    <span class="kw">return</span> multiplier
+
+times3 = make_multiplier(<span class="num">3</span>)
+times3(<span class="num">10</span>)  <span class="com"># 30</span></code></pre>
+
+  <h3 class="sub">Basic Decorators</h3>
+  <pre><code><span class="kw">def</span> <span class="fn">my_decorator</span>(func):
+    <span class="kw">def</span> <span class="fn">wrapper</span>(*args, **kwargs):
+        <span class="fn">print</span>(<span class="fn">f</span><span class="str">"Bago tumawag ng {func.__name__}"</span>)
+        result = func(*args, **kwargs)
+        <span class="fn">print</span>(<span class="str">"Pagkatapos"</span>)
+        <span class="kw">return</span> result
+    <span class="kw">return</span> wrapper
+
+<span class="kw">@my_decorator</span>
+<span class="kw">def</span> <span class="fn">say_hello</span>():
+    <span class="fn">print</span>(<span class="str">"Hello!"</span>)
+
+say_hello()  <span class="com"># parang tinawag mo: my_decorator(say_hello)()</span></code></pre>
+
+  <h3 class="sub">Decorators with Arguments</h3>
+  <pre><code><span class="kw">def</span> <span class="fn">repeat</span>(times):
+    <span class="kw">def</span> <span class="fn">decorator</span>(func):
+        <span class="kw">def</span> <span class="fn">wrapper</span>(*args, **kwargs):
+            <span class="kw">for</span> _ <span class="kw">in</span> <span class="fn">range</span>(times):
+                func(*args, **kwargs)
+        <span class="kw">return</span> wrapper
+    <span class="kw">return</span> decorator
+
+<span class="kw">@repeat</span>(<span class="num">3</span>)
+<span class="kw">def</span> <span class="fn">greet</span>():
+    <span class="fn">print</span>(<span class="str">"Hi!"</span>)</code></pre>
+
+  <h3 class="sub">functools.wraps (importante!)</h3>
+  <pre><code><span class="kw">from</span> functools <span class="kw">import</span> wraps
+
+<span class="kw">def</span> <span class="fn">my_decorator</span>(func):
+    <span class="kw">@wraps</span>(func)   <span class="com"># pinapanatili ang __name__ at __doc__ ng original</span>
+    <span class="kw">def</span> <span class="fn">wrapper</span>(*args, **kwargs):
+        <span class="kw">return</span> func(*args, **kwargs)
+    <span class="kw">return</span> wrapper</code></pre>
+
+  <h3 class="sub">Built-in Useful Decorators</h3>
+  <table class="ref">
+    <tr><th>Decorator</th><th>Ginagawa</th></tr>
+    <tr><td><code>@property</code></td><td>Method → attribute-like access</td></tr>
+    <tr><td><code>@staticmethod</code></td><td>Method na walang self/cls</td></tr>
+    <tr><td><code>@classmethod</code></td><td>Method na tumatanggap ng cls</td></tr>
+    <tr><td><code>@functools.lru_cache</code></td><td>Memoization — cache ang return values</td></tr>
+    <tr><td><code>@functools.cached_property</code></td><td>Compute once, i-cache ang property</td></tr>
+    <tr><td><code>@dataclass</code></td><td>Auto-generate __init__/__repr__/__eq__</td></tr>
+  </table>
+  <pre><code><span class="kw">from</span> functools <span class="kw">import</span> lru_cache
+
+<span class="kw">@lru_cache</span>(maxsize=<span class="kw">None</span>)
+<span class="kw">def</span> <span class="fn">fib</span>(n):
+    <span class="kw">if</span> n &lt; <span class="num">2</span>: <span class="kw">return</span> n
+    <span class="kw">return</span> fib(n-<span class="num">1</span>) + fib(n-<span class="num">2</span>)  <span class="com"># napakabilis dahil sa caching</span></code></pre>
+  `
+},
+
+{
   id:"errors",
-  group:"III. Object-Oriented Python",
+  group:"IV. Errors & Debugging",
   title:"Exceptions & Error Handling",
   html:`
-  <h2><span class="idx">10</span> Exceptions &amp; Error Handling</h2>
+  <h2><span class="idx">12</span> Exceptions &amp; Error Handling</h2>
   <p class="desc">Paano gracefully hawakan ang mga error nang hindi bumabagsak ang program.</p>
 
   <h3 class="sub">try / except / else / finally</h3>
@@ -1040,11 +1143,173 @@ p = Point(<span class="num">3</span>, <span class="num">4</span>)</code></pre>
 },
 
 {
+  id:"debugging",
+  group:"IV. Errors & Debugging",
+  title:"Reading Errors & Debugging",
+  html:`
+  <h2><span class="idx">13</span> Reading Errors &amp; Debugging</h2>
+  <p class="desc">Ang kakayahang maintindihan ang traceback ay isa sa pinaka-praktikal na skill na matututunan mo.</p>
+
+  <h3 class="sub">Anatomy ng isang Traceback</h3>
+  <pre><code>Traceback (most recent call last):
+  File <span class="str">"main.py"</span>, line <span class="num">7</span>, <span class="kw">in</span> &lt;module&gt;
+    result = divide(<span class="num">10</span>, <span class="num">0</span>)
+  File <span class="str">"main.py"</span>, line <span class="num">3</span>, <span class="kw">in</span> divide
+    <span class="kw">return</span> a / b
+ZeroDivisionError: division by zero</code></pre>
+  <ul class="plain">
+    <li>Basahin mula <b>baba pataas</b>: ang huling linya ang <b>actual na error type at message</b>.</li>
+    <li>Ang mga "File... line..." entries ay ang <b>call stack</b> — saan-saan dumaan ang execution bago sumabog.</li>
+    <li>Ang pinaka-mababang "File" entry ang eksaktong linya kung saan nangyari ang error.</li>
+  </ul>
+
+  <h3 class="sub">Karaniwang Sanhi ng Bawat Error</h3>
+  <table class="ref">
+    <tr><th>Error</th><th>Karaniwang Dahilan</th></tr>
+    <tr><td><code>NameError</code></td><td>Typo sa variable name, o ginamit bago na-define</td></tr>
+    <tr><td><code>IndentationError</code></td><td>Halong tabs at spaces, o mismatched indentation level</td></tr>
+    <tr><td><code>TypeError</code></td><td>Pag-operate sa maling types (e.g. <code>"5" + 5</code>)</td></tr>
+    <tr><td><code>KeyError</code></td><td>Access sa dict key na wala talaga — gamitin ang <code>.get()</code></td></tr>
+    <tr><td><code>IndexError</code></td><td>Out-of-range index sa list — i-check ang <code>len()</code> muna</td></tr>
+    <tr><td><code>ModuleNotFoundError</code></td><td>Hindi pa naka-install ang package (<code>pip install ...</code>)</td></tr>
+  </table>
+
+  <h3 class="sub">Debugging Techniques</h3>
+  <pre><code><span class="com"># 1. Print debugging — mabilis pero madumi kung marami</span>
+<span class="fn">print</span>(<span class="fn">f</span><span class="str">"DEBUG: x={x}, type={type(x)}"</span>)
+
+<span class="com"># 2. assert statements — huminto agad kung mali ang assumption</span>
+<span class="kw">assert</span> len(data) &gt; <span class="num">0</span>, <span class="str">"Walang laman ang data!"</span>
+
+<span class="com"># 3. Python debugger (pdb) — interactive step-through</span>
+<span class="kw">import</span> pdb; pdb.set_trace()   <span class="com"># titigil dito, pwede mag-inspect ng variables</span>
+<span class="com"># commands sa pdb: n (next line), s (step in), c (continue), p x (print x), q (quit)</span></code></pre>
+
+  <div class="note"><b>Paano humingi ng tulong nang epektibo:</b> Isama ang <b>buong traceback</b> (hindi lang "hindi gumagana"), ang eksaktong code na pinagmulan, at kung ano ang inaasahan mo vs ang aktwal na nangyari. Malaking tulong ito sa online forums (Stack Overflow, r/learnpython) o kahit sa AI assistants.</div>
+  `
+},
+
+{
+  id:"iterators",
+  group:"V. Iterators & Concurrency",
+  title:"Iterators & Protocols",
+  html:`
+  <h2><span class="idx">14</span> Iterators &amp; the Iterator Protocol</h2>
+  <p class="desc">Ang mekanismo sa likod ng <code class="inline">for</code> loops.</p>
+
+  <h3 class="sub">Iterable vs Iterator</h3>
+  <p><b>Iterable</b>: may <code class="inline">__iter__()</code> — pwedeng i-loop (list, dict, string...).<br>
+  <b>Iterator</b>: may <code class="inline">__next__()</code> — ang aktwal na "gumagalaw" sa data.</p>
+  <pre><code>nums = [<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>]
+it = <span class="fn">iter</span>(nums)     <span class="com"># kunin ang iterator mula sa iterable</span>
+<span class="fn">next</span>(it)          <span class="com"># 1</span>
+<span class="fn">next</span>(it)          <span class="com"># 2</span>
+<span class="fn">next</span>(it)          <span class="com"># 3</span>
+<span class="fn">next</span>(it)          <span class="com"># StopIteration error!</span></code></pre>
+
+  <h3 class="sub">Custom Iterator Class</h3>
+  <pre><code><span class="kw">class</span> <span class="fn">Countdown</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(self, start):
+        self.current = start
+
+    <span class="kw">def</span> <span class="fn">__iter__</span>(self):
+        <span class="kw">return</span> self    <span class="com"># object mismo ang iterator</span>
+
+    <span class="kw">def</span> <span class="fn">__next__</span>(self):
+        <span class="kw">if</span> self.current &lt;= <span class="num">0</span>:
+            <span class="kw">raise</span> StopIteration
+        self.current -= <span class="num">1</span>
+        <span class="kw">return</span> self.current + <span class="num">1</span>
+
+<span class="kw">for</span> n <span class="kw">in</span> Countdown(<span class="num">5</span>):
+    <span class="fn">print</span>(n)   <span class="com"># 5,4,3,2,1</span></code></pre>
+
+  <h3 class="sub">enumerate, zip, at iba pa</h3>
+  <pre><code><span class="kw">for</span> i, val <span class="kw">in</span> <span class="fn">enumerate</span>([<span class="str">"a"</span>,<span class="str">"b"</span>,<span class="str">"c"</span>]):
+    <span class="fn">print</span>(i, val)     <span class="com"># 0 a, 1 b, 2 c</span>
+
+names = [<span class="str">"Kiel"</span>, <span class="str">"Ana"</span>]
+ages = [<span class="num">21</span>, <span class="num">22</span>]
+<span class="kw">for</span> name, age <span class="kw">in</span> <span class="fn">zip</span>(names, ages):
+    <span class="fn">print</span>(name, age)  <span class="com"># pairs sila hanggang sa pinakamaikling list</span>
+
+<span class="fn">reversed</span>([<span class="num">1</span>,<span class="num">2</span>,<span class="num">3</span>])       <span class="com"># reverse iterator</span>
+<span class="fn">sorted</span>(data, key=..., reverse=<span class="kw">True</span>)</code></pre>
+  `
+},
+
+{
+  id:"concurrency",
+  group:"V. Iterators & Concurrency",
+  title:"Concurrency: Threading, Multiprocessing, Async",
+  html:`
+  <h2><span class="idx">15</span> Concurrency &amp; Parallelism</h2>
+  <p class="desc">Paano magpatakbo ng maraming tasks nang sabay — kritikal na topic para sa professional developers.</p>
+
+  <h3 class="sub">Ang GIL (Global Interpreter Lock)</h3>
+  <div class="note"><b>Mahalagang malaman:</b> Iisa lang ang Python bytecode na tumatakbo sa isang oras kahit multi-threaded ka (dahil sa GIL). Kaya para sa <b>CPU-bound</b> tasks, gamitin ang <code class="inline">multiprocessing</code>. Para sa <b>I/O-bound</b> tasks (network, file, database), gamitin ang <code class="inline">threading</code> o <code class="inline">asyncio</code>.</div>
+
+  <h3 class="sub">threading</h3>
+  <pre><code><span class="kw">import</span> threading
+
+<span class="kw">def</span> <span class="fn">worker</span>(n):
+    <span class="fn">print</span>(<span class="fn">f</span><span class="str">"Working on {n}"</span>)
+
+threads = []
+<span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="num">5</span>):
+    t = threading.Thread(target=worker, args=(i,))
+    threads.append(t)
+    t.start()
+
+<span class="kw">for</span> t <span class="kw">in</span> threads:
+    t.join()   <span class="com"># hintayin matapos ang lahat</span>
+
+<span class="com"># Lock para maiwasan ang race conditions</span>
+lock = threading.Lock()
+<span class="kw">with</span> lock:
+    shared_resource += <span class="num">1</span></code></pre>
+
+  <h3 class="sub">multiprocessing</h3>
+  <pre><code><span class="kw">from</span> multiprocessing <span class="kw">import</span> Process, Pool
+
+<span class="kw">def</span> <span class="fn">square</span>(n):
+    <span class="kw">return</span> n * n
+
+<span class="kw">if</span> __name__ == <span class="str">"__main__"</span>:
+    <span class="kw">with</span> Pool(processes=<span class="num">4</span>) <span class="kw">as</span> pool:
+        results = pool.map(square, [<span class="num">1</span>,<span class="num">2</span>,<span class="num">3</span>,<span class="num">4</span>])</code></pre>
+
+  <h3 class="sub">asyncio</h3>
+  <pre><code><span class="kw">import</span> asyncio
+
+<span class="kw">async</span> <span class="kw">def</span> <span class="fn">fetch_data</span>(n):
+    <span class="fn">print</span>(<span class="fn">f</span><span class="str">"Fetching {n}..."</span>)
+    <span class="kw">await</span> asyncio.sleep(<span class="num">1</span>)   <span class="com"># non-blocking wait</span>
+    <span class="kw">return</span> <span class="fn">f</span><span class="str">"data-{n}"</span>
+
+<span class="kw">async</span> <span class="kw">def</span> <span class="fn">main</span>():
+    results = <span class="kw">await</span> asyncio.gather(
+        fetch_data(<span class="num">1</span>), fetch_data(<span class="num">2</span>), fetch_data(<span class="num">3</span>)
+    )   <span class="com"># tumatakbo nang sabay-sabay</span>
+    <span class="fn">print</span>(results)
+
+asyncio.run(main())</code></pre>
+
+  <table class="ref">
+    <tr><th>Approach</th><th>Best For</th><th>Concurrency Model</th></tr>
+    <tr><td><code>threading</code></td><td>I/O-bound (network, files)</td><td>Preemptive, may GIL</td></tr>
+    <tr><td><code>multiprocessing</code></td><td>CPU-bound (compute-heavy)</td><td>True parallel, separate processes</td></tr>
+    <tr><td><code>asyncio</code></td><td>Maraming I/O tasks nang efficient</td><td>Single-threaded, cooperative</td></tr>
+  </table>
+  `
+},
+
+{
   id:"fileio",
-  group:"IV. I/O & Data",
+  group:"VI. I/O & Data Formats",
   title:"File I/O",
   html:`
-  <h2><span class="idx">11</span> File I/O</h2>
+  <h2><span class="idx">16</span> File I/O</h2>
   <p class="desc">Pagbabasa at pagsulat ng files — text, binary, at structured data.</p>
 
   <h3 class="sub">Basic File Operations</h3>
@@ -1107,10 +1372,10 @@ p.read_text(), p.write_text(<span class="str">"hello"</span>)
 
 {
   id:"modules",
-  group:"IV. I/O & Data",
+  group:"VI. I/O & Data Formats",
   title:"Modules & Packages",
   html:`
-  <h2><span class="idx">12</span> Modules &amp; Packages</h2>
+  <h2><span class="idx">17</span> Modules &amp; Packages</h2>
   <p class="desc">Paano i-organize at i-reuse ang code across files at projects.</p>
 
   <h3 class="sub">Importing</h3>
@@ -1172,206 +1437,67 @@ pip list</code></pre>
 },
 
 {
-  id:"concurrency",
-  group:"V. Advanced Execution",
-  title:"Concurrency: Threading, Multiprocessing, Async",
+  id:"data-serialization",
+  group:"VI. I/O & Data Formats",
+  title:"Data Serialization: Pickle &amp; Shelve",
   html:`
-  <h2><span class="idx">13</span> Concurrency &amp; Parallelism</h2>
-  <p class="desc">Paano magpatakbo ng maraming tasks nang sabay — kritikal na topic para sa professional developers.</p>
+  <h2><span class="idx">18</span> Data Serialization: Pickle &amp; Shelve</h2>
+  <p class="desc">Beyond JSON — paano i-save ang buong Python objects (hindi lang simpleng data) papunta sa disk, at ibalik silang buhay ulit sa ibang pagkakataon.</p>
 
-  <h3 class="sub">Ang GIL (Global Interpreter Lock)</h3>
-  <div class="note"><b>Mahalagang malaman:</b> Iisa lang ang Python bytecode na tumatakbo sa isang oras kahit multi-threaded ka (dahil sa GIL). Kaya para sa <b>CPU-bound</b> tasks, gamitin ang <code class="inline">multiprocessing</code>. Para sa <b>I/O-bound</b> tasks (network, file, database), gamitin ang <code class="inline">threading</code> o <code class="inline">asyncio</code>.</div>
+  <h3 class="sub">pickle — I-save ang halos kahit anong Python object</h3>
+  <pre><code><span class="kw">import</span> pickle
 
-  <h3 class="sub">threading</h3>
-  <pre><code><span class="kw">import</span> threading
+data = {<span class="str">"name"</span>: <span class="str">"Kiel"</span>, <span class="str">"scores"</span>: [<span class="num">90</span>, <span class="num">85</span>, <span class="num">88</span>]}
 
-<span class="kw">def</span> <span class="fn">worker</span>(n):
-    <span class="fn">print</span>(<span class="fn">f</span><span class="str">"Working on {n}"</span>)
+<span class="com"># I-save sa file (binary mode kailangan)</span>
+<span class="kw">with</span> <span class="fn">open</span>(<span class="str">"data.pkl"</span>, <span class="str">"wb"</span>) <span class="kw">as</span> f:
+    pickle.dump(data, f)
 
-threads = []
-<span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="num">5</span>):
-    t = threading.Thread(target=worker, args=(i,))
-    threads.append(t)
-    t.start()
+<span class="com"># Ibalik ang object</span>
+<span class="kw">with</span> <span class="fn">open</span>(<span class="str">"data.pkl"</span>, <span class="str">"rb"</span>) <span class="kw">as</span> f:
+    loaded = pickle.load(f)
 
-<span class="kw">for</span> t <span class="kw">in</span> threads:
-    t.join()   <span class="com"># hintayin matapos ang lahat</span>
+<span class="com"># Pwede rin sa memory, walang file (bytes lang)</span>
+raw_bytes = pickle.dumps(data)
+back = pickle.loads(raw_bytes)</code></pre>
 
-<span class="com"># Lock para maiwasan ang race conditions</span>
-lock = threading.Lock()
-<span class="kw">with</span> lock:
-    shared_resource += <span class="num">1</span></code></pre>
+  <div class="warn"><b>Mahalagang babala:</b> HUWAG kailanman i-<code class="inline">pickle.load()</code> ang data mula sa hindi mo pinagkakatiwalaang source — pwedeng magpatakbo ng arbitrary code ang malisyosong pickle file. Gamitin lang ito para sa sarili mong data (caching, checkpoints, internal na proseso).</div>
 
-  <h3 class="sub">multiprocessing</h3>
-  <pre><code><span class="kw">from</span> multiprocessing <span class="kw">import</span> Process, Pool
-
-<span class="kw">def</span> <span class="fn">square</span>(n):
-    <span class="kw">return</span> n * n
-
-<span class="kw">if</span> __name__ == <span class="str">"__main__"</span>:
-    <span class="kw">with</span> Pool(processes=<span class="num">4</span>) <span class="kw">as</span> pool:
-        results = pool.map(square, [<span class="num">1</span>,<span class="num">2</span>,<span class="num">3</span>,<span class="num">4</span>])</code></pre>
-
-  <h3 class="sub">asyncio</h3>
-  <pre><code><span class="kw">import</span> asyncio
-
-<span class="kw">async</span> <span class="kw">def</span> <span class="fn">fetch_data</span>(n):
-    <span class="fn">print</span>(<span class="fn">f</span><span class="str">"Fetching {n}..."</span>)
-    <span class="kw">await</span> asyncio.sleep(<span class="num">1</span>)   <span class="com"># non-blocking wait</span>
-    <span class="kw">return</span> <span class="fn">f</span><span class="str">"data-{n}"</span>
-
-<span class="kw">async</span> <span class="kw">def</span> <span class="fn">main</span>():
-    results = <span class="kw">await</span> asyncio.gather(
-        fetch_data(<span class="num">1</span>), fetch_data(<span class="num">2</span>), fetch_data(<span class="num">3</span>)
-    )   <span class="com"># tumatakbo nang sabay-sabay</span>
-    <span class="fn">print</span>(results)
-
-asyncio.run(main())</code></pre>
-
+  <h3 class="sub">pickle vs. JSON — Kailan Alin</h3>
   <table class="ref">
-    <tr><th>Approach</th><th>Best For</th><th>Concurrency Model</th></tr>
-    <tr><td><code>threading</code></td><td>I/O-bound (network, files)</td><td>Preemptive, may GIL</td></tr>
-    <tr><td><code>multiprocessing</code></td><td>CPU-bound (compute-heavy)</td><td>True parallel, separate processes</td></tr>
-    <tr><td><code>asyncio</code></td><td>Maraming I/O tasks nang efficient</td><td>Single-threaded, cooperative</td></tr>
+    <tr><th>Aspeto</th><th>JSON</th><th>Pickle</th></tr>
+    <tr><td>Human-readable</td><td>Oo — text format</td><td>Hindi — binary format</td></tr>
+    <tr><td>Cross-language</td><td>Oo — universal standard</td><td>Hindi — Python lang</td></tr>
+    <tr><td>Type support</td><td>Basic types lang (str, num, list, dict)</td><td>Halos lahat — custom objects, functions, sets, atbp.</td></tr>
+    <tr><td>Security</td><td>Ligtas i-load kahit saan galing</td><td>Delikado kung untrusted source</td></tr>
+    <tr><td>Best use case</td><td>APIs, config files, data exchange</td><td>Caching, checkpoints, internal storage</td></tr>
   </table>
-  `
-}
 
-);
+  <h3 class="sub">shelve — Parang persistent dictionary</h3>
+  <p>Kung ayaw mong mag-setup ng buong database, pero kailangan mo ng simpleng key-value storage na naka-save sa disk, ang <code class="inline">shelve</code> ay built-in na solusyon (gumagamit ito ng pickle sa ilalim ng hood).</p>
+  <pre><code><span class="kw">import</span> shelve
 
-// PART 3 — DECORATORS → PROFESSIONAL PRACTICES
-window.PYREF_SECTIONS = window.PYREF_SECTIONS || [];
+<span class="kw">with</span> shelve.open(<span class="str">"mydata"</span>) <span class="kw">as</span> db:
+    db[<span class="str">"user_1"</span>] = {<span class="str">"name"</span>: <span class="str">"Kiel"</span>, <span class="str">"level"</span>: <span class="num">5</span>}
+    <span class="fn">print</span>(db[<span class="str">"user_1"</span>])       <span class="com"># basahin parang normal dict</span>
+    <span class="fn">print</span>(<span class="fn">list</span>(db.keys()))    <span class="com"># tignan lahat ng keys</span>
+<span class="com"># awtomatikong naka-save sa disk pagkatapos ng "with" block</span></code></pre>
 
-window.PYREF_SECTIONS.push(
-
-{
-  id:"decorators",
-  group:"V. Advanced Execution",
-  title:"Decorators & Closures",
-  html:`
-  <h2><span class="idx">14</span> Decorators &amp; Closures</h2>
-  <p class="desc">Functions na nagmomodify ng ibang functions — core sa maraming Python frameworks.</p>
-
-  <h3 class="sub">Closures</h3>
-  <pre><code><span class="kw">def</span> <span class="fn">make_multiplier</span>(n):
-    <span class="kw">def</span> <span class="fn">multiplier</span>(x):
-        <span class="kw">return</span> x * n     <span class="com"># "remembers" ang n kahit tapos na make_multiplier</span>
-    <span class="kw">return</span> multiplier
-
-times3 = make_multiplier(<span class="num">3</span>)
-times3(<span class="num">10</span>)  <span class="com"># 30</span></code></pre>
-
-  <h3 class="sub">Basic Decorators</h3>
-  <pre><code><span class="kw">def</span> <span class="fn">my_decorator</span>(func):
-    <span class="kw">def</span> <span class="fn">wrapper</span>(*args, **kwargs):
-        <span class="fn">print</span>(<span class="fn">f</span><span class="str">"Bago tumawag ng {func.__name__}"</span>)
-        result = func(*args, **kwargs)
-        <span class="fn">print</span>(<span class="str">"Pagkatapos"</span>)
-        <span class="kw">return</span> result
-    <span class="kw">return</span> wrapper
-
-<span class="kw">@my_decorator</span>
-<span class="kw">def</span> <span class="fn">say_hello</span>():
-    <span class="fn">print</span>(<span class="str">"Hello!"</span>)
-
-say_hello()  <span class="com"># parang tinawag mo: my_decorator(say_hello)()</span></code></pre>
-
-  <h3 class="sub">Decorators with Arguments</h3>
-  <pre><code><span class="kw">def</span> <span class="fn">repeat</span>(times):
-    <span class="kw">def</span> <span class="fn">decorator</span>(func):
-        <span class="kw">def</span> <span class="fn">wrapper</span>(*args, **kwargs):
-            <span class="kw">for</span> _ <span class="kw">in</span> <span class="fn">range</span>(times):
-                func(*args, **kwargs)
-        <span class="kw">return</span> wrapper
-    <span class="kw">return</span> decorator
-
-<span class="kw">@repeat</span>(<span class="num">3</span>)
-<span class="kw">def</span> <span class="fn">greet</span>():
-    <span class="fn">print</span>(<span class="str">"Hi!"</span>)</code></pre>
-
-  <h3 class="sub">functools.wraps (importante!)</h3>
-  <pre><code><span class="kw">from</span> functools <span class="kw">import</span> wraps
-
-<span class="kw">def</span> <span class="fn">my_decorator</span>(func):
-    <span class="kw">@wraps</span>(func)   <span class="com"># pinapanatili ang __name__ at __doc__ ng original</span>
-    <span class="kw">def</span> <span class="fn">wrapper</span>(*args, **kwargs):
-        <span class="kw">return</span> func(*args, **kwargs)
-    <span class="kw">return</span> wrapper</code></pre>
-
-  <h3 class="sub">Built-in Useful Decorators</h3>
-  <table class="ref">
-    <tr><th>Decorator</th><th>Ginagawa</th></tr>
-    <tr><td><code>@property</code></td><td>Method → attribute-like access</td></tr>
-    <tr><td><code>@staticmethod</code></td><td>Method na walang self/cls</td></tr>
-    <tr><td><code>@classmethod</code></td><td>Method na tumatanggap ng cls</td></tr>
-    <tr><td><code>@functools.lru_cache</code></td><td>Memoization — cache ang return values</td></tr>
-    <tr><td><code>@functools.cached_property</code></td><td>Compute once, i-cache ang property</td></tr>
-    <tr><td><code>@dataclass</code></td><td>Auto-generate __init__/__repr__/__eq__</td></tr>
-  </table>
-  <pre><code><span class="kw">from</span> functools <span class="kw">import</span> lru_cache
-
-<span class="kw">@lru_cache</span>(maxsize=<span class="kw">None</span>)
-<span class="kw">def</span> <span class="fn">fib</span>(n):
-    <span class="kw">if</span> n &lt; <span class="num">2</span>: <span class="kw">return</span> n
-    <span class="kw">return</span> fib(n-<span class="num">1</span>) + fib(n-<span class="num">2</span>)  <span class="com"># napakabilis dahil sa caching</span></code></pre>
-  `
-},
-
-{
-  id:"iterators",
-  group:"V. Advanced Execution",
-  title:"Iterators & Protocols",
-  html:`
-  <h2><span class="idx">15</span> Iterators &amp; the Iterator Protocol</h2>
-  <p class="desc">Ang mekanismo sa likod ng <code class="inline">for</code> loops.</p>
-
-  <h3 class="sub">Iterable vs Iterator</h3>
-  <p><b>Iterable</b>: may <code class="inline">__iter__()</code> — pwedeng i-loop (list, dict, string...).<br>
-  <b>Iterator</b>: may <code class="inline">__next__()</code> — ang aktwal na "gumagalaw" sa data.</p>
-  <pre><code>nums = [<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>]
-it = <span class="fn">iter</span>(nums)     <span class="com"># kunin ang iterator mula sa iterable</span>
-<span class="fn">next</span>(it)          <span class="com"># 1</span>
-<span class="fn">next</span>(it)          <span class="com"># 2</span>
-<span class="fn">next</span>(it)          <span class="com"># 3</span>
-<span class="fn">next</span>(it)          <span class="com"># StopIteration error!</span></code></pre>
-
-  <h3 class="sub">Custom Iterator Class</h3>
-  <pre><code><span class="kw">class</span> <span class="fn">Countdown</span>:
-    <span class="kw">def</span> <span class="fn">__init__</span>(self, start):
-        self.current = start
-
-    <span class="kw">def</span> <span class="fn">__iter__</span>(self):
-        <span class="kw">return</span> self    <span class="com"># object mismo ang iterator</span>
-
-    <span class="kw">def</span> <span class="fn">__next__</span>(self):
-        <span class="kw">if</span> self.current &lt;= <span class="num">0</span>:
-            <span class="kw">raise</span> StopIteration
-        self.current -= <span class="num">1</span>
-        <span class="kw">return</span> self.current + <span class="num">1</span>
-
-<span class="kw">for</span> n <span class="kw">in</span> Countdown(<span class="num">5</span>):
-    <span class="fn">print</span>(n)   <span class="com"># 5,4,3,2,1</span></code></pre>
-
-  <h3 class="sub">enumerate, zip, at iba pa</h3>
-  <pre><code><span class="kw">for</span> i, val <span class="kw">in</span> <span class="fn">enumerate</span>([<span class="str">"a"</span>,<span class="str">"b"</span>,<span class="str">"c"</span>]):
-    <span class="fn">print</span>(i, val)     <span class="com"># 0 a, 1 b, 2 c</span>
-
-names = [<span class="str">"Kiel"</span>, <span class="str">"Ana"</span>]
-ages = [<span class="num">21</span>, <span class="num">22</span>]
-<span class="kw">for</span> name, age <span class="kw">in</span> <span class="fn">zip</span>(names, ages):
-    <span class="fn">print</span>(name, age)  <span class="com"># pairs sila hanggang sa pinakamaikling list</span>
-
-<span class="fn">reversed</span>([<span class="num">1</span>,<span class="num">2</span>,<span class="num">3</span>])       <span class="com"># reverse iterator</span>
-<span class="fn">sorted</span>(data, key=..., reverse=<span class="kw">True</span>)</code></pre>
+  <h3 class="sub">Kailan Gamitin Ang Bawat Isa</h3>
+  <div class="grid3">
+    <div class="card"><b>JSON</b><br>Config files, REST APIs, data na kailangang basahin ng ibang languages/tools.</div>
+    <div class="card"><b>pickle</b><br>Pag-save ng trained ML models, complex Python objects, o caching ng computation results.</div>
+    <div class="card"><b>shelve</b><br>Lightweight na local storage kapag ayaw mo nang mag-setup ng SQLite o ibang database.</div>
+  </div>
   `
 },
 
 {
   id:"regex",
-  group:"VI. Text & Patterns",
+  group:"VII. Types & Testing",
   title:"Regular Expressions",
   html:`
-  <h2><span class="idx">16</span> Regular Expressions (re)</h2>
+  <h2><span class="idx">19</span> Regular Expressions (re)</h2>
   <p class="desc">Pattern matching para sa text — mahalaga sa validation, parsing, at cleaning.</p>
 
   <h3 class="sub">Basic Functions</h3>
@@ -1415,10 +1541,10 @@ m.group(<span class="str">"user"</span>)   <span class="com"># 'khiel'</span></c
 
 {
   id:"typing-testing",
-  group:"VI. Text & Patterns",
+  group:"VII. Types & Testing",
   title:"Type Hints & Testing",
   html:`
-  <h2><span class="idx">17</span> Type Hints &amp; Testing</h2>
+  <h2><span class="idx">20</span> Type Hints &amp; Testing</h2>
   <p class="desc">Modern professional Python — static typing at automated testing.</p>
 
   <h3 class="sub">typing module</h3>
@@ -1485,10 +1611,10 @@ Callback = Callable[[<span class="bi">int</span>, <span class="bi">int</span>], 
 
 {
   id:"databases",
-  group:"VII. Applied Python",
+  group:"VIII. Applied Python",
   title:"Databases & SQL",
   html:`
-  <h2><span class="idx">18</span> Databases (sqlite3 &amp; ORMs)</h2>
+  <h2><span class="idx">21</span> Databases (sqlite3 &amp; ORMs)</h2>
   <p class="desc">Pag-connect sa databases mula sa Python.</p>
 
   <h3 class="sub">sqlite3 (built-in)</h3>
@@ -1541,10 +1667,10 @@ Base.metadata.create_all(engine)
 
 {
   id:"web-apis",
-  group:"VII. Applied Python",
+  group:"VIII. Applied Python",
   title:"Web Development & APIs",
   html:`
-  <h2><span class="idx">19</span> Web Development &amp; APIs</h2>
+  <h2><span class="idx">22</span> Web Development &amp; APIs</h2>
   <p class="desc">Pag-consume at paggawa ng web services.</p>
 
   <h3 class="sub">Consuming APIs: requests</h3>
@@ -1613,10 +1739,10 @@ app = FastAPI()
 
 {
   id:"data-science",
-  group:"VII. Applied Python",
+  group:"VIII. Applied Python",
   title:"Data Science Stack",
   html:`
-  <h2><span class="idx">20</span> Data Science Stack</h2>
+  <h2><span class="idx">23</span> Data Science Stack</h2>
   <p class="desc">Ang mga library na gamit sa data analysis, ML, at scientific computing.</p>
 
   <h3 class="sub">NumPy — numerical arrays</h3>
@@ -1667,11 +1793,194 @@ model.score(X_test, y_test)   <span class="com"># R² score</span></code></pre>
 },
 
 {
+  id:"dunder-methods",
+  group:"IX. Deep Python Internals",
+  title:"Dunder Methods",
+  html:`
+  <h2><span class="idx">24</span> Dunder Methods</h2>
+  <p class="desc">Ang "dunder" (double underscore) methods ang bumubuo sa tinatawag na <b>data model</b> ng Python — sila ang dahilan kung bakit gumagana ang <code class="inline">len(x)</code>, <code class="inline">x + y</code>, <code class="inline">for i in x</code>, at <code class="inline">print(x)</code> sa custom objects mo. Kapag na-implement mo ang mga ito, "magic" ang tawag dati, pero mas tamang isipin ito bilang protocol na sinusunod ng Python interpreter.</p>
+
+  <h3 class="sub">__str__ vs __repr__</h3>
+  <pre><code><span class="kw">class</span> <span class="fn">Point</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(self, x, y):
+        self.x, self.y = x, y
+
+    <span class="kw">def</span> <span class="fn">__repr__</span>(self):
+        <span class="com"># para sa developers — dapat unambiguous, ideally magagamit sa eval()</span>
+        <span class="kw">return</span> <span class="fn">f</span><span class="str">"Point(x={self.x}, y={self.y})"</span>
+
+    <span class="kw">def</span> <span class="fn">__str__</span>(self):
+        <span class="com"># para sa end users — readable, ginagamit ng print() at str()</span>
+        <span class="kw">return</span> <span class="fn">f</span><span class="str">"({self.x}, {self.y})"</span></code></pre>
+  <div class="note"><b>Alalahanin:</b> Kapag walang <code class="inline">__str__</code>, babalik ang Python sa <code class="inline">__repr__</code> — kaya laging mag-implement ng <code class="inline">__repr__</code> muna, kahit wala pang <code class="inline">__str__</code>.</div>
+
+  <h3 class="sub">Arithmetic: __add__, __sub__, __mul__</h3>
+  <pre><code><span class="kw">class</span> <span class="fn">Vector</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(self, x, y):
+        self.x, self.y = x, y
+
+    <span class="kw">def</span> <span class="fn">__add__</span>(self, other):
+        <span class="kw">return</span> Vector(self.x + other.x, self.y + other.y)
+
+    <span class="kw">def</span> <span class="fn">__repr__</span>(self):
+        <span class="kw">return</span> <span class="fn">f</span><span class="str">"Vector({self.x}, {self.y})"</span>
+
+v1, v2 = Vector(<span class="num">1</span>, <span class="num">2</span>), Vector(<span class="num">3</span>, <span class="num">4</span>)
+<span class="fn">print</span>(v1 + v2)   <span class="com"># Vector(4, 6) — tinatawag ang __add__ sa "+"</span></code></pre>
+
+  <h3 class="sub">Equality &amp; Comparison: __eq__, __lt__</h3>
+  <pre><code><span class="kw">class</span> <span class="fn">Money</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(self, amount):
+        self.amount = amount
+
+    <span class="kw">def</span> <span class="fn">__eq__</span>(self, other):
+        <span class="kw">return</span> self.amount == other.amount
+
+    <span class="kw">def</span> <span class="fn">__lt__</span>(self, other):
+        <span class="kw">return</span> self.amount &lt; other.amount</code></pre>
+  <div class="tip"><b>Tip:</b> Kapag na-implement mo na ang <code class="inline">__eq__</code> at <code class="inline">__lt__</code>, gamitin na lang ang <code class="inline">@functools.total_ordering</code> decorator para awtomatikong magkaroon ng <code class="inline">__le__</code>, <code class="inline">__gt__</code>, at <code class="inline">__ge__</code> — hindi mo na kailangang isulat lahat ng ito manually.</div>
+
+  <h3 class="sub">Container Protocol: __len__, __getitem__, __setitem__, __contains__</h3>
+  <pre><code><span class="kw">class</span> <span class="fn">Inventory</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(self):
+        self._items = {}
+
+    <span class="kw">def</span> <span class="fn">__len__</span>(self):
+        <span class="kw">return</span> <span class="fn">len</span>(self._items)
+
+    <span class="kw">def</span> <span class="fn">__getitem__</span>(self, key):
+        <span class="kw">return</span> self._items[key]           <span class="com"># nagpapagana ng inventory["sword"]</span>
+
+    <span class="kw">def</span> <span class="fn">__setitem__</span>(self, key, value):
+        self._items[key] = value             <span class="com"># nagpapagana ng inventory["sword"] = 5</span>
+
+    <span class="kw">def</span> <span class="fn">__contains__</span>(self, key):
+        <span class="kw">return</span> key <span class="kw">in</span> self._items       <span class="com"># nagpapagana ng "sword" in inventory</span></code></pre>
+
+  <h3 class="sub">__call__ — Gawing "callable" ang isang object</h3>
+  <pre><code><span class="kw">class</span> <span class="fn">Multiplier</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(self, factor):
+        self.factor = factor
+
+    <span class="kw">def</span> <span class="fn">__call__</span>(self, x):
+        <span class="kw">return</span> x * self.factor
+
+double = Multiplier(<span class="num">2</span>)
+double(<span class="num">5</span>)   <span class="com"># 10 — pwede mo nang tawagin ang object parang function</span></code></pre>
+
+  <h3 class="sub">__enter__ / __exit__ — Context Manager Protocol</h3>
+  <pre><code><span class="kw">class</span> <span class="fn">Timer</span>:
+    <span class="kw">def</span> <span class="fn">__enter__</span>(self):
+        <span class="kw">import</span> time
+        self.start = time.perf_counter()
+        <span class="kw">return</span> self
+
+    <span class="kw">def</span> <span class="fn">__exit__</span>(self, exc_type, exc_val, exc_tb):
+        <span class="kw">import</span> time
+        <span class="fn">print</span>(<span class="fn">f</span><span class="str">"Elapsed: {time.perf_counter() - self.start:.4f}s"</span>)
+        <span class="kw">return</span> <span class="num">False</span>   <span class="com"># False = huwag i-suppress ang exception</span>
+
+<span class="kw">with</span> Timer():
+    <span class="fn">sum</span>(<span class="fn">range</span>(<span class="num">1000000</span>))</code></pre>
+
+  <h3 class="sub">Quick Reference Table</h3>
+  <table class="ref">
+    <tr><th>Dunder</th><th>Trigger</th></tr>
+    <tr><td><code>__init__</code></td><td>Constructor — tinatawag pagkatapos ng <code class="inline">__new__</code></td></tr>
+    <tr><td><code>__repr__</code> / <code>__str__</code></td><td><code class="inline">repr(x)</code> / <code class="inline">str(x)</code>, <code class="inline">print(x)</code></td></tr>
+    <tr><td><code>__len__</code></td><td><code class="inline">len(x)</code></td></tr>
+    <tr><td><code>__getitem__</code> / <code>__setitem__</code></td><td><code class="inline">x[key]</code> / <code class="inline">x[key] = val</code></td></tr>
+    <tr><td><code>__iter__</code> / <code>__next__</code></td><td><code class="inline">for i in x</code></td></tr>
+    <tr><td><code>__contains__</code></td><td><code class="inline">key in x</code></td></tr>
+    <tr><td><code>__call__</code></td><td><code class="inline">x()</code></td></tr>
+    <tr><td><code>__eq__</code> / <code>__lt__</code></td><td><code class="inline">x == y</code> / <code class="inline">x &lt; y</code></td></tr>
+    <tr><td><code>__hash__</code></td><td><code class="inline">hash(x)</code>, ginagawang dict key o set member</td></tr>
+    <tr><td><code>__enter__</code> / <code>__exit__</code></td><td><code class="inline">with x:</code></td></tr>
+    <tr><td><code>__getattr__</code></td><td>Fallback kapag walang nahanap na attribute (normal lookup)</td></tr>
+  </table>
+  `
+},
+
+{
+  id:"metaclasses-abc",
+  group:"IX. Deep Python Internals",
+  title:"Metaclasses &amp; Abstract Base Classes",
+  html:`
+  <h2><span class="idx">25</span> Metaclasses &amp; Abstract Base Classes</h2>
+  <p class="desc">Advanced na topic ito — hindi mo ito kakailanganin araw-araw, pero importanteng maintindihan lalo na kapag gumagawa ka ng frameworks, ORMs, o nagbabasa ng malalaking codebases tulad ng Django o SQLAlchemy.</p>
+
+  <h3 class="sub">Paano Ginagawa ang isang Class (type)</h3>
+  <p>Sa Python, ang mismong klase ay isang <b>instance</b> rin ng ibang bagay — ang <code class="inline">type</code>. Ito ang default na metaclass ng lahat ng bagay sa Python.</p>
+  <pre><code><span class="fn">type</span>(<span class="num">42</span>)          <span class="com"># <class 'int'></span>
+<span class="fn">type</span>(<span class="fn">int</span>)         <span class="com"># <class 'type'> — kahit ang int ay instance ng type</span>
+
+<span class="com"># Dalawang paraan gumawa ng klase — magkatulad ang resulta:</span>
+<span class="kw">class</span> <span class="fn">Dog</span>:
+    <span class="kw">def</span> <span class="fn">bark</span>(self):
+        <span class="kw">return</span> <span class="str">"Woof!"</span>
+
+<span class="com"># Katumbas ito ng pagtawag sa type() gamit ang 3 arguments:</span>
+Dog2 = <span class="fn">type</span>(<span class="str">"Dog2"</span>, (), {<span class="str">"bark"</span>: <span class="kw">lambda</span> self: <span class="str">"Woof!"</span>})</code></pre>
+
+  <h3 class="sub">Custom Metaclass</h3>
+  <p>Ang metaclass ay "klase ng klase" — kinokontrol nito kung <i>paano</i> nabubuo ang mga bagong klase. Gamitin ito kapag kailangan mong i-validate o baguhin ang isang klase habang ito pa lang ay ginagawa.</p>
+  <pre><code><span class="kw">class</span> <span class="fn">ValidatingMeta</span>(<span class="fn">type</span>):
+    <span class="kw">def</span> <span class="fn">__new__</span>(mcs, name, bases, namespace):
+        <span class="kw">if</span> <span class="str">"required_method"</span> <span class="kw">not</span> <span class="kw">in</span> namespace:
+            <span class="kw">raise</span> <span class="fn">TypeError</span>(<span class="fn">f</span><span class="str">"{name} kailangang mag-implement ng required_method"</span>)
+        <span class="kw">return</span> <span class="fn">super</span>().__new__(mcs, name, bases, namespace)
+
+<span class="kw">class</span> <span class="fn">Plugin</span>(metaclass=ValidatingMeta):
+    <span class="kw">def</span> <span class="fn">required_method</span>(self):
+        <span class="kw">pass</span>   <span class="com"># OK — meron ang method</span>
+
+<span class="com"># class BadPlugin(metaclass=ValidatingMeta): pass  → raises TypeError agad</span></code></pre>
+  <div class="note"><b>Real-world na halimbawa:</b> Ganito ginagamit ng Django ang metaclasses para automatic na irehistro ang mga model fields (<code class="inline">models.CharField</code>, atbp.) tuwing gumagawa ka ng bagong <code class="inline">models.Model</code> subclass.</div>
+
+  <h3 class="sub">Abstract Base Classes (ABC)</h3>
+  <p>Ginagamit ang ABCs para mag-define ng "contract" — isang interface na dapat sundin ng lahat ng subclasses, kahit anong implementation nila.</p>
+  <pre><code><span class="kw">from</span> abc <span class="kw">import</span> ABC, abstractmethod
+
+<span class="kw">class</span> <span class="fn">PaymentProcessor</span>(ABC):
+    <span class="kw">@abstractmethod</span>
+    <span class="kw">def</span> <span class="fn">charge</span>(self, amount):
+        <span class="com">"""Dapat i-implement ng bawat subclass."""</span>
+        ...
+
+    <span class="kw">@abstractmethod</span>
+    <span class="kw">def</span> <span class="fn">refund</span>(self, amount):
+        ...
+
+<span class="kw">class</span> <span class="fn">StripeProcessor</span>(PaymentProcessor):
+    <span class="kw">def</span> <span class="fn">charge</span>(self, amount):
+        <span class="kw">return</span> <span class="fn">f</span><span class="str">"Charged {amount} via Stripe"</span>
+
+    <span class="kw">def</span> <span class="fn">refund</span>(self, amount):
+        <span class="kw">return</span> <span class="fn">f</span><span class="str">"Refunded {amount} via Stripe"</span>
+
+<span class="com"># PaymentProcessor()          → TypeError, hindi pwedeng i-instantiate ang ABC direkta</span>
+<span class="com"># class Broken(PaymentProcessor): pass   → TypeError, kulang ang implementation</span></code></pre>
+
+  <h3 class="sub">collections.abc — Mga Built-in na Protocol</h3>
+  <p>Bago ka gumawa ng sariling ABC, tignan mo muna kung meron nang built-in sa <code class="inline">collections.abc</code> — ito ang batayan ng <code class="inline">list</code>, <code class="inline">dict</code>, at iba pang built-in types.</p>
+  <table class="ref">
+    <tr><th>ABC</th><th>Kailangang i-implement</th><th>Halimbawa</th></tr>
+    <tr><td><code>Iterable</code></td><td><code>__iter__</code></td><td>Anumang pwedeng gamitin sa <code class="inline">for</code> loop</td></tr>
+    <tr><td><code>Iterator</code></td><td><code>__iter__</code>, <code>__next__</code></td><td>Generators, file objects</td></tr>
+    <tr><td><code>Sequence</code></td><td><code>__getitem__</code>, <code>__len__</code></td><td><code class="inline">list</code>, <code class="inline">tuple</code>, <code class="inline">str</code></td></tr>
+    <tr><td><code>Mapping</code></td><td><code>__getitem__</code>, <code>__iter__</code>, <code>__len__</code></td><td><code class="inline">dict</code></td></tr>
+    <tr><td><code>Callable</code></td><td><code>__call__</code></td><td>Functions, at objects na may <code class="inline">__call__</code></td></tr>
+  </table>
+  <div class="tip"><b>Practical tip:</b> Gamitin ang <code class="inline">isinstance(x, collections.abc.Iterable)</code> imbes na <code class="inline">hasattr(x, "__iter__")</code> — mas malinaw ang intent at sinusuportahan pa nito ang "virtual subclasses" na hindi direktang nag-inherit.</div>
+  `
+},
+
+{
   id:"best-practices",
-  group:"VIII. Professional Craft",
+  group:"X. Professional Craft",
   title:"Best Practices & Tooling",
   html:`
-  <h2><span class="idx">21</span> Best Practices &amp; Tooling</h2>
+  <h2><span class="idx">26</span> Best Practices &amp; Tooling</h2>
   <p class="desc">Ang mga bagay na naghihiwalay sa hobbyist code sa professional-grade code.</p>
 
   <h3 class="sub">PEP 8 — Style Guide</h3>
@@ -1736,106 +2045,14 @@ model.score(X_test, y_test)   <span class="com"># R² score</span></code></pre>
 
   <div class="tip"><b>Career tip:</b> Bilang aspiring Full-Stack Dev / AI Engineer / Startup CTO, mas importante ang malinis na code, tests, at documentation kaysa "clever" one-liners. Readable &gt; clever, palagi.</div>
   `
-}
-
-);
-
-// PART 4 — inspired by Python Crash Course structure (setup, debugging, git, projects)
-// Written originally for py.ref — no verbatim text from any source.
-window.PYREF_SECTIONS = window.PYREF_SECTIONS || [];
-
-window.PYREF_SECTIONS.push(
-
-{
-  id:"setup",
-  group:"I. Foundations",
-  title:"Setup & Running Python",
-  html:`
-  <h2><span class="idx">00</span> Setup &amp; Running Python</h2>
-  <p class="desc">Bago ka pa mag-code — paano mo aktwal na patatakbuhin ang Python sa sarili mong makina.</p>
-
-  <h3 class="sub">Pag-install</h3>
-  <ul class="plain">
-    <li><b>Windows:</b> i-download sa <a href="https://python.org" target="_blank">python.org</a>, at sa installer, i-check ang <code class="inline">"Add Python to PATH"</code> — ito ang pinaka-madalas na dahilan ng "python is not recognized" error.</li>
-    <li><b>macOS:</b> madalas may paunang Python na, pero mas mainam mag-install ng fresh version via <code class="inline">python.org</code> o <code class="inline">brew install python</code>.</li>
-    <li><b>Linux:</b> karaniwang paunang-nakalagay na. I-verify gamit ang <code class="inline">python3 --version</code>. Kung kailangan: <code class="inline">sudo apt install python3 python3-pip</code>.</li>
-  </ul>
-
-  <h3 class="sub">Pagpapatakbo ng Program</h3>
-  <pre><code><span class="com"># sa terminal/command prompt, papunta sa folder ng file mo:</span>
-python3 filename.py      <span class="com"># Linux/Mac</span>
-python filename.py        <span class="com"># Windows (minsan python3 rin)</span>
-
-<span class="com"># interactive mode — magandang paraan mag-test ng maiikling snippets</span>
-python3
-&gt;&gt;&gt; print("test")</code></pre>
-
-  <h3 class="sub">Editor / IDE Options</h3>
-  <table class="ref">
-    <tr><th>Tool</th><th>Para kanino</th></tr>
-    <tr><td>VS Code</td><td>Lightweight, extensible — pinaka-common choice ngayon</td></tr>
-    <tr><td>PyCharm</td><td>Full-featured IDE, malakas ang debugging tools</td></tr>
-    <tr><td>Jupyter Notebook</td><td>Data science, experimentation, cell-by-cell execution</td></tr>
-    <tr><td>Sublime / Vim / Neovim</td><td>Minimalist, mabilis, para sa mas advanced users</td></tr>
-  </table>
-
-  <div class="tip"><b>Tip:</b> Gumawa ng hiwalay na folder per project at gamitin ang virtual environment (<code class="inline">python -m venv venv</code>) para hindi maghalo ang dependencies ng bawat proyekto.</div>
-  `
-},
-
-{
-  id:"debugging",
-  group:"III. Object-Oriented Python",
-  title:"Reading Errors & Debugging",
-  html:`
-  <h2><span class="idx">10.5</span> Reading Errors &amp; Debugging</h2>
-  <p class="desc">Ang kakayahang maintindihan ang traceback ay isa sa pinaka-praktikal na skill na matututunan mo.</p>
-
-  <h3 class="sub">Anatomy ng isang Traceback</h3>
-  <pre><code>Traceback (most recent call last):
-  File <span class="str">"main.py"</span>, line <span class="num">7</span>, <span class="kw">in</span> &lt;module&gt;
-    result = divide(<span class="num">10</span>, <span class="num">0</span>)
-  File <span class="str">"main.py"</span>, line <span class="num">3</span>, <span class="kw">in</span> divide
-    <span class="kw">return</span> a / b
-ZeroDivisionError: division by zero</code></pre>
-  <ul class="plain">
-    <li>Basahin mula <b>baba pataas</b>: ang huling linya ang <b>actual na error type at message</b>.</li>
-    <li>Ang mga "File... line..." entries ay ang <b>call stack</b> — saan-saan dumaan ang execution bago sumabog.</li>
-    <li>Ang pinaka-mababang "File" entry ang eksaktong linya kung saan nangyari ang error.</li>
-  </ul>
-
-  <h3 class="sub">Karaniwang Sanhi ng Bawat Error</h3>
-  <table class="ref">
-    <tr><th>Error</th><th>Karaniwang Dahilan</th></tr>
-    <tr><td><code>NameError</code></td><td>Typo sa variable name, o ginamit bago na-define</td></tr>
-    <tr><td><code>IndentationError</code></td><td>Halong tabs at spaces, o mismatched indentation level</td></tr>
-    <tr><td><code>TypeError</code></td><td>Pag-operate sa maling types (e.g. <code>"5" + 5</code>)</td></tr>
-    <tr><td><code>KeyError</code></td><td>Access sa dict key na wala talaga — gamitin ang <code>.get()</code></td></tr>
-    <tr><td><code>IndexError</code></td><td>Out-of-range index sa list — i-check ang <code>len()</code> muna</td></tr>
-    <tr><td><code>ModuleNotFoundError</code></td><td>Hindi pa naka-install ang package (<code>pip install ...</code>)</td></tr>
-  </table>
-
-  <h3 class="sub">Debugging Techniques</h3>
-  <pre><code><span class="com"># 1. Print debugging — mabilis pero madumi kung marami</span>
-<span class="fn">print</span>(<span class="fn">f</span><span class="str">"DEBUG: x={x}, type={type(x)}"</span>)
-
-<span class="com"># 2. assert statements — huminto agad kung mali ang assumption</span>
-<span class="kw">assert</span> len(data) &gt; <span class="num">0</span>, <span class="str">"Walang laman ang data!"</span>
-
-<span class="com"># 3. Python debugger (pdb) — interactive step-through</span>
-<span class="kw">import</span> pdb; pdb.set_trace()   <span class="com"># titigil dito, pwede mag-inspect ng variables</span>
-<span class="com"># commands sa pdb: n (next line), s (step in), c (continue), p x (print x), q (quit)</span></code></pre>
-
-  <div class="note"><b>Paano humingi ng tulong nang epektibo:</b> Isama ang <b>buong traceback</b> (hindi lang "hindi gumagana"), ang eksaktong code na pinagmulan, at kung ano ang inaasahan mo vs ang aktwal na nangyari. Malaking tulong ito sa online forums (Stack Overflow, r/learnpython) o kahit sa AI assistants.</div>
-  `
 },
 
 {
   id:"git",
-  group:"VIII. Professional Craft",
+  group:"X. Professional Craft",
   title:"Git & Version Control",
   html:`
-  <h2><span class="idx">22</span> Git &amp; Version Control</h2>
+  <h2><span class="idx">27</span> Git &amp; Version Control</h2>
   <p class="desc">Hindi Python-specific, pero mandatory skill para sa sinumang developer — kasama ito sa GitHub repo mo, Kiel.</p>
 
   <h3 class="sub">Bakit Git?</h3>
@@ -1882,11 +2099,79 @@ venv/
 },
 
 {
+  id:"packaging-deps",
+  group:"X. Professional Craft",
+  title:"Packaging &amp; Dependency Management",
+  html:`
+  <h2><span class="idx">28</span> Packaging &amp; Dependency Management</h2>
+  <p class="desc">Paano tamang i-package ang Python project mo para maging installable, at paano i-manage ang mga dependencies nito nang hindi nasisira ang ibang projects mo.</p>
+
+  <h3 class="sub">pyproject.toml — Ang Modernong Standard</h3>
+  <p>Kinapalit na ng <code class="inline">pyproject.toml</code> ang mga lumang <code class="inline">setup.py</code> / <code class="inline">setup.cfg</code> approach. Iisang file na ito para sa metadata, dependencies, at build configuration ng project mo.</p>
+  <pre><code><span class="com"># pyproject.toml</span>
+[project]
+name = <span class="str">"my-awesome-app"</span>
+version = <span class="str">"0.1.0"</span>
+description = <span class="str">"A sample Python project"</span>
+requires-python = <span class="str">">=3.10"</span>
+dependencies = [
+    <span class="str">"requests>=2.31"</span>,
+    <span class="str">"pydantic>=2.0"</span>,
+]
+
+[project.optional-dependencies]
+dev = [<span class="str">"pytest"</span>, <span class="str">"black"</span>, <span class="str">"ruff"</span>]   <span class="com"># extra: pip install -e ".[dev]"</span>
+
+[build-system]
+requires = [<span class="str">"setuptools>=68"</span>]
+build-backend = <span class="str">"setuptools.build_meta"</span></code></pre>
+
+  <h3 class="sub">Modern Package/Dependency Managers</h3>
+  <table class="ref">
+    <tr><th>Tool</th><th>Highlight</th></tr>
+    <tr><td><code>pip</code> + <code>venv</code></td><td>Default, built-in, laging gumagana pero manual ang dependency resolution</td></tr>
+    <tr><td><code>pip-tools</code></td><td>I-lock ang exact versions gamit ang <code class="inline">pip-compile</code> mula sa isang requirements.in</td></tr>
+    <tr><td><code>poetry</code></td><td>All-in-one: dependency management, packaging, at publishing sa isang tool</td></tr>
+    <tr><td><code>pdm</code></td><td>Modernong PEP 582/517 compliant tool, mabilis ang dependency resolution</td></tr>
+    <tr><td><code>uv</code></td><td>Bagong tool mula sa Astral (gumawa rin ng ruff) — sobrang bilis, isinulat sa Rust, kayang palitan ang pip + venv + pip-tools</td></tr>
+  </table>
+
+  <h3 class="sub">Halimbawa gamit ang uv (mabilis na paraan ngayon)</h3>
+  <pre><code>uv venv                          <span class="com"># gumawa ng virtual environment</span>
+uv pip install requests          <span class="com"># mabilis na install, may caching</span>
+uv pip compile pyproject.toml -o requirements.txt   <span class="com"># i-lock ang dependencies</span>
+uv run python script.py          <span class="com"># patakbuhin gamit ang project's venv, walang activate</span></code></pre>
+
+  <h3 class="sub">Semantic Versioning (SemVer)</h3>
+  <p>Standard na paraan ng pag-number ng versions: <code class="inline">MAJOR.MINOR.PATCH</code> (halimbawa: <code class="inline">2.4.1</code>).</p>
+  <ul class="plain">
+    <li><b>MAJOR</b> — nagbago ang bagong version na hindi na backward-compatible (breaking changes)</li>
+    <li><b>MINOR</b> — bagong features, pero backward-compatible pa rin</li>
+    <li><b>PATCH</b> — bug fixes lang, walang bagong features</li>
+  </ul>
+
+  <h3 class="sub">Pag-publish sa PyPI</h3>
+  <pre><code>pip install build twine
+python -m build                  <span class="com"># gumawa ng .whl at .tar.gz sa dist/</span>
+twine upload dist/*              <span class="com"># i-upload sa PyPI (kailangan ng API token)</span></code></pre>
+
+  <div class="tip"><b>Practical tip:</b> Bago mag-publish, subukan mo muna sa <b>TestPyPI</b> (<code class="inline">twine upload --repository testpypi dist/*</code>) — hiwalay itong "practice" na version ng PyPI kung saan pwede kang mag-eksperimento nang hindi nagpe-pollute sa totoong package index.</div>
+
+  <h3 class="sub">Security Basics</h3>
+  <ul class="plain">
+    <li>Mag-ingat sa <b>typosquatting</b> — mga malisyosong packages na halos kaparehong pangalan lang ng totoong package (hal. <code class="inline">reqeusts</code> imbes na <code class="inline">requests</code>). Laging i-verify ang exact spelling bago mag-install.</li>
+    <li>Gamitin ang <code class="inline">pip-audit</code> o <code class="inline">safety</code> para i-check kung may known vulnerabilities ang mga dependencies mo.</li>
+    <li>I-pin ang exact versions sa production (<code class="inline">requests==2.31.0</code>) para consistent at predictable ang deployments.</li>
+  </ul>
+  `
+},
+
+{
   id:"mini-projects",
-  group:"VIII. Professional Craft",
+  group:"X. Professional Craft",
   title:"Practice Project Ideas",
   html:`
-  <h2><span class="idx">23</span> Practice Project Ideas</h2>
+  <h2><span class="idx">29</span> Practice Project Ideas</h2>
   <p class="desc">Pinaka-mabilis na paraan matuto ng Python: gumawa ng totoong proyekto. Narito ang tatlong guided directions na kumbinasyon ng maraming topics na natutunan mo dito.</p>
 
   <h3 class="sub">Project 1 — Simple Arcade Game</h3>
@@ -1920,6 +2205,264 @@ venv/
   </ul>
 
   <div class="note"><b>Para kay Kiel:</b> Ang mga project na ito ay maganda ring i-log sa <code class="inline">ELITE_BSCS_SELF_STUDY</code> repo mo — bawat proyekto, isang folder na may README, code, at "lessons learned" notes. Malaking portfolio material ito para sa Full-Stack Developer / AI Engineer path mo.</div>
+  `
+},
+
+{
+  id:"builtins-ref",
+  group:"XI. Reference Library",
+  title:"Built-in Functions Reference",
+  html:`
+  <h2><span class="idx">30</span> Built-in Functions Reference</h2>
+  <p class="desc">Kumpletong listahan ng mga built-in functions ng Python — hindi mo na kailangang mag-import, laging available. Grouped by kung para saan ginagamit.</p>
+
+  <h3 class="sub">Type Conversion &amp; Construction</h3>
+  <table class="ref">
+    <tr><th>Function</th><th>Ginagawa</th></tr>
+    <tr><td><code>int(x)</code></td><td>I-convert sa integer</td></tr>
+    <tr><td><code>float(x)</code></td><td>I-convert sa decimal number</td></tr>
+    <tr><td><code>str(x)</code></td><td>I-convert sa string</td></tr>
+    <tr><td><code>bool(x)</code></td><td>I-convert sa True/False</td></tr>
+    <tr><td><code>list(x)</code> / <code>tuple(x)</code> / <code>set(x)</code></td><td>Gumawa ng bagong sequence mula sa iterable</td></tr>
+    <tr><td><code>dict(x)</code></td><td>Gumawa ng dictionary</td></tr>
+    <tr><td><code>frozenset(x)</code></td><td>Immutable na version ng set</td></tr>
+    <tr><td><code>bytes(x)</code> / <code>bytearray(x)</code></td><td>Byte sequences (immutable/mutable)</td></tr>
+    <tr><td><code>complex(re, im)</code></td><td>Complex number</td></tr>
+    <tr><td><code>chr(n)</code> / <code>ord(c)</code></td><td>Number → character / character → number (Unicode)</td></tr>
+    <tr><td><code>hex(n)</code> / <code>oct(n)</code> / <code>bin(n)</code></td><td>I-convert ang integer sa hex/octal/binary string</td></tr>
+    <tr><td><code>ascii(x)</code></td><td>String repr, escaped ang non-ASCII characters</td></tr>
+  </table>
+
+  <h3 class="sub">Math &amp; Numbers</h3>
+  <table class="ref">
+    <tr><th>Function</th><th>Ginagawa</th></tr>
+    <tr><td><code>abs(x)</code></td><td>Absolute value</td></tr>
+    <tr><td><code>round(x, n)</code></td><td>I-round sa <code class="inline">n</code> decimal places</td></tr>
+    <tr><td><code>pow(x, y, z)</code></td><td>x sa power ng y, optional modulo z</td></tr>
+    <tr><td><code>divmod(a, b)</code></td><td>Tuple ng (quotient, remainder)</td></tr>
+    <tr><td><code>sum(iterable)</code></td><td>Total ng lahat ng elements</td></tr>
+    <tr><td><code>min(iterable)</code> / <code>max(iterable)</code></td><td>Pinakamaliit / pinakamalaki</td></tr>
+  </table>
+
+  <h3 class="sub">Iterables &amp; Sequences</h3>
+  <table class="ref">
+    <tr><th>Function</th><th>Ginagawa</th></tr>
+    <tr><td><code>len(x)</code></td><td>Bilang ng elements</td></tr>
+    <tr><td><code>range(start, stop, step)</code></td><td>Sequence ng numbers, lazy</td></tr>
+    <tr><td><code>enumerate(x, start=0)</code></td><td>(index, value) pairs habang naglo-loop</td></tr>
+    <tr><td><code>zip(*iterables)</code></td><td>Pagsamahin ang maraming iterables parallel</td></tr>
+    <tr><td><code>sorted(x, key=None, reverse=False)</code></td><td>Bagong naka-sort na list</td></tr>
+    <tr><td><code>reversed(x)</code></td><td>Reversed iterator</td></tr>
+    <tr><td><code>map(func, x)</code></td><td>I-apply ang function sa bawat element</td></tr>
+    <tr><td><code>filter(func, x)</code></td><td>Panatilihin lang ang elements na True sa func</td></tr>
+    <tr><td><code>all(x)</code> / <code>any(x)</code></td><td>True kung lahat/kahit isa ay truthy</td></tr>
+    <tr><td><code>iter(x)</code> / <code>next(x)</code></td><td>Kumuha ng iterator / susunod na value</td></tr>
+    <tr><td><code>slice(start, stop, step)</code></td><td>Slice object, magagamit sa <code class="inline">x[slice(...)]</code></td></tr>
+  </table>
+
+  <h3 class="sub">Object Introspection &amp; Attributes</h3>
+  <table class="ref">
+    <tr><th>Function</th><th>Ginagawa</th></tr>
+    <tr><td><code>type(x)</code></td><td>Klase/uri ng object</td></tr>
+    <tr><td><code>isinstance(x, T)</code></td><td>Tignan kung instance ng klaseng T</td></tr>
+    <tr><td><code>issubclass(A, B)</code></td><td>Tignan kung subclass si A ni B</td></tr>
+    <tr><td><code>id(x)</code></td><td>Unique memory identity</td></tr>
+    <tr><td><code>hash(x)</code></td><td>Hash value (para sa dict keys, sets)</td></tr>
+    <tr><td><code>dir(x)</code></td><td>Listahan ng attributes/methods ng object</td></tr>
+    <tr><td><code>vars(x)</code></td><td>Dict ng <code class="inline">__dict__</code> attributes</td></tr>
+    <tr><td><code>getattr(obj, name, default)</code></td><td>Kunin ang attribute by name (string)</td></tr>
+    <tr><td><code>setattr(obj, name, val)</code></td><td>Itakda ang attribute by name</td></tr>
+    <tr><td><code>hasattr(obj, name)</code></td><td>Tignan kung meron ang attribute</td></tr>
+    <tr><td><code>delattr(obj, name)</code></td><td>Burahin ang attribute</td></tr>
+    <tr><td><code>callable(x)</code></td><td>Tignan kung pwedeng tawagin (may <code class="inline">()</code>)</td></tr>
+    <tr><td><code>super()</code></td><td>Access sa parent class methods</td></tr>
+    <tr><td><code>property()</code></td><td>Gumawa ng managed attribute (getter/setter)</td></tr>
+    <tr><td><code>classmethod()</code> / <code>staticmethod()</code></td><td>Decorators para sa class-level / walang-self na methods</td></tr>
+  </table>
+
+  <h3 class="sub">I/O, Scope &amp; Execution</h3>
+  <table class="ref">
+    <tr><th>Function</th><th>Ginagawa</th></tr>
+    <tr><td><code>print(*values, sep=" ", end="\\n")</code></td><td>I-print sa console</td></tr>
+    <tr><td><code>input(prompt)</code></td><td>Kumuha ng text input mula sa user</td></tr>
+    <tr><td><code>open(path, mode)</code></td><td>Magbukas ng file (basahin/isulat)</td></tr>
+    <tr><td><code>format(x, spec)</code></td><td>I-format ang value gamit ang format spec</td></tr>
+    <tr><td><code>repr(x)</code></td><td>"Official" na string representation (para sa debugging)</td></tr>
+    <tr><td><code>globals()</code> / <code>locals()</code></td><td>Dict ng global/local na variables sa kasalukuyang scope</td></tr>
+    <tr><td><code>eval(expr)</code></td><td>I-evaluate ang Python expression mula sa string (mag-ingat)</td></tr>
+    <tr><td><code>exec(code)</code></td><td>I-run ang Python code mula sa string (mag-ingat)</td></tr>
+    <tr><td><code>compile(src, filename, mode)</code></td><td>I-compile ang source bago i-exec/eval</td></tr>
+    <tr><td><code>breakpoint()</code></td><td>Ihinto ang execution at pumasok sa debugger (pdb)</td></tr>
+    <tr><td><code>help(x)</code></td><td>Ipakita ang docstring/documentation</td></tr>
+    <tr><td><code>__import__(name)</code></td><td>Programmatic import (mas mainam gamitin ang <code class="inline">importlib</code>)</td></tr>
+  </table>
+
+  <div class="tip"><b>Tip:</b> Kapag naguguluhan ka sa isang built-in function habang nagko-code, gamitin lang ang <code class="inline">help(function_name)</code> sa Python REPL — instant docs, wala nang kailangang buksan pa ang browser.</div>
+  `
+},
+
+{
+  id:"stdlib-1",
+  group:"XI. Reference Library",
+  title:"Standard Library I — Data &amp; Collections",
+  html:`
+  <h2><span class="idx">31</span> Standard Library I — Data &amp; Collections</h2>
+  <p class="desc">Mga module na palaging kasama sa Python at malaking tulong sa pag-manipulate ng data — hindi na kailangan mag-install pa gamit ang pip.</p>
+
+  <h3 class="sub"><code class="inline">collections</code></h3>
+  <pre><code><span class="kw">from</span> collections <span class="kw">import</span> Counter, defaultdict, namedtuple, deque, OrderedDict
+
+<span class="com"># Counter — bilangin ang frequency ng mga elements</span>
+c = Counter([<span class="str">"a"</span>, <span class="str">"b"</span>, <span class="str">"a"</span>, <span class="str">"c"</span>, <span class="str">"a"</span>])
+c.most_common(<span class="num">2</span>)              <span class="com"># [('a', 3), ('b', 1)]</span>
+
+<span class="com"># defaultdict — auto-initialize ang missing keys</span>
+dd = defaultdict(list)
+dd[<span class="str">"fruits"</span>].append(<span class="str">"mango"</span>)    <span class="com"># hindi na kailangan i-check kung existing ang key</span>
+
+<span class="com"># namedtuple — lightweight object na may named fields</span>
+Point = namedtuple(<span class="str">"Point"</span>, [<span class="str">"x"</span>, <span class="str">"y"</span>])
+p = Point(<span class="num">3</span>, <span class="num">4</span>)
+p.x, p.y                          <span class="com"># 3, 4</span>
+
+<span class="com"># deque — mabilis na append/pop sa magkabilang dulo</span>
+dq = deque([<span class="num">1</span>,<span class="num">2</span>,<span class="num">3</span>])
+dq.appendleft(<span class="num">0</span>)
+dq.pop()</code></pre>
+
+  <h3 class="sub"><code class="inline">itertools</code></h3>
+  <pre><code><span class="kw">from</span> itertools <span class="kw">import</span> chain, combinations, permutations, product, groupby, cycle, islice
+
+<span class="fn">list</span>(chain([<span class="num">1</span>,<span class="num">2</span>], [<span class="num">3</span>,<span class="num">4</span>]))        <span class="com"># [1, 2, 3, 4] — pagsamahin ang iterables</span>
+<span class="fn">list</span>(combinations([<span class="str">"a"</span>,<span class="str">"b"</span>,<span class="str">"c"</span>], <span class="num">2</span>)) <span class="com"># [('a','b'), ('a','c'), ('b','c')]</span>
+<span class="fn">list</span>(permutations([<span class="num">1</span>,<span class="num">2</span>,<span class="num">3</span>], <span class="num">2</span>))   <span class="com"># lahat ng ordered pairs</span>
+<span class="fn">list</span>(product([<span class="num">0</span>,<span class="num">1</span>], repeat=<span class="num">3</span>))    <span class="com"># cartesian product, parang nested loops</span>
+<span class="fn">list</span>(islice(<span class="fn">range</span>(<span class="num">100</span>), <span class="num">5</span>))       <span class="com"># unang 5 elements lang, kahit infinite iterator</span></code></pre>
+
+  <h3 class="sub"><code class="inline">functools</code></h3>
+  <pre><code><span class="kw">from</span> functools <span class="kw">import</span> reduce, lru_cache, partial, cached_property
+
+reduce(<span class="kw">lambda</span> a, b: a + b, [<span class="num">1</span>,<span class="num">2</span>,<span class="num">3</span>,<span class="num">4</span>])   <span class="com"># 10 — i-reduce sa iisang value</span>
+
+<span class="kw">@lru_cache</span>(maxsize=<span class="num">None</span>)               <span class="com"># i-cache ang results, mabilis ang paulit-ulit na tawag</span>
+<span class="kw">def</span> <span class="fn">fib</span>(n):
+    <span class="kw">return</span> n <span class="kw">if</span> n &lt; <span class="num">2</span> <span class="kw">else</span> fib(n-<span class="num">1</span>) + fib(n-<span class="num">2</span>)
+
+double = partial(<span class="fn">pow</span>, exp=<span class="num">2</span>)          <span class="com"># i-preset ang isang argument</span></code></pre>
+
+  <h3 class="sub"><code class="inline">pathlib</code> — modernong paraan sa file paths</h3>
+  <pre><code><span class="kw">from</span> pathlib <span class="kw">import</span> Path
+
+p = Path(<span class="str">"data"</span>) / <span class="str">"file.txt"</span>   <span class="com"># cross-platform path joining gamit ang /</span>
+p.exists()
+p.name, p.suffix, p.stem      <span class="com"># 'file.txt', '.txt', 'file'</span>
+p.parent                      <span class="com"># parent directory</span>
+p.read_text()                 <span class="com"># basahin ang buong file bilang string</span>
+p.write_text(<span class="str">"hello"</span>)        <span class="com"># isulat sa file</span>
+<span class="fn">list</span>(Path(<span class="str">"."</span>).glob(<span class="str">"*.py"</span>))  <span class="com"># hanapin lahat ng .py files sa folder</span></code></pre>
+
+  <h3 class="sub"><code class="inline">datetime</code></h3>
+  <pre><code><span class="kw">from</span> datetime <span class="kw">import</span> datetime, date, timedelta
+
+now = datetime.now()
+today = date.today()
+now.strftime(<span class="str">"%Y-%m-%d %H:%M"</span>)     <span class="com"># i-format bilang readable string</span>
+datetime.strptime(<span class="str">"2026-07-17"</span>, <span class="str">"%Y-%m-%d"</span>)  <span class="com"># i-parse ang string pabalik sa datetime</span>
+tomorrow = today + timedelta(days=<span class="num">1</span>)</code></pre>
+
+  <h3 class="sub"><code class="inline">csv</code> at <code class="inline">json</code></h3>
+  <pre><code><span class="kw">import</span> csv, json
+
+<span class="com"># CSV — read/write ng comma-separated values</span>
+<span class="kw">with</span> <span class="fn">open</span>(<span class="str">"data.csv"</span>) <span class="kw">as</span> f:
+    reader = csv.DictReader(f)
+    <span class="kw">for</span> row <span class="kw">in</span> reader:
+        <span class="fn">print</span>(row[<span class="str">"name"</span>])
+
+<span class="com"># JSON — malapit sa Python dicts/lists, pinaka-common data format</span>
+data = json.loads(<span class="str">'{"name": "Kiel"}'</span>)   <span class="com"># string → dict</span>
+json.dumps(data, indent=<span class="num">2</span>)              <span class="com"># dict → string, maganda ang format</span>
+
+<span class="kw">with</span> <span class="fn">open</span>(<span class="str">"config.json"</span>) <span class="kw">as</span> f:
+    config = json.load(f)                <span class="com"># basahin diretso mula sa file</span></code></pre>
+
+  <div class="note"><b>Bonus — YAML:</b> Hindi built-in ang YAML support (kailangan mo ng <code class="inline">pip install pyyaml</code>), pero pareho lang ang gamit sa JSON para sa config files: <code class="inline">yaml.safe_load(f)</code> at <code class="inline">yaml.dump(data)</code>. Mas human-readable ang YAML kaysa JSON, kaya popular ito sa mga config files tulad ng Docker Compose at GitHub Actions.</div>
+  `
+},
+
+{
+  id:"stdlib-2",
+  group:"XI. Reference Library",
+  title:"Standard Library II — System &amp; Utilities",
+  html:`
+  <h2><span class="idx">32</span> Standard Library II — System &amp; Utilities</h2>
+  <p class="desc">Mga module para sa CLI tools, logging, random data, database, at ibang system-level na gawain.</p>
+
+  <h3 class="sub"><code class="inline">argparse</code> — CLI argument parsing</h3>
+  <pre><code><span class="kw">import</span> argparse
+
+parser = argparse.ArgumentParser(description=<span class="str">"Sample tool"</span>)
+parser.add_argument(<span class="str">"filename"</span>)                     <span class="com"># positional argument</span>
+parser.add_argument(<span class="str">"-v"</span>, <span class="str">"--verbose"</span>, action=<span class="str">"store_true"</span>)  <span class="com"># flag</span>
+parser.add_argument(<span class="str">"--count"</span>, type=<span class="fn">int</span>, default=<span class="num">1</span>)      <span class="com"># optional na may value</span>
+args = parser.parse_args()
+<span class="fn">print</span>(args.filename, args.verbose, args.count)</code></pre>
+
+  <h3 class="sub"><code class="inline">logging</code> — mas maayos kaysa sa print()</h3>
+  <pre><code><span class="kw">import</span> logging
+
+logging.basicConfig(level=logging.INFO, format=<span class="str">"%(asctime)s %(levelname)s %(message)s"</span>)
+logging.debug(<span class="str">"detalyadong info, para sa devs lang"</span>)
+logging.info(<span class="str">"normal na kaganapan"</span>)
+logging.warning(<span class="str">"may kakaiba pero tumatakbo pa rin"</span>)
+logging.error(<span class="str">"may nasirang bahagi"</span>)
+logging.critical(<span class="str">"mag-crash na ang program"</span>)</code></pre>
+
+  <h3 class="sub"><code class="inline">random</code></h3>
+  <pre><code><span class="kw">import</span> random
+
+random.random()                 <span class="com"># float sa pagitan ng 0.0-1.0</span>
+random.randint(<span class="num">1</span>, <span class="num">10</span>)           <span class="com"># integer, inclusive sa dulo</span>
+random.choice([<span class="str">"a"</span>,<span class="str">"b"</span>,<span class="str">"c"</span>])   <span class="com"># random na element</span>
+random.sample(<span class="fn">range</span>(<span class="num">100</span>), <span class="num">5</span>)   <span class="com"># 5 unique random elements</span>
+random.shuffle(my_list)         <span class="com"># i-shuffle ang list in-place</span></code></pre>
+
+  <h3 class="sub"><code class="inline">hashlib</code> at <code class="inline">subprocess</code></h3>
+  <pre><code><span class="kw">import</span> hashlib, subprocess
+
+<span class="com"># Hashing — para sa passwords (with salt sa totoong app), checksums</span>
+hashlib.sha256(<span class="str">b"hello"</span>).hexdigest()
+
+<span class="com"># Subprocess — tumakbo ng external commands mula sa Python</span>
+result = subprocess.run([<span class="str">"ls"</span>, <span class="str">"-la"</span>], capture_output=<span class="num">True</span>, text=<span class="num">True</span>)
+<span class="fn">print</span>(result.stdout)</code></pre>
+
+  <h3 class="sub"><code class="inline">sqlite3</code> — built-in na database, walang server na kailangan</h3>
+  <pre><code><span class="kw">import</span> sqlite3
+
+conn = sqlite3.connect(<span class="str">"app.db"</span>)
+cur = conn.cursor()
+cur.execute(<span class="str">"CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, name TEXT)"</span>)
+cur.execute(<span class="str">"INSERT INTO users (name) VALUES (?)"</span>, (<span class="str">"Kiel"</span>,))
+conn.commit()
+cur.execute(<span class="str">"SELECT * FROM users"</span>)
+<span class="fn">print</span>(cur.fetchall())
+conn.close()</code></pre>
+
+  <h3 class="sub">Iba pang mga kapaki-pakinabang na module</h3>
+  <table class="ref">
+    <tr><th>Module</th><th>Ginagamit para sa</th></tr>
+    <tr><td><code>statistics</code></td><td>Mean, median, mode, stdev — walang kailangang pandas</td></tr>
+    <tr><td><code>copy</code></td><td><code class="inline">copy.deepcopy(x)</code> para sa totoong independent copy ng nested objects</td></tr>
+    <tr><td><code>tempfile</code></td><td>Gumawa ng pansamantalang files/folders na auto-delete</td></tr>
+    <tr><td><code>urllib.request</code></td><td>Simpleng HTTP requests kung ayaw mag-install ng <code class="inline">requests</code></td></tr>
+    <tr><td><code>zoneinfo</code></td><td>Timezone-aware datetimes (built-in na simula Python 3.9)</td></tr>
+    <tr><td><code>zipfile</code></td><td>I-compress/extract ang .zip archives</td></tr>
+    <tr><td><code>shelve</code></td><td>Persistent dict-like storage — parang simpleng key-value database</td></tr>
+    <tr><td><code>tomllib</code></td><td>Basahin ang TOML config files (built-in simula Python 3.11)</td></tr>
+  </table>
+
+  <div class="tip"><b>Practical tip:</b> Bago ka mag-<code class="inline">pip install</code> ng third-party library, tignan mo muna kung meron nang built-in solution sa standard library — mas mabilis mag-install, walang dependency conflicts, at gumagana kahit saang machine.</div>
   `
 }
 
